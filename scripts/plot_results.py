@@ -21,6 +21,7 @@ def main():
         ax.errorbar(range(1,6),means,yerr=halves,fmt='o',capsize=7,markersize=8,color='#1f5e93',elinewidth=1.8)
         ax.set(xticks=range(1,6),xticklabels=[f'Cenário {i}' for i in range(1,6)],ylabel='Tempo médio (s)',xlabel='Configuração do atendimento',title=title,ylim=(0,max(m+h for m,h in zip(means,halves))*1.24))
         ax.grid(axis='y',alpha=.2)
+        ax.set_xlim(.5,5.5)
         for x,m,h in zip(range(1,6),means,halves):ax.annotate(f'{m:.2f} ± {h:.2f} s',(x,m+h),xytext=(0,12),textcoords='offset points',ha='center',fontsize=10)
         fig.supxlabel('Barras: IC95% t de Student, 29 graus de liberdade. Chegadas: 90 min; execução: 150 min.',fontsize=9)
         for ext in ('png','svg'):fig.savefig(out/f'{filename}.{ext}')

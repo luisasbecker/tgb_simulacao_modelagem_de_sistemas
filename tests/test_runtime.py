@@ -5,7 +5,7 @@ import json
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from run_model import run_model, ROOT
-from result_io import read_dat, numeric_logger
+from result_io import read_dat, numeric_logger, read_log_replications
 
 def test(name,overrides):
     work=ROOT/'results/validation'/name
@@ -45,6 +45,17 @@ SorteiaMontagem AttributeAssignmentList { 'this.obj.TempoMontagem = 100[s]' }
         arrivals=numeric_logger(cfg.with_name(name+'-LogChegadas.log'))
         assert all(r['this.SimTime/1[s]']<5400 for r in arrivals)
         records.append({'test':name,'passed':True,'generated':expected})
+    row,cfg=test('remaining_clients', '''ChegadaClientes InterArrivalTime { 1 s }
+ChegadaClientes MaxNumber { 10 }
+Caixa ServiceTime { 3600 s }
+''')
+    # Stress fixture only: long payment intentionally leaves real entities unfinished.
+    from analyze_results import audit_rep
+    logs={name:read_log_replications(cfg.with_name(cfg.stem+'-'+name+'.log')) for name in ['LogChegadas','LogDesistencias','LogMontagem','LogAtendidos','LogEstado']}
+    audit=audit_rep(1,row,logs)
+    assert audit['remanescentes']>0 and audit['conservacao']
+    assert not audit['reconstrucao_totais_por_concluidos_aplicavel']
+    records.append({'test':'remaining_clients','passed':True,'audit':audit})
     out=ROOT/'results/validation/runtime_tests.json';out.write_text(json.dumps(records,indent=2))
     print(json.dumps(records,indent=2))
 

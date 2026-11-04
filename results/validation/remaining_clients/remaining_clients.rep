@@ -1,0 +1,260 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/remaining_clients/remaining_clients.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 10:51	-
+Simulation	PresentSimulationTime	9000.0	s
+Simulation	ClientesGerados	10.0	-
+Simulation	ClientesAtendidos	2.0	-
+Simulation	TotalDesistencias	2.0	-
+Simulation	ClientesAindaNoSistema	6.0	-
+Simulation	EsperaBalcao_s	181.66565687499997	-
+Simulation	FilaBalcao_media	0.16148058388888886	-
+Simulation	FilaBalcao_max	6.0	-
+Simulation	EsperaCaixa_s	6663.499587625	-
+Simulation	FilaCaixa_media	5.923110744555555	-
+Simulation	EsperaTostagem_s	0.0	-
+Simulation	FilaTostagem_media	0.0	-
+Simulation	UtilizacaoBalcoes	0.059926156	-
+Simulation	UtilizacaoTostadeira	0.013477807111111111	-
+Simulation	UtilizacaoCaixas	0.992989147111111	-
+Simulation	LeadTime_medio_s	5462.597675999999	-
+Simulation	Vazao_h	0.8	-
+Simulation	UltimaChegada_s	9.0	-
+Simulation	TempoFinal_s	9000.0	-
+Simulation	AmostrasLeadTime	2.0	-
+Simulation	ClientesMontados	8.0	-
+Simulation	ClientesTostados	4.0	-
+Simulation	ClientesPagos	2.0	-
+Simulation	TempoGeradorAberto_s	5400.0	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	0.06673285022222222	-
+Simulation	UtilizacaoBalcao2	0.05311946177777778	-
+Simulation	UtilizacaoCaixa	0.992989147111111	-
+Simulation	RunDuration	9000.0	s
+Simulation	InitializationDuration	0.0	s
+
+*** TimeSeriesThreshold ***
+
+HorarioPico	StateTimes[Closed]	3600.0	s
+HorarioPico	StateTimes[Open]	5400.0	s
+HorarioPico	TotalTime	9000.0	s
+HorarioPico	OpenFraction	0.6	-
+
+*** Assign ***
+
+ClassificaPedido	StateTimes[None]	9000.0	s
+ClassificaPedido	TotalTime	9000.0	s
+ClassificaPedido	NumberAdded	10.0	-
+ClassificaPedido	NumberProcessed	10.0	-
+
+SorteiaMontagem	StateTimes[None]	9000.0	s
+SorteiaMontagem	TotalTime	9000.0	s
+SorteiaMontagem	NumberAdded	10.0	-
+SorteiaMontagem	NumberProcessed	10.0	-
+
+*** Branch ***
+
+DecisaoDesistencia	StateTimes[None]	9000.0	s
+DecisaoDesistencia	TotalTime	9000.0	s
+DecisaoDesistencia	NumberAdded	10.0	-
+DecisaoDesistencia	NumberProcessed	10.0	-
+
+RotaTostagem	StateTimes[None]	9000.0	s
+RotaTostagem	TotalTime	9000.0	s
+RotaTostagem	NumberAdded	8.0	-
+RotaTostagem	NumberProcessed	8.0	-
+
+*** EntityGenerator ***
+
+ChegadaClientes	StateTimes[Breakdown]	0.0	s
+ChegadaClientes	StateTimes[Idle]	5391.0	s
+ChegadaClientes	StateTimes[Maintenance]	0.0	s
+ChegadaClientes	StateTimes[Stopped]	3600.0	s
+ChegadaClientes	StateTimes[Working]	9.0	s
+ChegadaClientes	TotalTime	9000.0	s
+ChegadaClientes	Utilisation	0.001	-
+ChegadaClientes	Commitment	0.401	-
+ChegadaClientes	Availability	1.0	-
+ChegadaClientes	Reliability	1.0	-
+ChegadaClientes	NumberAdded	10.0	-
+ChegadaClientes	NumberProcessed	10.0	-
+
+*** EntitySink ***
+
+Saida	StateTimes[None]	9000.0	s
+Saida	TotalTime	9000.0	s
+Saida	NumberAdded	2.0	-
+Saida	NumberProcessed	2.0	-
+
+SaidaDesistencia	StateTimes[None]	9000.0	s
+SaidaDesistencia	TotalTime	9000.0	s
+SaidaDesistencia	NumberAdded	2.0	-
+SaidaDesistencia	NumberProcessed	2.0	-
+
+*** Queue ***
+
+FilaBalcao	StateTimes[None]	9000.0	s
+FilaBalcao	TotalTime	9000.0	s
+FilaBalcao	NumberAdded	8.0	-
+FilaBalcao	NumberProcessed	8.0	-
+FilaBalcao	QueueLengthAverage	0.16148058388888886	-
+FilaBalcao	QueueLengthStandardDeviation	0.8006279936706721	-
+FilaBalcao	QueueLengthMinimum	0.0	-
+FilaBalcao	QueueLengthMaximum	6.0	-
+FilaBalcao	QueueLengthTimes[0]	8577.110731	s
+FilaBalcao	QueueLengthTimes[1]	10.784363999999982	s
+FilaBalcao	QueueLengthTimes[2]	186.78696899999997	s
+FilaBalcao	QueueLengthTimes[3]	9.62951000000001	s
+FilaBalcao	QueueLengthTimes[4]	94.461383	s
+FilaBalcao	QueueLengthTimes[5]	65.129367	s
+FilaBalcao	QueueLengthTimes[6]	56.097676	s
+FilaBalcao	QueueLengthFractions[0]	0.9530123034444445	-
+FilaBalcao	QueueLengthFractions[1]	0.0011982626666666646	-
+FilaBalcao	QueueLengthFractions[2]	0.020754107666666664	-
+FilaBalcao	QueueLengthFractions[3]	0.0010699455555555567	-
+FilaBalcao	QueueLengthFractions[4]	0.010495709222222222	-
+FilaBalcao	QueueLengthFractions[5]	0.007236596333333334	-
+FilaBalcao	QueueLengthFractions[6]	0.006233075111111111	-
+FilaBalcao	QueueLengthCumulativeFractions[0]	0.9530123034444445	-
+FilaBalcao	QueueLengthCumulativeFractions[1]	0.9542105661111112	-
+FilaBalcao	QueueLengthCumulativeFractions[2]	0.9749646737777778	-
+FilaBalcao	QueueLengthCumulativeFractions[3]	0.9760346193333334	-
+FilaBalcao	QueueLengthCumulativeFractions[4]	0.9865303285555556	-
+FilaBalcao	QueueLengthCumulativeFractions[5]	0.9937669248888888	-
+FilaBalcao	QueueLengthCumulativeFractions[6]	1.0	-
+FilaBalcao	AverageQueueTime	181.66565687499997	s
+FilaBalcao	NumberReneged	0.0	-
+
+FilaCaixa	StateTimes[None]	9000.0	s
+FilaCaixa	TotalTime	9000.0	s
+FilaCaixa	NumberAdded	8.0	-
+FilaCaixa	NumberProcessed	3.0	-
+FilaCaixa	QueueLengthAverage	5.923110744555555	-
+FilaCaixa	QueueLengthStandardDeviation	1.2418518124413511	-
+FilaCaixa	QueueLengthMinimum	0.0	-
+FilaCaixa	QueueLengthMaximum	7.0	-
+FilaCaixa	QueueLengthTimes[0]	127.22704300000001	s
+FilaCaixa	QueueLengthTimes[1]	93.461383	s
+FilaCaixa	QueueLengthTimes[2]	38.65860600000002	s
+FilaCaixa	QueueLengthTimes[3]	165.54223699999994	s
+FilaCaixa	QueueLengthTimes[4]	15.713089000000025	s
+FilaCaixa	QueueLengthTimes[5]	1811.8197200000004	s
+FilaCaixa	QueueLengthTimes[6]	3714.4050149999994	s
+FilaCaixa	QueueLengthTimes[7]	3033.172907	s
+FilaCaixa	QueueLengthFractions[0]	0.014136338111111112	-
+FilaCaixa	QueueLengthFractions[1]	0.010384598111111112	-
+FilaCaixa	QueueLengthFractions[2]	0.0042954006666666685	-
+FilaCaixa	QueueLengthFractions[3]	0.018393581888888882	-
+FilaCaixa	QueueLengthFractions[4]	0.0017458987777777806	-
+FilaCaixa	QueueLengthFractions[5]	0.20131330222222227	-
+FilaCaixa	QueueLengthFractions[6]	0.4127116683333333	-
+FilaCaixa	QueueLengthFractions[7]	0.3370192118888889	-
+FilaCaixa	QueueLengthCumulativeFractions[0]	0.014136338111111112	-
+FilaCaixa	QueueLengthCumulativeFractions[1]	0.024520936222222223	-
+FilaCaixa	QueueLengthCumulativeFractions[2]	0.02881633688888889	-
+FilaCaixa	QueueLengthCumulativeFractions[3]	0.047209918777777776	-
+FilaCaixa	QueueLengthCumulativeFractions[4]	0.04895581755555556	-
+FilaCaixa	QueueLengthCumulativeFractions[5]	0.2502691197777778	-
+FilaCaixa	QueueLengthCumulativeFractions[6]	0.6629807881111112	-
+FilaCaixa	QueueLengthCumulativeFractions[7]	1.0	-
+FilaCaixa	AverageQueueTime	6663.499587625	s
+FilaCaixa	NumberReneged	0.0	-
+
+FilaTostagem	StateTimes[None]	9000.0	s
+FilaTostagem	TotalTime	9000.0	s
+FilaTostagem	NumberAdded	4.0	-
+FilaTostagem	NumberProcessed	4.0	-
+FilaTostagem	QueueLengthAverage	0.0	-
+FilaTostagem	QueueLengthStandardDeviation	0.0	-
+FilaTostagem	QueueLengthMinimum	0.0	-
+FilaTostagem	QueueLengthMaximum	0.0	-
+FilaTostagem	QueueLengthTimes[0]	9000.0	s
+FilaTostagem	QueueLengthTimes[1]	0.0	s
+FilaTostagem	QueueLengthFractions[0]	1.0	-
+FilaTostagem	QueueLengthFractions[1]	0.0	-
+FilaTostagem	QueueLengthCumulativeFractions[0]	1.0	-
+FilaTostagem	QueueLengthCumulativeFractions[1]	1.0	-
+FilaTostagem	AverageQueueTime	0.0	s
+FilaTostagem	NumberReneged	0.0	-
+
+*** Server ***
+
+Balcao1	StateTimes[Breakdown]	0.0	s
+Balcao1	StateTimes[Idle]	8399.404348	s
+Balcao1	StateTimes[Maintenance]	0.0	s
+Balcao1	StateTimes[Stopped]	0.0	s
+Balcao1	StateTimes[Working]	600.595652	s
+Balcao1	TotalTime	9000.0	s
+Balcao1	Utilisation	0.06673285022222222	-
+Balcao1	Commitment	0.0667328502222222	-
+Balcao1	Availability	1.0	-
+Balcao1	Reliability	1.0	-
+Balcao1	NumberAdded	4.0	-
+Balcao1	NumberProcessed	4.0	-
+
+Balcao2	StateTimes[Breakdown]	0.0	s
+Balcao2	StateTimes[Idle]	8521.924844	s
+Balcao2	StateTimes[Maintenance]	0.0	s
+Balcao2	StateTimes[Stopped]	0.0	s
+Balcao2	StateTimes[Working]	478.075156	s
+Balcao2	TotalTime	9000.0	s
+Balcao2	Utilisation	0.05311946177777778	-
+Balcao2	Commitment	0.05311946177777782	-
+Balcao2	Availability	1.0	-
+Balcao2	Reliability	1.0	-
+Balcao2	NumberAdded	4.0	-
+Balcao2	NumberProcessed	4.0	-
+
+Caixa	StateTimes[Breakdown]	0.0	s
+Caixa	StateTimes[Idle]	63.097676	s
+Caixa	StateTimes[Maintenance]	0.0	s
+Caixa	StateTimes[Stopped]	0.0	s
+Caixa	StateTimes[Working]	8936.902323999999	s
+Caixa	TotalTime	9000.0	s
+Caixa	Utilisation	0.992989147111111	-
+Caixa	Commitment	0.9929891471111111	-
+Caixa	Availability	1.0	-
+Caixa	Reliability	1.0	-
+Caixa	NumberAdded	3.0	-
+Caixa	NumberProcessed	2.0	-
+
+Tostadeira	StateTimes[Breakdown]	0.0	s
+Tostadeira	StateTimes[Idle]	8878.699736	s
+Tostadeira	StateTimes[Maintenance]	0.0	s
+Tostadeira	StateTimes[Stopped]	0.0	s
+Tostadeira	StateTimes[Working]	121.300264	s
+Tostadeira	TotalTime	9000.0	s
+Tostadeira	Utilisation	0.013477807111111111	-
+Tostadeira	Commitment	0.013477807111111018	-
+Tostadeira	Availability	1.0	-
+Tostadeira	Reliability	1.0	-
+Tostadeira	NumberAdded	4.0	-
+Tostadeira	NumberProcessed	4.0	-
+
+*** SimEntity ***
+
+Cliente	StateTimes[None]	9000.0	s
+Cliente	TotalTime	9000.0	s
+Cliente	TipoPedido	0.0	-
+Cliente	TempoMontagem	0.0	s
+Cliente	HoraChegada	0.0	s
+Cliente	FilaNaChegada	0.0	-
+
+*** Statistics ***
+
+EstatSistema	StateTimes[None]	9000.0	s
+EstatSistema	TotalTime	9000.0	s
+EstatSistema	NumberAdded	2.0	-
+EstatSistema	NumberProcessed	2.0	-
+EstatSistema	SampleMinimum	3663.097676	s
+EstatSistema	SampleMaximum	7262.097675999999	s
+EstatSistema	SampleAverage	5462.597675999999	s
+EstatSistema	SampleStandardDeviation	2544.8773054903845	s
+EstatSistema	TimeAverage	4834.397258524643	s
+EstatSistema	TimeStandardDeviation	1686.2871895035519	s
+

@@ -67,12 +67,16 @@ def audit_rep(n,r,logs):
         close(lead,sum(v[f'this.obj.StateTimes("{state}")/1[s]'] for state in ['Montagem','EsperaBalcao','EsperaTostagem','Tostagem','EsperaCaixa','Pagamento']))
     leads=[v['(this.SimTime-this.obj.HoraChegada)/1[s]'] for v in s]
     close(statistics.fmean(leads),r['LeadTime_medio_s'])
-    close(statistics.fmean(v['this.obj.StateTimes("EsperaBalcao")/1[s]'] for v in s),r['EsperaBalcao_s'])
-    close(statistics.fmean(v['this.obj.StateTimes("EsperaCaixa")/1[s]'] for v in s),r['EsperaCaixa_s'])
-    nb=3 if n in (2,5) else 2;nc=2 if n in (4,5) else 1
-    for state,metric,count in [('Montagem','UtilizacaoBalcoes',nb),('Tostagem','UtilizacaoTostadeira',1),('Pagamento','UtilizacaoCaixas',nc)]:
-        close(sum(v[f'this.obj.StateTimes("{state}")/1[s]'] for v in s)/9000/count,r[metric])
-    assert sum(v['this.obj.StateTimes("Tostagem")/1[s]']>0 for v in s)==r['ClientesTostados']
+    # Served-only traces cannot reconstruct service/queue totals for unfinished clients.
+    # Keep the independent conservation audit, and record which equalities are applicable.
+    emptied=r['ClientesAindaNoSistema']==0
+    if emptied:
+        close(statistics.fmean(v['this.obj.StateTimes("EsperaBalcao")/1[s]'] for v in s),r['EsperaBalcao_s'])
+        close(statistics.fmean(v['this.obj.StateTimes("EsperaCaixa")/1[s]'] for v in s),r['EsperaCaixa_s'])
+        nb=3 if n in (2,5) else 2;nc=2 if n in (4,5) else 1
+        for state,metric,count in [('Montagem','UtilizacaoBalcoes',nb),('Tostagem','UtilizacaoTostadeira',1),('Pagamento','UtilizacaoCaixas',nc)]:
+            close(sum(v[f'this.obj.StateTimes("{state}")/1[s]'] for v in s)/9000/count,r[metric])
+        assert sum(v['this.obj.StateTimes("Tostagem")/1[s]']>0 for v in s)==r['ClientesTostados']
     # Independent occupancy at event-complete observations, and queue area identities.
     for v in e:
         assert v['[ChegadaClientes].NumberGenerated']==v['[Saida].NumberAdded']+v['[SaidaDesistencia].NumberAdded']+v['[Simulation].ClientesAindaNoSistema']
@@ -84,7 +88,7 @@ def audit_rep(n,r,logs):
     r['P90_lead_time_s']=float(np.quantile(leads,.9,method='linear'))
     r['TaxaDesistencia']=len(d)/len(a)
     r['VazaoJanelaDemanda_h']=len(s)/1.5
-    return {'cenario':n,'replicacao':rep,'conservacao':True,'remanescentes':r['ClientesAindaNoSistema'],'ultima_chegada_s':r['UltimaChegada_s'],'clientes_auditados':len(a),'desistentes':len(d),'observacoes_caixas_simultaneos':parallel,'eventos_estado_auditados':len(e)}
+    return {'cenario':n,'replicacao':rep,'conservacao':True,'remanescentes':r['ClientesAindaNoSistema'],'reconstrucao_totais_por_concluidos_aplicavel':emptied,'ultima_chegada_s':r['UltimaChegada_s'],'clientes_auditados':len(a),'desistentes':len(d),'observacoes_caixas_simultaneos':parallel,'eventos_estado_auditados':len(e)}
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('runs',type=Path,nargs='?',default=ROOT/'results/runs');a=p.parse_args()

@@ -46,6 +46,7 @@ O ambiente marcou os logs com data de host diferente do contexto da sessão. Ess
 - Após corrigir só a unidade, a tentativa executou mas manteve o fechamento temporal inadequado e exportou o contador manual como texto; seus resultados são diagnósticos, não entram no resumo.
 - A primeira gravação do cenário 4 teve DAT completo, mas REP e logs incompletos; foi arquivada e excluída da análise. Reexecução com o mesmo CFG gerou DAT idêntico e logs completos. O mecanismo de incompletude não foi determinado. O runner passou a verificar explicitamente REP e todos os logs.
 - As fixtures de corte geram zero ou um cliente; indicadores de filas sem amostras produzem NaN, resultado esperado nesses testes. O analisador da produção exige valores finitos e não usa essas fixtures nas 150 replicações.
+- Uma fixture adicional alonga apenas o pagamento para 3600 s e termina com 10 gerados, 2 atendidos, 2 desistentes e 6 remanescentes. O balanço é registrado e aprovado, sem tentar reconstruir a ocupação total somente com os clientes concluídos. Esse experimento está isolado em results/validation/remaining_clients e não integra as tabelas dos cinco cenários.
 
 ## Arquivos para conferir
 
