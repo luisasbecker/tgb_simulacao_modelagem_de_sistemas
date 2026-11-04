@@ -1,0 +1,46 @@
+[
+  {
+    "test": "smoke",
+    "passed": true,
+    "remaining_expected": 2.0
+  },
+  {
+    "test": "boundary_queue",
+    "passed": true,
+    "generated": 10,
+    "served": 8,
+    "rejected": 2,
+    "max_queue": 6
+  },
+  {
+    "test": "cut_before",
+    "passed": true,
+    "generated": 1
+  },
+  {
+    "test": "cut_exact",
+    "passed": true,
+    "generated": 0
+  },
+  {
+    "test": "cut_pending",
+    "passed": true,
+    "generated": 1
+  },
+  {
+    "test": "remaining_clients",
+    "passed": true,
+    "audit": {
+      "cenario": 1,
+      "replicacao": 1,
+      "conservacao": true,
+      "remanescentes": 6.0,
+      "reconstrucao_totais_por_concluidos_aplicavel": false,
+      "ultima_chegada_s": 9.0,
+      "clientes_auditados": 10,
+      "desistentes": 2,
+      "observacoes_caixas_simultaneos": 0,
+      "eventos_estado_auditados": 23
+    }
+  }
+]

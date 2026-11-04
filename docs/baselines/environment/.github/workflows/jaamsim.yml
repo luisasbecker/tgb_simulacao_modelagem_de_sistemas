@@ -1,0 +1,32 @@
+name: JaamSim GB - validar e executar
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'models/**'
+      - 'scripts/**'
+      - '.github/workflows/jaamsim.yml'
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Validar contrato dos CFG
+        run: python3 scripts/validate_cfg.py
+      - name: Executar cinco cenários em headless
+        run: ./scripts/run_all.sh
+      - name: Mostrar resumo
+        run: cat results/summary.md
+      - name: Publicar resultados
+        uses: actions/upload-artifact@v4
+        with:
+          name: jaamsim-resultados
+          path: |
+            results/**
+          if-no-files-found: error

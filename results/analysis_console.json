@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "replicacoes": 150,
+  "total_clientes_auditados": 8980,
+  "chegadas_independentes_para_teste_distribuicao": 1796,
+  "tipos": [
+    {
+      "tipo": 1,
+      "n": 717,
+      "fracao_observada": 0.3992204899777283,
+      "fracao_definida": 0.4
+    },
+    {
+      "tipo": 2,
+      "n": 791,
+      "fracao_observada": 0.44042316258351893,
+      "fracao_definida": 0.45
+    },
+    {
+      "tipo": 3,
+      "n": 288,
+      "fracao_observada": 0.1603563474387528,
+      "fracao_definida": 0.15
+    }
+  ],
+  "chi2": 1.6529633754021338,
+  "chi2_p": 0.43758614587914624,
+  "max_remanescentes": 0.0,
+  "ultima_chegada_global_s": 5399.491566,
+  "seeds_pareados_confirmados": true,
+  "total_desistencias_por_cenario": {
+    "1": 3,
+    "2": 0,
+    "3": 3,
+    "4": 3,
+    "5": 0
+  },
+  "montagem": [
+    {
+      "tipo": 1,
+      "n": 717,
+      "media_observada_s": 75.56025895183762,
+      "media_teorica_s": 75.0,
+      "min_amostra_s": 47.29653756720785,
+      "max_amostra_s": 107.96191050735926,
+      "ks_D": 0.03703709932697641,
+      "ks_p": 0.27221770256439104
+    },
+    {
+      "tipo": 2,
+      "n": 791,
+      "media_observada_s": 115.50891965509774,
+      "media_teorica_s": 115.0,
+      "min_amostra_s": 77.10435303418767,
+      "max_amostra_s": 156.10250612749263,
+      "ks_D": 0.028267065306170625,
+      "ks_p": 0.5427591119366204
+    },
+    {
+      "tipo": 3,
+      "n": 288,
+      "media_observada_s": 178.8915844915415,
+      "media_teorica_s": 176.66666666666666,
+      "min_amostra_s": 122.90284767791204,
+      "max_amostra_s": 238.62768748987867,
+      "ks_D": 0.07481103322019245,
+      "ks_p": 0.07561767769776562
+    }
+  ]
+}

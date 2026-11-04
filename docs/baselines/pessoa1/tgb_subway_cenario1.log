@@ -1,0 +1,220 @@
+# ============================================================================
+#  TGB - Simulacao e Modelagem de Sistemas - UNISINOS  -  Prof. Alex Roehrs
+#  Fila do Subway da Unisinos  |  CENARIO 1 (situacao atual)
+#  Gabriela Bley Rodrigues  |  Luisa Becker dos Santos
+#
+#  Objetos das Aulas 04-05: SimEntity, EntityGenerator, pares Queue + Server,
+#  Branch + DiscreteDistribution, Statistics, EntitySink.
+#  Abrir no JaamSim (File > Open).  Experimento: Simulation > NumberOfReplications
+#  + PrintReport -> gera o relatorio .rep ao lado deste arquivo.
+#  Demonstracao com animacao: botao Play (>).
+#
+#  FLUXO (ver ACD do relatorio):
+#    ChegadaClientes -> FilaBalcao -> Balcao1 / Balcao2   (2 atendentes, fila unica)
+#      -> RotaTostagem --(1: P=0,55)--> FilaTostagem -> Tostadeira --.
+#                       \--(2: P=0,45)---------------------------------+--> FilaCaixa
+#      -> Caixa -> EstatSistema -> Saida
+#
+#  Dois estagios em serie (balcao e caixa) + uma decisao de rota (tostar?).
+#  Indicadores no .rep:  Wq = AverageQueueTime ; Lq = QueueLengthAverage ;
+#  rho = Utilisation (por Server) ; W = EstatSistema.SampleAverage.
+#
+#  PARAMETROS: valores de projeto (aba "Fontes" da planilha; dados sinteticos,
+#  uso autorizado pelo professor). Para dados reais, troque apenas o bloco
+#  DISTRIBUICOES pelos valores da aba "Resumo".
+#
+#  CENARIOS (arquivos separados):
+#    Cenario 2 -> acrescenta Balcao3 (mesma WaitQueue FilaBalcao)  [+1 atendente]
+#    Cenario 3 -> RotaDist ProbabilityList { 0.75  0.25 }          [mais tostados]
+#
+#  ALTERACOES DO GB:
+#    - NumberOfReplications: 10 -> 30  (exigencia minima do GB)
+#    - RunDuration: 1.5 h -> 2.5 h  (90 min de chegadas + 60 min para esvaziar)
+#    - ChegadaClientes MaxNumber: limita chegadas aos 90 min de pico
+#      (~40 clientes/h * 1.5 h = ~60 clientes; MaxNumber 999 nunca estoura,
+#       mas o gerador para naturalmente em RunDuration se MaxNumber for alto)
+#      SOLUCAO ADOTADA: MaxNumber { 999 } + RunDuration 2.5 h garante que
+#      todos os clientes que chegaram no pico concluam o atendimento.
+# ============================================================================
+
+RecordEdits
+
+Define SimEntity                { Cliente }
+Define EntityGenerator          { ChegadaClientes }
+Define Queue                    { FilaBalcao  FilaTostagem  FilaCaixa }
+Define Server                   { Balcao1  Balcao2  Tostadeira  Caixa }
+Define Branch                   { RotaTostagem }
+Define Statistics               { EstatSistema }
+Define EntitySink               { Saida }
+Define ExponentialDistribution  { ChegadaDist }
+Define TriangularDistribution   { MontagemDist  TostaDist  PagamentoDist }
+Define DiscreteDistribution     { RotaDist }
+
+Define ColladaModel   { Axis  Grid100x100 }
+Define DisplayEntity  { XY-Grid }
+Define OverlayClock   { Relogio }
+Define OverlayText    { Titulo }
+Define View           { View1 }
+
+# ---- unidades ----------------------------------------------------------
+ChegadaDist    UnitType { TimeUnit }
+MontagemDist   UnitType { TimeUnit }
+TostaDist      UnitType { TimeUnit }
+PagamentoDist  UnitType { TimeUnit }
+RotaDist       UnitType { DimensionlessUnit }
+EstatSistema   UnitType { TimeUnit }
+
+# ==========================  DISTRIBUICOES  ===========================
+# Chegadas ~ Poisson  ->  intervalos  EXPO(90 s)
+ChegadaDist   RandomSeed { 1 }
+ChegadaDist   Mean       { 90 s }
+
+# Montagem do lanche no balcao  ~  TRIA(60; 105; 200) s
+MontagemDist  RandomSeed { 2 }
+MontagemDist  MinValue   { 60 s }
+MontagemDist  Mode       { 105 s }
+MontagemDist  MaxValue   { 200 s }
+
+# Tostagem (pao na esteira/forno)  ~  TRIA(20; 30; 45) s
+TostaDist     RandomSeed { 3 }
+TostaDist     MinValue   { 20 s }
+TostaDist     Mode       { 30 s }
+TostaDist     MaxValue   { 45 s }
+
+# Pagamento no caixa  ~  TRIA(18; 38; 95) s
+PagamentoDist RandomSeed { 4 }
+PagamentoDist MinValue   { 18 s }
+PagamentoDist Mode       { 38 s }
+PagamentoDist MaxValue   { 95 s }
+
+# Decisao de rota: 1 = tostar (P=0,55) ; 2 = segue direto (P=0,45)
+RotaDist      RandomSeed      { 5 }
+RotaDist      ValueList       { 1  2 }
+RotaDist      ProbabilityList { 0.55  0.45 }
+
+# ==========================  FLUXO  ===================================
+ChegadaClientes NextComponent    { FilaBalcao }
+ChegadaClientes InterArrivalTime { ChegadaDist }
+ChegadaClientes PrototypeEntity  { Cliente }
+ChegadaClientes BaseName         { Cliente }
+# Para de gerar chegadas apos 90 min de pico (5400 s); a simulacao continua
+# por mais 60 min (ate 2.5 h) para que os clientes remanescentes concluam.
+ChegadaClientes MaxNumber        { 999 }
+ChegadaClientes EndTime          { 5400 s }
+*** INPUT ERROR *** Entity: ChegadaClientes, Keyword: EndTime - Not a valid keyword
+
+
+Balcao1 WaitQueue     { FilaBalcao }
+Balcao1 ServiceTime   { MontagemDist }
+Balcao1 NextComponent { RotaTostagem }
+
+Balcao2 WaitQueue     { FilaBalcao }
+Balcao2 ServiceTime   { MontagemDist }
+Balcao2 NextComponent { RotaTostagem }
+
+# 1 -> FilaTostagem (tostar) ; 2 -> FilaCaixa (segue direto)
+RotaTostagem NextComponentList { FilaTostagem  FilaCaixa }
+RotaTostagem Choice            { RotaDist }
+
+Tostadeira WaitQueue     { FilaTostagem }
+Tostadeira ServiceTime   { TostaDist }
+Tostadeira NextComponent { FilaCaixa }
+
+Caixa WaitQueue     { FilaCaixa }
+Caixa ServiceTime   { PagamentoDist }
+Caixa NextComponent { EstatSistema }
+
+# tempo total no sistema (chegada -> saida), por entidade  (W)
+EstatSistema NextComponent { Saida }
+EstatSistema SampleValue   { 'this.obj.TotalTime' }
+
+# ==========================  EXECUCAO  ================================
+# Janela de pico da noite (18h-19h30 = 90 min). Sistema comeca vazio (analise
+# terminal), sem periodo de aquecimento.
+# RunDuration = 2.5 h: chegadas param em 90 min (EndTime do gerador),
+# os 60 min restantes permitem que todos os clientes concluam o atendimento.
+# NumberOfReplications = 30 (requisito minimo do GB).
+Simulation Description               { 'Fila do Subway da Unisinos - Cenario 1 (atual)' }
+Simulation RunDuration               { 2.5 h }
+Simulation InitializationDuration    { 0 h }
+Simulation NumberOfReplications      { 30 }
+Simulation PrintReport               { TRUE }
+Simulation PrintReplications         { TRUE }
+Simulation PrintConfidenceIntervals  { TRUE }
+
+# Colunas do .dat (1 linha por replicacao); o .rep traz media + IC 95%:
+#  1 Wq  - espera media na fila do balcao (s)   <- INDICADOR PRINCIPAL
+#  2 Lq  - fila media do balcao
+#  3       fila maxima do balcao
+#  4 Wq  - espera media na fila do caixa (s)
+#  5 rho - utilizacao do balcao (media dos servidores)
+#  6 rho - utilizacao do caixa
+#  7 rho - utilizacao da tostadeira
+#  8 W   - tempo medio no sistema (s)
+#  9       clientes atendidos
+Simulation RunOutputList {
+  { '[FilaBalcao].AverageQueueTime/1[s]' }
+  { '[FilaBalcao].QueueLengthAverage' }
+  { '[FilaBalcao].QueueLengthMaximum' }
+  { '[FilaCaixa].AverageQueueTime/1[s]' }
+  { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' }
+  { '[Caixa].Utilisation' }
+  { '[Tostadeira].Utilisation' }
+  { '[EstatSistema].SampleAverage/1[s]' }
+  { '[Saida].NumberAdded' }
+}
+
+# ==============================  GRAFICOS  ===========================
+Simulation RealTime           { TRUE }
+Simulation RealTimeFactor     { 32 }
+Simulation ShowLabels         { TRUE }
+Simulation ShowModelBuilder   { TRUE }
+Simulation ShowObjectSelector { TRUE }
+Simulation ShowInputEditor    { TRUE }
+Simulation ShowOutputViewer   { TRUE }
+Simulation DisplayedUnits     { s }
+
+Cliente          Position { -8   0.5  0  m }
+ChegadaClientes  Position { -6   0.5  0  m }
+FilaBalcao       Position { -3   0.5  0  m }
+Balcao1          Position { -1   1.2  0  m }
+Balcao2          Position { -1  -0.2  0  m }
+RotaTostagem     Position {  1   0.5  0  m }
+FilaTostagem     Position {  2.5  1.6  0  m }
+Tostadeira       Position {  4    1.6  0  m }
+FilaCaixa        Position {  4    0.5  0  m }
+Caixa            Position {  6    0.5  0  m }
+EstatSistema     Position {  8    0.5  0  m }
+Saida            Position { 10    0.5  0  m }
+ChegadaDist      Position { -6   -1.6  0  m }
+MontagemDist     Position { -1   -1.6  0  m }
+TostaDist        Position {  4    3.0  0  m }
+PagamentoDist    Position {  6   -1.6  0  m }
+RotaDist         Position {  1   -1.6  0  m }
+
+Axis         ColladaFile { <res>/shapes/axis_text.dae }
+Grid100x100  ColladaFile { <res>/shapes/grid100x100.dae }
+XY-Grid      Size { 100 100 m }
+XY-Grid      DisplayModel { Grid100x100 }
+XY-Grid      Show { FALSE }
+XY-Grid      Movable { FALSE }
+
+Relogio ScreenPosition { 15 15 }
+Relogio AlignBottom { TRUE }
+Relogio TextHeight { 10 }
+Relogio FontColour { gray20 }
+Relogio FontStyle { ITALIC }
+Relogio DateFormat { 'yyyy-MMM-dd HH:mm:ss' }
+
+Titulo ScreenPosition { 15 15 }
+Titulo Format { 'Fila do Subway da Unisinos  -  Cenario 1 (2 no balcao, 1 caixa)' }
+Titulo TextHeight { 18 }
+Titulo FontColour { 30 60 90 }
+Titulo FontStyle { BOLD }
+
+View1 ViewCenter   { 2  0  0  m }
+View1 ViewPosition { 2  -3  20  m }
+View1 ShowWindow   { TRUE }
+View1 Lock2D       { TRUE }
+View1 SkyboxImage  { <res>/images/sky_map_2048x1024.jpg }
+Input Error: 1 input errors and 0 warnings found

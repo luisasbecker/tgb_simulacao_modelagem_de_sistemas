@@ -1,0 +1,367 @@
+--- docs/baselines/pessoa1/tgb_subway_cenario5.cfg
++++ models/cenario5.cfg
+@@ -1,25 +1,6 @@
+-# ============================================================================
+-#  TGB - Simulacao e Modelagem de Sistemas - UNISINOS  -  Prof. Alex Roehrs
+-#  Fila do Subway da Unisinos  |  CENARIO 5 (3 no balcao, 2 caixas)
+-#  Gabriela Bley Rodrigues  |  Luisa Becker dos Santos
+-#
+-#  FLUXO:
+-#    ChegadaClientes -> FilaBalcao -> Balcao1 / Balcao2 / Balcao3  (3 atendentes)
+-#      -> RotaTostagem --(1: P=0,55)--> FilaTostagem -> Tostadeira --.
+-#                       \--(2: P=0,45)---------------------------------+--> FilaCaixa
+-#      -> Caixa1 / Caixa2   (2 caixas, fila unica)
+-#      -> EstatSistema -> Saida
+-#
+-#  DIFERENCA PARA O CENARIO 2 (3 balcao, 1 caixa):
+-#    Adiciona Caixa2 na mesma FilaCaixa.
+-#    No cenario 2 o caixa ficou com espera aumentada (25,7 s) por receber
+-#    clientes mais rapido. Este cenario testa se um segundo caixa elimina
+-#    esse gargalo secundario.
+-#
+-#  Indicadores no .rep:  Wq = AverageQueueTime ; Lq = QueueLengthAverage ;
+-#  rho = Utilisation (media dos servidores) ; W = EstatSistema.SampleAverage.
+-# ============================================================================
+-
++# Cenario 5: base integral da Pessoa 1 + integracao validada da Pessoa 2.
++# Fonte preservada em docs/baselines/pessoa1/. Ver docs/ALTERACOES.md.
++# MontagemDist permanece como referencia historica, sem uso pelos balcoes.
+ RecordEdits
+ 
+ Define SimEntity                { Cliente }
+@@ -32,14 +13,25 @@
+ Define ExponentialDistribution  { ChegadaDist }
+ Define TriangularDistribution   { MontagemDist  TostaDist  PagamentoDist }
+ Define DiscreteDistribution     { RotaDist }
+-
+ Define ColladaModel   { Axis  Grid100x100 }
+ Define DisplayEntity  { XY-Grid }
+ Define OverlayClock   { Relogio }
+ Define OverlayText    { Titulo }
+ Define View           { View1 }
+-
+-# ---- unidades ----------------------------------------------------------
++Define Assign { ClassificaPedido SorteiaMontagem }
++Define Branch { DecisaoDesistencia }
++Define EntitySink { SaidaDesistencia }
++Define DiscreteDistribution { TipoPedidoDist }
++Define TriangularDistribution { MontagemSimplesDist MontagemTradicionalDist MontagemComplexoDist }
++Define TimeSeries { JanelaChegadas }
++Define TimeSeriesThreshold { HorarioPico }
++Define EntityLogger { LogChegadas LogDesistencias LogMontagem LogAtendidos }
++Define ExpressionLogger { LogEstado }
++Define OverlayText { TextoAtendidos TextoDesistencias TextoLeadTime TextoFila }
++Define Graph { GraficoFila }
++
++
++
+ ChegadaDist    UnitType { TimeUnit }
+ MontagemDist   UnitType { TimeUnit }
+ TostaDist      UnitType { TimeUnit }
+@@ -47,54 +39,46 @@
+ RotaDist       UnitType { DimensionlessUnit }
+ EstatSistema   UnitType { TimeUnit }
+ 
+-# ==========================  DISTRIBUICOES  ===========================
+-# Chegadas ~ Poisson  ->  intervalos  EXPO(90 s)
+ ChegadaDist   RandomSeed { 1 }
+ ChegadaDist   Mean       { 90 s }
+ 
+-# Montagem do lanche no balcao  ~  TRIA(60; 105; 200) s
+ MontagemDist  RandomSeed { 2 }
+ MontagemDist  MinValue   { 60 s }
+ MontagemDist  Mode       { 105 s }
+ MontagemDist  MaxValue   { 200 s }
+ 
+-# Tostagem (pao na esteira/forno)  ~  TRIA(20; 30; 45) s
+ TostaDist     RandomSeed { 3 }
+ TostaDist     MinValue   { 20 s }
+ TostaDist     Mode       { 30 s }
+ TostaDist     MaxValue   { 45 s }
+ 
+-# Pagamento no caixa  ~  TRIA(18; 38; 95) s
+ PagamentoDist RandomSeed { 4 }
+ PagamentoDist MinValue   { 18 s }
+ PagamentoDist Mode       { 38 s }
+ PagamentoDist MaxValue   { 95 s }
+ 
+-# Decisao de rota: 1 = tostar (P=0,55) ; 2 = segue direto (P=0,45)
+ RotaDist      RandomSeed      { 5 }
+ RotaDist      ValueList       { 1  2 }
+ RotaDist      ProbabilityList { 0.55  0.45 }
+ 
+-# ==========================  FLUXO  ===================================
+-ChegadaClientes NextComponent    { FilaBalcao }
++ChegadaClientes NextComponent { ClassificaPedido }
+ ChegadaClientes InterArrivalTime { ChegadaDist }
+ ChegadaClientes PrototypeEntity  { Cliente }
+ ChegadaClientes BaseName         { Cliente }
+ ChegadaClientes MaxNumber        { 999 }
+ 
+ Balcao1 WaitQueue     { FilaBalcao }
+-Balcao1 ServiceTime   { MontagemDist }
+-Balcao1 NextComponent { RotaTostagem }
++Balcao1 ServiceTime { 'this.obj.TempoMontagem' }
++Balcao1 NextComponent { LogMontagem }
+ 
+ Balcao2 WaitQueue     { FilaBalcao }
+-Balcao2 ServiceTime   { MontagemDist }
+-Balcao2 NextComponent { RotaTostagem }
++Balcao2 ServiceTime { 'this.obj.TempoMontagem' }
++Balcao2 NextComponent { LogMontagem }
+ 
+ Balcao3 WaitQueue     { FilaBalcao }
+-Balcao3 ServiceTime   { MontagemDist }
+-Balcao3 NextComponent { RotaTostagem }
+-
+-# 1 -> FilaTostagem (tostar) ; 2 -> FilaCaixa (segue direto)
++Balcao3 ServiceTime { 'this.obj.TempoMontagem' }
++Balcao3 NextComponent { LogMontagem }
++
+ RotaTostagem NextComponentList { FilaTostagem  FilaCaixa }
+ RotaTostagem Choice            { RotaDist }
+ 
+@@ -102,7 +86,6 @@
+ Tostadeira ServiceTime   { TostaDist }
+ Tostadeira NextComponent { FilaCaixa }
+ 
+-# Dois caixas em paralelo, fila unica
+ Caixa1 WaitQueue     { FilaCaixa }
+ Caixa1 ServiceTime   { PagamentoDist }
+ Caixa1 NextComponent { EstatSistema }
+@@ -111,16 +94,9 @@
+ Caixa2 ServiceTime   { PagamentoDist }
+ Caixa2 NextComponent { EstatSistema }
+ 
+-# tempo total no sistema (chegada -> saida), por entidade  (W)
+-EstatSistema NextComponent { Saida }
+-EstatSistema SampleValue   { 'this.obj.TotalTime' }
+-
+-# ==========================  EXECUCAO  ================================
+-# Janela de pico da noite (18h-19h30 = 90 min). Sistema comeca vazio (analise
+-# terminal), sem periodo de aquecimento.
+-# RunDuration = 2.5 h: chegadas param em 90 min (EndTime do gerador),
+-# os 60 min restantes permitem que todos os clientes concluam o atendimento.
+-# NumberOfReplications = 30 (requisito minimo do GB).
++EstatSistema NextComponent { LogAtendidos }
++EstatSistema SampleValue { 'this.SimTime - this.obj.HoraChegada' }
++
+ Simulation Description               { 'Fila do Subway da Unisinos - Cenario 5 (3 balcao, 2 caixas)' }
+ Simulation RunDuration               { 2.5 h }
+ Simulation InitializationDuration    { 0 h }
+@@ -129,29 +105,7 @@
+ Simulation PrintReplications         { TRUE }
+ Simulation PrintConfidenceIntervals  { TRUE }
+ 
+-# Colunas do .dat (1 linha por replicacao); o .rep traz media + IC 95%:
+-#  1 Wq  - espera media na fila do balcao (s)
+-#  2 Lq  - fila media do balcao
+-#  3       fila maxima do balcao
+-#  4 Wq  - espera media na fila do caixa (s)
+-#  5 rho - utilizacao do balcao (media dos 3 servidores)
+-#  6 rho - utilizacao do caixa (media dos 2 servidores)
+-#  7 rho - utilizacao da tostadeira
+-#  8 W   - tempo medio no sistema (s)           <- INDICADOR PRINCIPAL
+-#  9       clientes atendidos
+-Simulation RunOutputList {
+-  { '[FilaBalcao].AverageQueueTime/1[s]' }
+-  { '[FilaBalcao].QueueLengthAverage' }
+-  { '[FilaBalcao].QueueLengthMaximum' }
+-  { '[FilaCaixa].AverageQueueTime/1[s]' }
+-  { '([Balcao1].Utilisation + [Balcao2].Utilisation + [Balcao3].Utilisation)/3' }
+-  { '([Caixa1].Utilisation + [Caixa2].Utilisation)/2' }
+-  { '[Tostadeira].Utilisation' }
+-  { '[EstatSistema].SampleAverage/1[s]' }
+-  { '[Saida].NumberAdded' }
+-}
+-
+-# ==============================  GRAFICOS  ===========================
++
+ Simulation RealTime           { FALSE }
+ Simulation RealTimeFactor     { 32 }
+ Simulation ShowLabels         { TRUE }
+@@ -206,3 +160,184 @@
+ View1 ShowWindow   { TRUE }
+ View1 Lock2D       { TRUE }
+ View1 SkyboxImage  { <res>/images/sky_map_2048x1024.jpg }
++
++# ---- Pessoa 2: uma classificacao por CLIENTE, inclusive desistentes ----
++
++Cliente AttributeDefinitionList {
++ { TipoPedido 0 } { TempoMontagem 0[s] } { HoraChegada 0[s] } { FilaNaChegada 0 }
++}
++TipoPedidoDist UnitType { DimensionlessUnit }
++TipoPedidoDist RandomSeed { 9 }
++TipoPedidoDist ValueList { 1 2 3 }
++TipoPedidoDist ProbabilityList { 0.40 0.45 0.15 }
++MontagemSimplesDist UnitType { TimeUnit }
++MontagemSimplesDist RandomSeed { 10 }
++MontagemSimplesDist MinValue { 45 s }
++MontagemSimplesDist Mode { 70 s }
++MontagemSimplesDist MaxValue { 110 s }
++MontagemTradicionalDist UnitType { TimeUnit }
++MontagemTradicionalDist RandomSeed { 11 }
++MontagemTradicionalDist MinValue { 75 s }
++MontagemTradicionalDist Mode { 110 s }
++MontagemTradicionalDist MaxValue { 160 s }
++MontagemComplexoDist UnitType { TimeUnit }
++MontagemComplexoDist RandomSeed { 12 }
++MontagemComplexoDist MinValue { 120 s }
++MontagemComplexoDist Mode { 170 s }
++MontagemComplexoDist MaxValue { 240 s }
++
++# Fechamento agendado EXATAMENTE em 5400 s, sem concluir intervalo pendente.
++JanelaChegadas UnitType { DimensionlessUnit }
++JanelaChegadas Value { { 0 s 1 } { 5400 s 0 } }
++HorarioPico UnitType { DimensionlessUnit }
++HorarioPico TimeSeries { JanelaChegadas }
++HorarioPico MinOpenLimit { 0.5 }
++ChegadaClientes ImmediateThresholdList { HorarioPico }
++# FirstArrivalTime continua no padrao da base: primeira chegada em t=0.
++ChegadaClientes FirstArrivalTime { 0 s }
++
++ClassificaPedido AttributeAssignmentList {
++ { 'this.obj.HoraChegada = this.SimTime' }
++ { 'this.obj.TipoPedido = [TipoPedidoDist].Value' }
++ { 'this.obj.FilaNaChegada = [FilaBalcao].QueueLength' }
++}
++ClassificaPedido NextComponent { SorteiaMontagem }
++SorteiaMontagem AttributeAssignmentList {
++ 'this.obj.TempoMontagem = this.obj.TipoPedido == 1 ? [MontagemSimplesDist].Value : this.obj.TipoPedido == 2 ? [MontagemTradicionalDist].Value : [MontagemComplexoDist].Value'
++}
++SorteiaMontagem NextComponent { LogChegadas }
++LogChegadas NextComponent { DecisaoDesistencia }
++DecisaoDesistencia Choice { '[FilaBalcao].QueueLength > 5 ? 2 : 1' }
++DecisaoDesistencia NextComponentList { FilaBalcao LogDesistencias }
++LogDesistencias NextComponent { SaidaDesistencia }
++LogMontagem NextComponent { RotaTostagem }
++LogAtendidos NextComponent { Saida }
++
++# Estados permitem verificar tempos realizados, sem alterar duracoes ou rotas.
++FilaBalcao StateAssignment { EsperaBalcao }
++FilaTostagem StateAssignment { EsperaTostagem }
++FilaCaixa StateAssignment { EsperaCaixa }
++Tostadeira StateAssignment { Tostagem }
++Balcao1 StateAssignment { Montagem }
++Balcao2 StateAssignment { Montagem }
++Balcao3 StateAssignment { Montagem }
++Caixa1 StateAssignment { Pagamento }
++Caixa2 StateAssignment { Pagamento }
++LogChegadas DataSource { { 'this.obj.Name' } { 'this.obj.TipoPedido' } { 'this.obj.TempoMontagem/1[s]' } { 'this.obj.HoraChegada/1[s]' } { 'this.obj.FilaNaChegada' } }
++LogDesistencias DataSource { { 'this.obj.Name' } { 'this.obj.TipoPedido' } { 'this.obj.TempoMontagem/1[s]' } { 'this.obj.HoraChegada/1[s]' } { 'this.obj.FilaNaChegada' } }
++LogMontagem DataSource { { 'this.obj.Name' } { 'this.obj.TipoPedido' } { 'this.obj.TempoMontagem/1[s]' } { 'this.obj.HoraChegada/1[s]' } { 'this.obj.FilaNaChegada' } { '(this.SimTime-this.obj.HoraChegada)/1[s]' } { 'this.obj.StateTimes("Montagem")/1[s]' } }
++LogAtendidos DataSource { { 'this.obj.Name' } { 'this.obj.TipoPedido' } { 'this.obj.TempoMontagem/1[s]' } { 'this.obj.HoraChegada/1[s]' } { 'this.obj.FilaNaChegada' } { '(this.SimTime-this.obj.HoraChegada)/1[s]' } { 'this.obj.StateTimes("Montagem")/1[s]' } { 'this.obj.StateTimes("EsperaBalcao")/1[s]' } { 'this.obj.StateTimes("EsperaTostagem")/1[s]' } { 'this.obj.StateTimes("Tostagem")/1[s]' } { 'this.obj.StateTimes("EsperaCaixa")/1[s]' } { 'this.obj.StateTimes("Pagamento")/1[s]' } }
++
++# Indicadores numericos; definidos ANTES de RunOutputList.
++Simulation CustomOutputList {
++ { ClientesGerados '[ChegadaClientes].NumberGenerated' DimensionlessUnit }
++ { ClientesAtendidos '[Saida].NumberAdded' DimensionlessUnit }
++ { TotalDesistencias '[SaidaDesistencia].NumberAdded' DimensionlessUnit }
++ { ClientesAindaNoSistema '[FilaBalcao].QueueLength + [FilaTostagem].QueueLength + [FilaCaixa].QueueLength + [Balcao1].NumberInProgress + [Balcao2].NumberInProgress + [Balcao3].NumberInProgress + [Tostadeira].NumberInProgress + [Caixa1].NumberInProgress + [Caixa2].NumberInProgress' DimensionlessUnit }
++ { EsperaBalcao_s '[FilaBalcao].AverageQueueTime/1[s]' DimensionlessUnit }
++ { FilaBalcao_media '[FilaBalcao].QueueLengthAverage' DimensionlessUnit }
++ { FilaBalcao_max '[FilaBalcao].QueueLengthMaximum' DimensionlessUnit }
++ { EsperaCaixa_s '[FilaCaixa].AverageQueueTime/1[s]' DimensionlessUnit }
++ { FilaCaixa_media '[FilaCaixa].QueueLengthAverage' DimensionlessUnit }
++ { EsperaTostagem_s '[FilaTostagem].AverageQueueTime/1[s]' DimensionlessUnit }
++ { FilaTostagem_media '[FilaTostagem].QueueLengthAverage' DimensionlessUnit }
++ { UtilizacaoBalcoes '([Balcao1].Utilisation + [Balcao2].Utilisation + [Balcao3].Utilisation)/3' DimensionlessUnit }
++ { UtilizacaoTostadeira '[Tostadeira].Utilisation' DimensionlessUnit }
++ { UtilizacaoCaixas '([Caixa1].Utilisation + [Caixa2].Utilisation)/2' DimensionlessUnit }
++ { LeadTime_medio_s '[EstatSistema].SampleAverage/1[s]' DimensionlessUnit }
++ { Vazao_h '[Saida].NumberAdded/(this.SimTime/1[h])' DimensionlessUnit }
++ { UltimaChegada_s '[LogChegadas].LogTime/1[s]' DimensionlessUnit }
++ { TempoFinal_s 'this.SimTime/1[s]' DimensionlessUnit }
++ { AmostrasLeadTime '[EstatSistema].NumberAdded' DimensionlessUnit }
++ { ClientesMontados '[RotaTostagem].NumberAdded' DimensionlessUnit }
++ { ClientesTostados '[Tostadeira].NumberProcessed' DimensionlessUnit }
++ { ClientesPagos '[Caixa1].NumberProcessed + [Caixa2].NumberProcessed' DimensionlessUnit }
++ { TempoGeradorAberto_s '[HorarioPico].OpenFraction*this.SimTime/1[s]' DimensionlessUnit }
++ { Substream 'this.ReplicationNumber' DimensionlessUnit }
++ { UtilizacaoBalcao1 '[Balcao1].Utilisation' DimensionlessUnit }
++ { UtilizacaoBalcao2 '[Balcao2].Utilisation' DimensionlessUnit }
++ { UtilizacaoBalcao3 '[Balcao3].Utilisation' DimensionlessUnit }
++ { UtilizacaoCaixa1 '[Caixa1].Utilisation' DimensionlessUnit }
++ { UtilizacaoCaixa2 '[Caixa2].Utilisation' DimensionlessUnit }
++}
++Simulation RunOutputList {
++ { '[Simulation].ClientesGerados' }
++ { '[Simulation].ClientesAtendidos' }
++ { '[Simulation].TotalDesistencias' }
++ { '[Simulation].ClientesAindaNoSistema' }
++ { '[Simulation].EsperaBalcao_s' }
++ { '[Simulation].FilaBalcao_media' }
++ { '[Simulation].FilaBalcao_max' }
++ { '[Simulation].EsperaCaixa_s' }
++ { '[Simulation].FilaCaixa_media' }
++ { '[Simulation].EsperaTostagem_s' }
++ { '[Simulation].FilaTostagem_media' }
++ { '[Simulation].UtilizacaoBalcoes' }
++ { '[Simulation].UtilizacaoTostadeira' }
++ { '[Simulation].UtilizacaoCaixas' }
++ { '[Simulation].LeadTime_medio_s' }
++ { '[Simulation].Vazao_h' }
++ { '[Simulation].UltimaChegada_s' }
++ { '[Simulation].TempoFinal_s' }
++ { '[Simulation].AmostrasLeadTime' }
++ { '[Simulation].ClientesMontados' }
++ { '[Simulation].ClientesTostados' }
++ { '[Simulation].ClientesPagos' }
++ { '[Simulation].TempoGeradorAberto_s' }
++ { '[Simulation].Substream' }
++ { '[Simulation].UtilizacaoBalcao1' }
++ { '[Simulation].UtilizacaoBalcao2' }
++ { '[Simulation].UtilizacaoBalcao3' }
++ { '[Simulation].UtilizacaoCaixa1' }
++ { '[Simulation].UtilizacaoCaixa2' }
++}
++
++# Serie temporal por mudanca de estado; preserva degraus, sem amostragem arbitraria.
++LogEstado Interval { }
++LogEstado ValueTraceList { { [FilaBalcao].QueueLength } { [FilaCaixa].QueueLength } { [HorarioPico].Open } { [Balcao1].NumberInProgress } { [Balcao2].NumberInProgress } { [Balcao3].NumberInProgress } { [Tostadeira].NumberInProgress } { [Caixa1].NumberInProgress } { [Caixa2].NumberInProgress } }
++LogEstado DataSource { { [FilaBalcao].QueueLength } { [FilaCaixa].QueueLength } { [ChegadaClientes].NumberGenerated } { [Saida].NumberAdded } { [SaidaDesistencia].NumberAdded } { [Simulation].ClientesAindaNoSistema } { [Balcao1].NumberInProgress } { [Balcao2].NumberInProgress } { [Balcao3].NumberInProgress } { [Tostadeira].NumberInProgress } { [Caixa1].NumberInProgress } { [Caixa2].NumberInProgress } }
++
++# Complementos visuais. Os objetos originais mantem seu layout.
++ClassificaPedido Position { -7 2 0 m }
++SorteiaMontagem Position { -5.8 2 0 m }
++LogChegadas Position { -4.6 2 0 m }
++DecisaoDesistencia Position { -3.5 2 0 m }
++LogDesistencias Position { -3.5 3.2 0 m }
++SaidaDesistencia Position { -1.8 3.2 0 m }
++LogMontagem Position { 0 2.5 0 m }
++LogAtendidos Position { 9 1.8 0 m }
++JanelaChegadas Position { -7 -3 0 m }
++HorarioPico Position { -5 -3 0 m }
++TipoPedidoDist Position { -7 -4 0 m }
++MontagemSimplesDist Position { -4 -4 0 m }
++MontagemTradicionalDist Position { -2 -4 0 m }
++MontagemComplexoDist Position { 0 -4 0 m }
++LogEstado Position { 2 -4 0 m }
++
++TextoAtendidos ScreenPosition { 15 45 }
++TextoAtendidos Format { 'Atendidos: %.0f clientes' }
++TextoAtendidos DataSource { [Saida].NumberAdded }
++TextoDesistencias ScreenPosition { 15 65 }
++TextoDesistencias Format { 'Desistencias: %.0f clientes' }
++TextoDesistencias DataSource { [SaidaDesistencia].NumberAdded }
++TextoLeadTime ScreenPosition { 15 85 }
++TextoLeadTime Format { 'Lead time medio: %.1f s' }
++TextoLeadTime DataSource { '[EstatSistema].SampleAverage/1[s]' }
++TextoFila ScreenPosition { 15 105 }
++TextoFila Format { 'Fila balcao: %.0f clientes aguardando' }
++TextoFila DataSource { [FilaBalcao].QueueLength }
++GraficoFila Position { 5 -3 0 m }
++GraficoFila Size { 7 3 m }
++GraficoFila Title { 'Clientes aguardando no balcao' }
++GraficoFila UnitType { DimensionlessUnit }
++GraficoFila DataSource { { [FilaBalcao].QueueLength } }
++GraficoFila XAxisTitle { 'Tempo relativo ao instante atual (min)' }
++GraficoFila XAxisUnit { min }
++GraficoFila XAxisStart { -90 min }
++GraficoFila XAxisEnd { 0 min }
++GraficoFila XAxisInterval { 15 min }
++GraficoFila YAxisTitle { 'Fila (clientes)' }
++GraficoFila YAxisStart { 0 }
++GraficoFila YAxisEnd { 6 }
++GraficoFila YAxisInterval { 1 }
++GraficoFila NumberOfPoints { 901 }

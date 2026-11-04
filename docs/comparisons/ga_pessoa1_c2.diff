@@ -1,0 +1,38 @@
+--- GA/tga_subway_cenario2.cfg
++++ pessoa1/tgb_subway_cenario2.cfg
+@@ -87,6 +87,7 @@
+ ChegadaClientes InterArrivalTime { ChegadaDist }
+ ChegadaClientes PrototypeEntity  { Cliente }
+ ChegadaClientes BaseName         { Cliente }
++ChegadaClientes MaxNumber        { 999 }
+ 
+ Balcao1 WaitQueue     { FilaBalcao }
+ Balcao1 ServiceTime   { MontagemDist }
+@@ -118,12 +119,14 @@
+ 
+ # ==========================  EXECUCAO  ================================
+ # Janela de pico da noite (18h-19h30 = 90 min). Sistema comeca vazio (analise
+-# terminal), por isso sem periodo de aquecimento. Minimo 10 replicacoes
+-# (subir para 30 se o IC ficar largo).
++# terminal), sem periodo de aquecimento.
++# RunDuration = 2.5 h: chegadas param em 90 min (EndTime do gerador),
++# os 60 min restantes permitem que todos os clientes concluam o atendimento.
++# NumberOfReplications = 30 (requisito minimo do GB).
+ Simulation Description               { 'Fila do Subway da Unisinos - Cenario 2 (+1 no balcao)' }
+-Simulation RunDuration               { 1.5 h }
++Simulation RunDuration               { 2.5 h }
+ Simulation InitializationDuration    { 0 h }
+-Simulation NumberOfReplications      { 10 }
++Simulation NumberOfReplications      { 30 }
+ Simulation PrintReport               { TRUE }
+ Simulation PrintReplications         { TRUE }
+ Simulation PrintConfidenceIntervals  { TRUE }
+@@ -151,7 +154,7 @@
+ }
+ 
+ # ==============================  GRAFICOS  ===========================
+-Simulation RealTime           { TRUE }
++Simulation RealTime           { FALSE }
+ Simulation RealTimeFactor     { 32 }
+ Simulation ShowLabels         { TRUE }
+ Simulation ShowModelBuilder   { TRUE }

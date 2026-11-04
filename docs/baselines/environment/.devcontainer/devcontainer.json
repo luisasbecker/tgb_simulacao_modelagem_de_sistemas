@@ -1,0 +1,13 @@
+{
+  "name": "JaamSim GB Subway",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y curl && python3 scripts/validate_cfg.py",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"]
+    }
+  }
+}

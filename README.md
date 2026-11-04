@@ -1,257 +1,148 @@
 # Trabalho do Grau B — Simulação e Modelagem de Sistemas
 
-Repositório do grupo para organizar os modelos JaamSim, os experimentos e a documentação do Trabalho do Grau B (GB), dando continuidade ao trabalho do Grau A (GA).
+**Simulação e análise do atendimento do Subway da Unisinos.** Disciplina: Simulação e Modelagem de Sistemas, UNISINOS. Professor: Alex Roehrs.
 
-## Objetivo
+**Integrantes:** Ana Beatriz Stahl; Emanuele Schlemmer Thomazzoni; Gabriela Bley Rodrigues; Luisa Becker dos Santos.
 
-Simular o atendimento de clientes em um sistema com montagem de pedidos no balcão, tostagem e pagamento. O estudo compara cinco cenários para avaliar como a quantidade de atendentes e caixas, a probabilidade de tostagem e o comportamento dos clientes afetam filas, tempos de atendimento, utilização dos recursos e desistências.
+Repositório oficial: [luisasbecker/tgb_simulacao_modelagem_de_sistemas](https://github.com/luisasbecker/tgb_simulacao_modelagem_de_sistemas).
 
-A escolha do cenário recomendado deverá se apoiar nas novas simulações e nos indicadores com intervalos de confiança, considerando a capacidade de atendimento e os recursos necessários.
+## Status da versão Pessoa 1 + Pessoa 2
 
-## Integrantes
+Os cinco modelos finais foram **executados no JaamSim 2026-08**, com 30 replicações cada (150 replicações analisadas). Há resultados reais, logs individuais, conservação auditada e IC95% recalculados. O motor não foi substituído por uma simulação Python: Python executa o JAR, verifica os registros e calcula estatísticas.
 
-Os nomes dos integrantes serão incluídos pelo grupo. As referências a **Pessoa 1** e **Pessoa 2** neste README identificam as frentes de implementação descritas abaixo.
+Esta entrega está na branch local `codex/pessoa2-validacao`. A conexão GitHub disponibilizada informa leitura e `push=false`; portanto estes arquivos ainda não foram publicados no repositório remoto. O workflow e o devcontainer estão preparados, mas não foram executados dentro do GitHub Actions/Codespaces. A execução headless em ambiente online desta sessão foi realizada.
 
-## Status atual
+| Verificação | Situação |
+|---|---|
+| Comparação GA / Pessoa 1 / tentativa Pessoa 2 | concluída; fontes e diffs preservados |
+| Validação estática | cinco cenários aprovados; contrato preserva parâmetros da Pessoa 1 |
+| Parser e motor JaamSim | execução curta, limites 5/6 e 5400 s, cinco cenários e 30 replicações aprovados |
+| Análise estatística | dados novos, 30 observações por cenário, IC t95%, P90, comparações |
+| Conservação e esvaziamento | zero remanescentes nas 150 replicações; balanço também conferido nos registros de estado |
+| Interface gráfica nativa e vídeo | objetos aceitos em headless; revisão visual e gravação MP4 pendentes |
+| Pessoa 3 | etapa futura de pedidos múltiplos, reunião dos itens, diagrama e animação final |
+| Pessoa 4 | etapa futura de experimentação final, incluindo gráficos da fila em degraus e do lead time com IC95%. Os resultados atuais validam a integração das Pessoas 1 e 2 |
+| Relatório GB | PDF original preservado; roteiro de atualização pronto, sem editar o PDF nesta etapa |
 
-**Referência: 30/10/2026.** Na inspeção do repositório, havia somente um README inicial. Os modelos `.cfg`, os scripts de teste, os resultados e o relatório ainda não estavam versionados.
+## Sistema, objetivo e evolução GA → GB
 
-O histórico de preparação do trabalho registra cinco modelos integrados e um pacote de ambiente online. Como esses arquivos ainda não estão neste repositório, os detalhes de implementação abaixo documentam o que foi relatado nessa preparação; sua conferência nos arquivos e a validação no JaamSim continuam pendentes.
+Clientes chegam ao Subway, esperam por montagem, podem passar pela tostadeira e pagam no caixa. O estudo mede espera, ocupação, desistências e tempo total para comparar configurações de atendimento. Os dados são premissas sintéticas de projeto; os resultados são execuções reais desse modelo, não medições do estabelecimento.
 
-| Frente | Situação |
-| --- | --- |
-| Configurações dos cenários e integração das Pessoas 1 e 2 | Implementação relatada nos arquivos preparados anteriormente; envio e conferência pendentes |
-| Validação estática dos cinco modelos | Relatada como aprovada na preparação anterior; deve ser repetida com os arquivos versionados |
-| Analisador de resultados | Teste com dados sintéticos relatado; ainda sem resultados reais dos modelos integrados |
-| Execução real no JaamSim | Pendente para a versão integrada |
-| GitHub Actions e Codespaces | Estrutura preparada em pacote anterior; ainda não instalada nem validada neste repositório |
-| Atualização do relatório do GB | Pendente após a validação e o recálculo dos indicadores |
+O GA tinha três cenários, 90 minutos de execução e 10 replicações. A Pessoa 1 acrescentou C4/C5, definiu 2,5 horas e 30 replicações. A Pessoa 2 integrou tipos de pedido, montagem condicionada, desistência e contagem, corrigiu o corte das chegadas e reexecutou a experimentação. As bases estão preservadas em `docs/baselines/`.
 
-**Ainda não há resultados reais validados da versão integrada nem um cenário vencedor confirmado.**
+## Cinco cenários preservados
 
-## Evolução do GA para o GB
+| Cenário | Balcões em paralelo | Tostadeira | Caixas | P(tostar) | P(direto) |
+|---|---:|---:|---:|---:|---:|
+| 1 | 2 | 1 | 1 | 55% | 45% |
+| 2 | 3 | 1 | 1 | 55% | 45% |
+| 3 | 2 | 1 | 1 | 75% | 25% |
+| 4 | 2 | 1 | 2 | 55% | 45% |
+| 5 | 3 | 1 | 2 | 55% | 45% |
 
-O modelo desenvolvido no GA é a referência para a continuidade do estudo. No GB, o trabalho passa a reunir a comparação de configurações de recursos, a diferenciação dos pedidos, a regra de desistência e a análise estatística das replicações.
+Fila única do balcão; fila única compartilhada entre os caixas de C4/C5. Chegadas somente em **0 ≤ t < 5400 s**, execução até **9000 s**, início vazio e sem aquecimento. A primeira chegada em t=0 é preservada do GA/Pessoa 1; as seguintes têm intervalos EXPO(90 s).
 
-As mudanças registradas na preparação do GB são:
+### Contribuição da Pessoa 1
 
-- Comparação de cinco cenários, incluindo alternativas com dois caixas em paralelo.
-- Três tipos de pedido, com probabilidades e tempos de montagem próprios.
-- Decisão de desistência antes da entrada na fila do balcão.
-- Contagem de clientes gerados, atendidos e desistentes.
-- Controle para encerrar as chegadas aos 90 minutos e manter o atendimento até 150 minutos.
-- Planejamento de 30 replicações por cenário, com médias e intervalos de confiança de 95%.
-- Preparação de execução automatizada e verificações dos resultados.
+Mantidos números de servidores, filas, FIFO, probabilidades de tostagem, tostagem TRIA(20,30,45 s), pagamento TRIA(18,38,95 s), streams originais, janela total, replicações, liberação do balcão antes de tostar e layout original. O corte de 90 minutos foi corrigido: MaxNumber=999 não representava um horário.
 
-Essa lista descreve a evolução consolidada relatada para o GB. A comparação detalhada com cada arquivo original do GA deverá ser confirmada quando as versões de referência forem adicionadas ao repositório.
+### Contribuição da Pessoa 2
 
-## Cenários 1–5
+| TipoPedido | Probabilidade | Montagem triangular: mínimo / moda / máximo |
+|---|---:|---|
+| 1 — simples | 40% | 45 / 70 / 110 s |
+| 2 — tradicional | 45% | 75 / 110 / 160 s |
+| 3 — complexo | 15% | 120 / 170 / 240 s |
 
-| Cenário | Atendentes no balcão | Caixas | Com tostagem | Sem tostagem | Comparação proposta |
-| --- | ---: | ---: | ---: | ---: | --- |
-| 1 | 2 | 1 | 55% | 45% | Referência entre os cinco cenários |
-| 2 | 3 | 1 | 55% | 45% | Efeito de acrescentar um atendente ao balcão |
-| 3 | 2 | 1 | 75% | 25% | Efeito de aumentar a proporção de pedidos tostados |
-| 4 | 2 | 2 | 55% | 45% | Efeito de acrescentar um caixa |
-| 5 | 3 | 2 | 55% | 45% | Efeito de ampliar balcão e pagamento |
+O tipo é sorteado uma vez por cliente, inclusive desistentes; determina TempoMontagem, usado pelos balcões. Na chegada, `FilaBalcao.QueueLength > 5` leva à saída de desistência; clientes em serviço não entram nessa contagem. Quem encontra cinco aguardando pode entrar, deixando seis na fila. TotalDesistencias usa o contador nativo dessa saída. Lead time é medido desde HoraChegada até o pagamento concluído e exclui desistentes.
 
-Nos cenários 4 e 5, os dois caixas operam em paralelo e compartilham uma fila de pagamento, conforme a configuração relatada. Os tipos de pedido e a regra de desistência da Pessoa 2 se aplicam aos cinco cenários.
+A implementação não cria sanduíches independentes. O [contrato com a Pessoa 3](docs/MODELO_CONCEITUAL.md#contrato-para-a-pessoa-3) exige herança do TipoPedido e contagem final por cliente. Após essa etapa, os resultados deverão ser recalculados novamente.
 
-Parâmetros comuns previstos:
+## Modelos finais e estrutura
 
-- **Chegadas:** durante os primeiros 90 minutos, até o limite de 5.400 segundos.
-- **Duração de cada replicação:** 2,5 horas, ou 9.000 segundos.
-- **Período adicional para concluir atendimentos:** 60 minutos após o encerramento das chegadas.
-- **Replicações:** 30 por cenário, totalizando **150 execuções**.
+Os arquivos executáveis finais são **models/cenario1.cfg** a **models/cenario5.cfg**. Os CFG em docs/baselines são históricos, e os de results/validation incluem testes que alteram demanda/duração; não são cenários finais.
 
-Os 60 minutos adicionais precisam ser suficientes para esvaziar o sistema; isso deve ser verificado em cada replicação.
+| Caminho | Conteúdo |
+|---|---|
+| models/ | cinco CFG finais independentes |
+| scripts/ | download verificado, execução real, auditoria, análise, gráficos e geração documentada dos CFG |
+| tests/ | testes determinísticos no motor e regressão do leitor DAT/log |
+| results/runs/ | execução validada: 150 replicações; CFG executados, DAT, REP e logs |
+| results/replicacoes.csv | uma linha por cenário/replicação, inclusive desistências e P90 |
+| results/resumo_ic95.csv | média, DP, n, limites e semi-amplitude para todos os indicadores |
+| results/comparacoes_ic95.csv | regra de sobreposição e IC pareado complementar |
+| results/conservacao.csv | balanço, remanescentes e auditoria por replicação |
+| results/figures/ | gráficos PNG/SVG com IC e série em degraus |
+| results/validation/ | testes, falhas recebidas e evidências da correção |
+| docs/ | comparação, modelo conceitual, validação, alterações do relatório e fontes |
+| .github/workflows/jaamsim.yml | workflow preparado para executar e guardar evidências |
+| .devcontainer/ e Dockerfile | ambiente Linux/Java/Python para Codespaces |
+| tools/ | JAR oficial do JaamSim 2026-08 versionado com sua licença e verificado por SHA-256 |
 
-## Responsabilidades já implementadas na preparação
+## Executar e reproduzir
 
-### Pessoa 1 — cenários e estrutura dos experimentos
+Pré-requisitos: Java 17, Python 3.12, Bash e curl. Use o [JAR oficial 2026-08](https://github.com/jaamsim/jaamsim/releases/tag/v2026-08). SHA-256: `83e87bcde04b5dc8c06bac8dfb665e120fa6306aebe6ed6d49fb2ed1835223bf`.
 
-Segundo o histórico da integração, foram mantidas as definições dos cenários 1, 2 e 3 e incorporadas as alternativas dos cenários 4 e 5, com dois caixas em paralelo. Também foram preservados:
+Na raiz do projeto:
 
-- Quantidades de atendentes e caixas de cada cenário.
-- Probabilidades de tostagem indicadas na tabela de cenários.
-- Distribuições de tempo de tostagem e pagamento.
-- Duração de 2,5 horas e 30 replicações por cenário.
-- Estrutura existente de estatísticas e saída dos clientes atendidos.
-
-Os parâmetros completos das distribuições preservadas deverão ser consultados nos `.cfg` originais quando forem versionados.
-
-### Pessoa 2 — tipos de pedido, montagem e desistências
-
-As alterações relatadas foram aplicadas aos cinco cenários, preservando a configuração de recursos da Pessoa 1.
-
-| Tipo de pedido | Probabilidade | Montagem: mínimo | Montagem: moda | Montagem: máximo |
-| --- | ---: | ---: | ---: | ---: |
-| Simples | 40% | 45 s | 70 s | 110 s |
-| Tradicional | 45% | 75 s | 110 s | 160 s |
-| Complexo | 15% | 120 s | 170 s | 240 s |
-
-Os tempos de montagem seguem distribuições triangulares. O tipo de pedido determina a distribuição usada para sortear o atributo `TempoMontagem`, que passa a ser o tempo de serviço dos balcões. A distribuição original `MontagemDist` permaneceu declarada nos arquivos preparados, mas deixou de ser utilizada pelos balcões.
-
-A desistência é avaliada **na chegada, antes de entrar na fila do balcão**:
-
-- Se `FilaBalcao.QueueLength > 5`, o cliente é registrado como desistente e sai do sistema.
-- Se a fila contém até cinco clientes aguardando, o cliente segue para classificação do pedido e atendimento.
-
-A regra considera quem está aguardando na fila; os clientes em atendimento não compõem esse limite. Ela não representa abandono depois de esperar algum tempo na fila.
-
-Fluxo de entrada relatado:
-
-```text
-ChegadaClientes → DecisaoDesistencia
-  ├─ fila > 5 → RegistroDesistencia → SaidaDesistencia
-  └─ fila ≤ 5 → ClassificaPedido → SorteiaMontagem → FilaBalcao
-               → montagem → decisão de tostagem → pagamento → saída
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+bash scripts/download_jaamsim.sh
+python3 scripts/validate_cfg.py
+python3 -m unittest discover -s tests -p 'test_io.py'
+python3 tests/test_runtime.py
+bash scripts/run_all.sh --output results/reexecutions/minha_execucao/runs
+python3 scripts/plot_results.py results/reexecutions/minha_execucao
 ```
 
-Também foram acrescentados o contador `TotalDesistencias` e os registros de desistentes e clientes gerados. O controle de chegadas foi corrigido na integração para respeitar os 90 minutos, mantendo a duração total definida pela Pessoa 1.
+`run_all.py` executa cinco processos JaamSim, um por cenário, cada um com 30 replicações. Confere DAT/REP/logs e chama a análise. Não substitui resultados existentes: escolha um caminho novo. Uma única linha de execução com cinco CFG não é usada como cinco experimentos.
 
-O mecanismo relatado usa `HorarioPico` com a condição `this.SimTime < 5400[s]` e `OperatingThresholdList` no gerador. **A interrupção efetiva das chegadas nesse instante ainda precisa ser comprovada por execução.**
+Para somente reanalisar os resultados entregues:
 
-Preservar as configurações da Pessoa 1 não preserva os resultados numéricos: os novos tempos e as desistências alteram o comportamento do sistema. Os resultados anteriores precisam ser recalculados para a versão integrada.
-
-## Estrutura esperada do repositório
-
-A árvore abaixo é uma proposta de organização para os arquivos que ainda serão enviados. Somente o `README.md` estava presente na inspeção; os demais caminhos não indicam arquivos já disponíveis.
-
-```text
-tgb_simulacao_modelagem_de_sistemas/
-├── README.md
-├── models/                         # Cinco arquivos .cfg integrados e dependências
-├── scripts/
-│   ├── download_jaamsim.sh          # Download da versão definida do simulador
-│   ├── validate_cfg.py              # Conferência das configurações dos modelos
-│   ├── run_all.sh                   # Execução dos cinco cenários
-│   └── analyze_results.py           # Leitura dos resultados e cálculo dos indicadores
-├── results/                        # Saídas reais .dat/.rep, logs e consolidações
-├── docs/                           # Enunciado, referências do GA e documentação
-├── relatorio/                      # Relatório do GB e sua versão final
-├── .github/workflows/jaamsim.yml    # Automação prevista no GitHub Actions
-└── .devcontainer/devcontainer.json # Configuração prevista para Codespaces
+```bash
+python3 scripts/analyze_results.py results/runs
+python3 scripts/plot_results.py results
 ```
 
-Os nomes dos scripts, do workflow e do arquivo de Codespaces correspondem ao pacote de ambiente online descrito na preparação anterior. Os nomes reais dos cinco `.cfg` e os argumentos dos scripts deverão ser conferidos ao importar o pacote.
+Para uma prévia com uma replicação de cada cenário:
 
-Ao adicionar os arquivos, preservar os originais e suas dependências, identificar versões GA/GB e separar dados sintéticos de resultados reais. Mudanças nos modelos deverão ser registradas para permitir reproduzir os experimentos.
-
-## Ferramenta e execução local
-
-O [JaamSim](https://jaamsim.com/) é um simulador de eventos discretos baseado em Java. Os modelos são armazenados em arquivos de configuração `.cfg`.
-
-A versão de referência escolhida na preparação foi o **JaamSim 2026-08**, disponível na [release oficial](https://github.com/jaamsim/jaamsim/releases/tag/v2026-08). O grupo deverá usar a mesma versão em todas as execuções e registrá-la no relatório.
-
-### Pré-requisitos
-
-1. Java compatível com a versão escolhida do JaamSim, acessível pelo comando `java -version`.
-2. Arquivo `JaamSim2026-08.jar` obtido da release oficial.
-3. Os cinco modelos integrados e todos os arquivos que eles referenciam.
-4. Para os scripts do ambiente online: Python 3, suas dependências efetivas e Bash em Linux, Codespaces ou ambiente equivalente.
-
-**O repositório ainda precisa receber os modelos antes que seja possível executar os experimentos.**
-
-### Pela interface gráfica
-
-1. Iniciar o JaamSim pelo executável ou pelo comando abaixo.
-2. Abrir um dos arquivos `.cfg` integrados.
-3. Conferir os recursos, as distribuições, as regras e os parâmetros de replicação.
-4. Executar o modelo, verificar mensagens de erro e salvar as saídas.
-5. Repetir para os cinco cenários.
-
-```text
-java -jar "JaamSim2026-08.jar"
+```bash
+python3 scripts/run_all.py --replications 1 --output results/reexecutions/previa
 ```
 
-### Sem interface gráfica
+Interface gráfica: `java -jar tools/JaamSim2026-08.jar`, File → Open → `models/cenarioN.cfg`, botão Play. A tela inclui título, relógio, quatro indicadores com unidades e gráfico rotulado. Para vídeo, use uma cópia do CFG com uma replicação; não altere os arquivos finais. A conferência visual e o vídeo nativo de até um minuto continuam pendentes.
 
-Após disponibilizar os modelos, usar o padrão abaixo, substituindo `ARQUIVO_DO_CENARIO.cfg` pelo nome real e ajustando os caminhos:
+Headless direto: `java -jar tools/JaamSim2026-08.jar models/cenario1.cfg -h`. Isso grava saídas ao lado do modelo; prefira os scripts para separar evidências. O runner adapta a pasta temporária para ambientes restritos e verifica erros mesmo quando o Java retorna código zero.
 
-```text
-java -jar "JaamSim2026-08.jar" "models/ARQUIVO_DO_CENARIO.cfg" -headless
-```
+Codespaces: após publicar esta branch, abrir o repositório com o devcontainer e seguir os comandos acima. GitHub Actions: publicar `.github/workflows/jaamsim.yml` e usar **Actions → Validar modelos JaamSim → Run workflow**, ou o gatilho de push/PR. O job executa testes e 150 replicações, e exporta resultados como artifact. Não há execução remota do workflow comprovada nesta entrega.
 
-O modo `-headless` inicia a execução em lote sem interface gráfica. A quantidade de replicações depende da configuração do modelo; o comando, sozinho, não estabelece 30 replicações. A sintaxe está documentada no [manual oficial, seção 2.6](https://jaamsim.com/docs/JaamSim%20User%20Manual%202021-04.pdf).
+## Resultados novos
 
-Executar cada cenário separadamente. Fornecer os cinco `.cfg` em um único comando carrega suas configurações em um mesmo modelo, em vez de iniciar cinco experimentos independentes.
+| Indicador | C1 | C2 | C3 | C4 | C5 |
+|---|---:|---:|---:|---:|---:|
+| Espera balcão (s) | 35.69 ± 7.00 | 6.62 ± 1.66 | 35.69 ± 7.00 | 35.69 ± 7.00 | 6.62 ± 1.66 |
+| Lead time (s) | 231.22 ± 8.85 | 213.42 ± 7.04 | 237.27 ± 8.48 | 213.82 ± 7.34 | 186.33 ± 2.70 |
+| Atendidos/replicação | 59.77 ± 2.91 | 59.87 ± 2.94 | 59.77 ± 2.91 | 59.77 ± 2.91 | 59.87 ± 2.94 |
+| Desistentes/replicação | 0.10 ± 0.15 | 0.00 ± 0.00 | 0.10 ± 0.15 | 0.10 ± 0.15 | 0.00 ± 0.00 |
 
-As saídas `.dat` dependem de `RunOutputList`, e os relatórios `.rep`, da configuração de `PrintReport`. A pasta de saída depende de `ReportDirectory`; na ausência dessa definição, a documentação indica a pasta do modelo. Conferir essas opções antes de procurar os resultados em `results/`.
+Valores: média ± semi-amplitude IC95% t(29), 30 replicações. Gerados: 59.87 ± 2.94 clientes/replicação em todos os cenários. Remanescentes: zero em todas as 150 replicações. Desistências totais: C1=3, C2=0, C3=3, C4=3, C5=0. A ausência observada em C2/C5 não prova risco populacional zero.
 
-## Ambiente online e testes
+Todos os números, DP, n, limites e unidades estão em [resumo completo](results/resumo.md) e [CSV](results/resumo_ic95.csv). Utilizações/comprimentos médios usam 9000 s; a vazão principal é atendidos/2,5 h. P90 é calculado dentro de cada replicação antes da consolidação.
 
-O ambiente preparado anteriormente prevê GitHub Codespaces para execução interativa e GitHub Actions para automação. Para ativá-lo, ainda é necessário adicionar e revisar os modelos, scripts, dependências e arquivos de configuração.
+![Comparação da espera no balcão](results/figures/espera_balcao_ic95.png)
 
-Depois dessa importação:
+C2 reduz a espera média no balcão em 81.46% em relação a C1, com intervalos não sobrepostos. No lead time, C5 tem a menor média (186.33 s) e IC separado dos demais. C2 e C4 têm ICs de lead time sobrepostos; não se escolhe entre eles apenas pela inspeção dos intervalos. C1 atende à meta de espera média abaixo de 300 s, com limite superior 42.69 s. A escolha de investimento depende de custos e metas adicionais, não modelados.
 
-1. Repetir a validação estática com `validate_cfg.py`, conforme seus argumentos reais.
-2. No Codespaces, seguir o procedimento do pacote para baixar o JaamSim e executar `run_all.sh`.
-3. No GitHub Actions, conferir os gatilhos definidos em `jaamsim.yml` e acompanhar a execução na aba **Actions**. Usar **Run workflow** se o arquivo oferecer execução manual.
-4. Recuperar logs e resultados pelo mecanismo efetivamente definido no workflow.
-5. Analisar somente os arquivos produzidos pelas execuções reais da versão integrada.
-
-O teste anterior com um `.dat` sintético verificou o analisador, conforme relatado no histórico. Esse teste não comprova que os modelos funcionam no JaamSim nem substitui as 150 execuções.
-
-### Critérios de validação
-
-- Confirmar as configurações dos cinco cenários, as 30 replicações e os 9.000 segundos por replicação.
-- Conferir as probabilidades 40%/45%/15%, os parâmetros triangulares e o uso de `TempoMontagem` em todos os balcões.
-- Verificar a regra nos limites de fila 5 e 6 e o reinício dos contadores em cada replicação.
-- Comprovar que nenhuma chegada ocorre a partir do limite de 5.400 segundos.
-- Verificar se há exatamente 30 registros de replicações por cenário, sem contar cabeçalhos ou linhas de resumo como replicações.
-- Conferir erros, unidades dos indicadores e conservação dos clientes em cada replicação.
-
-Para um sistema inicialmente vazio, o balanço esperado é:
-
-```text
-clientes gerados − clientes atendidos − clientes desistentes = clientes remanescentes
-```
-
-O remanescente deve corresponder aos clientes ainda no sistema e, para confirmar o esvaziamento ao final, deve ser **zero**. Se isso não ocorrer, registrar a limitação e revisar o encerramento antes de concluir a comparação.
-
-## Indicadores e análise dos resultados
-
-| Indicador | Uso na comparação |
-| --- | --- |
-| Clientes gerados | Total de chegadas em cada replicação |
-| Clientes atendidos | Total de clientes que concluíram o fluxo e o pagamento |
-| Clientes desistentes | Total desviado pela regra de fila do balcão |
-| Taxa de desistência | Desistentes / gerados × 100%; tratar separadamente replicações sem chegadas |
-| Tempo de espera | Espera nas filas do balcão e do pagamento, com unidade explícita |
-| Comprimento das filas | Comprimento médio e máximo por fila |
-| Tempo total no sistema (lead time) | Tempo da chegada até a saída dos clientes atendidos |
-| Utilização dos recursos | Ocupação de cada atendente, equipamento de tostagem e caixa disponível no modelo |
-| Clientes remanescentes | Conferência do esvaziamento e do balanço de clientes |
-
-Essa tabela define o conjunto esperado para análise; sua disponibilidade precisa ser conferida nas saídas dos modelos. Informar também se a utilização e os indicadores de fila foram medidos nos 90 minutos de chegadas ou em toda a janela de 150 minutos.
-
-Calcular os indicadores de cada replicação e consolidá-los por cenário. Para médias de 30 replicações independentes, usar o intervalo de confiança de 95% com a distribuição t de Student:
-
-```text
-IC95% = média ± t(0,975; 29) × desvio-padrão amostral / √30
-```
-
-Registrar as sementes ou subfluxos aleatórios, as unidades e a versão dos modelos. Não tratar clientes de uma mesma replicação como replicações independentes. Para comparar cenários, documentar se foram usadas replicações independentes ou pareadas.
-
-Uma redução de espera pode acompanhar um aumento de desistências; por isso, avaliar conjuntamente tempos, atendimento concluído, perdas e utilização. A recomendação deverá explicitar também a quantidade de recursos necessária.
-
-## Entregáveis do GB
-
-- Cinco modelos JaamSim integrados, identificados por cenário e com suas dependências.
-- Documentação das premissas, distribuições, regras e diferenças em relação ao GA.
-- Evidências da validação e das 30 replicações de cada cenário.
-- Arquivos de saída reais e logs que permitam conferir os resultados.
-- Tabelas e gráficos comparativos com médias, unidades e IC95%.
-- Relatório atualizado do GB, com metodologia, resultados recalculados, limitações e conclusão.
-- Ambiente de execução e análise reproduzível, acompanhado deste README.
-
-Os requisitos formais de entrega deverão ser conferidos com o enunciado da disciplina quando ele estiver disponível no repositório.
+Não reutilizar os resultados anteriores. O relatório mistura janelas e contém afirmações incompatíveis com as chegadas ativas até o final. O [roteiro de atualização do GB](docs/ATUALIZAR_RELATORIO_GB.md) identifica cada seção, as tabelas antigas e os valores substitutos.
 
 ## Próximos passos
 
-1. Adicionar os cinco `.cfg` integrados e o pacote de ambiente online, preservando os arquivos de referência.
-2. Conferir a correspondência entre este README, o enunciado e os modelos efetivamente enviados.
-3. Validar o funcionamento no JaamSim, especialmente a parada das chegadas e os contadores de desistência.
-4. Executar os cinco cenários com 30 replicações e conferir o balanço dos clientes.
-5. Consolidar os indicadores e atualizar o relatório do GB com os resultados da versão integrada.
+1. Publicar/revisar a branch preparada; a main remota permanece intacta.
+2. Integrar a Pessoa 3 respeitando TipoPedido por cliente e refazer a experimentação.
+3. Aplicar o roteiro de atualização ao fonte editável do relatório.
+4. Conferir a animação nativa, gravar MP4 de até um minuto e atualizar slides.
+5. Manter a declaração do uso de IA exigida pelo enunciado e assegurar que o grupo explique as decisões.
+
+Detalhes: [preservação](docs/PRESERVACAO.md), [alterações e erros corrigidos](docs/ALTERACOES.md), [modelo conceitual](docs/MODELO_CONCEITUAL.md), [validação](docs/VALIDACAO.md).
