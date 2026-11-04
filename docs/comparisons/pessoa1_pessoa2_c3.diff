@@ -1,0 +1,114 @@
+--- pessoa1/tgb_subway_cenario3.cfg
++++ pessoa2/tgb_subway_cenario3.cfg
+@@ -46,6 +46,16 @@
+ Define OverlayText { Titulo }
+ Define View { View1 }
+ 
++# ================= GB - PESSOA 2: NOVOS OBJETOS =================
++Define Assign { ClassificaPedido SorteiaMontagem RegistroDesistencia }
++Define Branch { DecisaoDesistencia }
++Define EntitySink { SaidaDesistencia }
++Define ExpressionThreshold { HorarioPico }
++Define DiscreteDistribution { TipoPedidoDist }
++Define TriangularDistribution { MontagemSimplesDist MontagemTradicionalDist MontagemComplexoDist }
++Define SimEntity { ContadorDesistencias }
++
++
+ 
+ RotaDist UnitType { DimensionlessUnit }
+ ChegadaDist UnitType { TimeUnit }
+@@ -58,7 +68,11 @@
+ Simulation RunDuration { 2.5  h }
+ Simulation InitializationDuration { 0  h }
+ Simulation PrintReport { TRUE }
+-Simulation RunOutputList { { [FilaBalcao].AverageQueueTime/1[s] } { [FilaBalcao].QueueLengthAverage } { [FilaBalcao].QueueLengthMaximum } { [FilaCaixa].AverageQueueTime/1[s] } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { [Caixa].Utilisation } { [Tostadeira].Utilisation } { [EstatSistema].SampleAverage/1[s] } { [Saida].NumberAdded } }
++Simulation RunOutputList { { [FilaBalcao].AverageQueueTime/1[s] } { [FilaBalcao].QueueLengthAverage } { [FilaBalcao].QueueLengthMaximum } { [FilaCaixa].AverageQueueTime/1[s] } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { [Caixa].Utilisation } { [Tostadeira].Utilisation } { [EstatSistema].SampleAverage/1[s] } { [Saida].NumberAdded } 
++  { '[ContadorDesistencias].TotalDesistencias' }
++  { '[SaidaDesistencia].NumberAdded' }
++  { '[ChegadaClientes].NumberGenerated' }
++}
+ Simulation NumberOfReplications { 30 }
+ Simulation PrintReplications { TRUE }
+ Simulation PrintConfidenceIntervals { TRUE }
+@@ -98,7 +112,7 @@
+ 
+ # *** EntityGenerator ***
+ 
+-ChegadaClientes NextComponent { FilaBalcao }
++ChegadaClientes NextComponent { DecisaoDesistencia }
+ ChegadaClientes InterArrivalTime { ChegadaDist }
+ ChegadaClientes PrototypeEntity { Cliente }
+ ChegadaClientes BaseName { Cliente }
+@@ -108,11 +122,11 @@
+ 
+ Balcao1 NextComponent { RotaTostagem }
+ Balcao1 WaitQueue { FilaBalcao }
+-Balcao1 ServiceTime { MontagemDist }
++Balcao1 ServiceTime { 'this.obj.TempoMontagem' }
+ 
+ Balcao2 NextComponent { RotaTostagem }
+ Balcao2 WaitQueue { FilaBalcao }
+-Balcao2 ServiceTime { MontagemDist }
++Balcao2 ServiceTime { 'this.obj.TempoMontagem' }
+ 
+ Caixa NextComponent { EstatSistema }
+ Caixa WaitQueue { FilaCaixa }
+@@ -207,3 +221,58 @@
+ View1 ShowWindow { TRUE }
+ View1 Lock2D { TRUE }
+ View1 SkyboxImage { <res>/images/sky_map_2048x1024.jpg }
++
++
++# -------- Pessoa 2: atributos (1=simples, 2=tradicional, 3=complexo) -------
++Cliente AttributeDefinitionList { { TipoPedido 2 } { TempoMontagem 105 s } }
++ContadorDesistencias AttributeDefinitionList { { TotalDesistencias 0 } }
++
++TipoPedidoDist UnitType { DimensionlessUnit }
++TipoPedidoDist RandomSeed { 9 }
++TipoPedidoDist ValueList { 1 2 3 }
++TipoPedidoDist ProbabilityList { 0.40 0.45 0.15 }
++MontagemSimplesDist UnitType { TimeUnit }
++MontagemSimplesDist RandomSeed { 10 }
++MontagemSimplesDist MinValue { 45 s }
++MontagemSimplesDist Mode { 70 s }
++MontagemSimplesDist MaxValue { 110 s }
++MontagemTradicionalDist UnitType { TimeUnit }
++MontagemTradicionalDist RandomSeed { 11 }
++MontagemTradicionalDist MinValue { 75 s }
++MontagemTradicionalDist Mode { 110 s }
++MontagemTradicionalDist MaxValue { 160 s }
++MontagemComplexoDist UnitType { TimeUnit }
++MontagemComplexoDist RandomSeed { 12 }
++MontagemComplexoDist MinValue { 120 s }
++MontagemComplexoDist Mode { 170 s }
++MontagemComplexoDist MaxValue { 240 s }
++
++# Interrompe CHEGADAS aos 5400 s; atendimento continua ate RunDuration=9000 s.
++# ExpressionThreshold atua sobre o gerador, nao sobre os servidores.
++HorarioPico OpenCondition { 'this.SimTime < 5400[s]' }
++ChegadaClientes OperatingThresholdList { HorarioPico }
++
++# Avalia fila no instante de chegada: mais de cinco aguardando -> desiste.
++# Tipagem por CLIENTE (nao por sanduiche); campos podem ser copiados na
++# futura duplicacao de lanches feita pela Pessoa 3.
++DecisaoDesistencia NextComponentList { ClassificaPedido RegistroDesistencia }
++DecisaoDesistencia Choice { '[FilaBalcao].QueueLength > 5 ? 2 : 1' }
++RegistroDesistencia AttributeAssignmentList { '[ContadorDesistencias].TotalDesistencias = [ContadorDesistencias].TotalDesistencias + 1' }
++RegistroDesistencia NextComponent { SaidaDesistencia }
++ClassificaPedido AttributeAssignmentList { 'this.obj.TipoPedido = [TipoPedidoDist].Value' }
++ClassificaPedido NextComponent { SorteiaMontagem }
++SorteiaMontagem AttributeAssignmentList { 'this.obj.TempoMontagem = this.obj.TipoPedido == 1 ? [MontagemSimplesDist].Value : this.obj.TipoPedido == 2 ? [MontagemTradicionalDist].Value : [MontagemComplexoDist].Value' }
++SorteiaMontagem NextComponent { FilaBalcao }
++
++# Layout da Pessoa 2 (sem alterar objetos da Pessoa 1)
++DecisaoDesistencia Position { -5 0.5 0 m }
++ClassificaPedido Position { -4.4 -0.8 0 m }
++SorteiaMontagem Position { -3.6 -0.8 0 m }
++RegistroDesistencia Position { -4.3 2.6 0 m }
++SaidaDesistencia Position { -2.5 2.6 0 m }
++HorarioPico Position { -7 -2.8 0 m }
++TipoPedidoDist Position { -5 -2.8 0 m }
++MontagemSimplesDist Position { -2 -3.5 0 m }
++MontagemTradicionalDist Position { 0 -3.5 0 m }
++MontagemComplexoDist Position { 2 -3.5 0 m }
++ContadorDesistencias Position { -6 2.6 0 m }

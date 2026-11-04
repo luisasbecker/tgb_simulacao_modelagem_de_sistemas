@@ -1,0 +1,4 @@
+tools/*.jar
+results/runs/
+results/*.csv
+results/*.md

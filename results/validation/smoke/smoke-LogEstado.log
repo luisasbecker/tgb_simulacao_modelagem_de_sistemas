@@ -1,0 +1,64 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/smoke/smoke.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 10:47	-
+Simulation	PresentSimulationTime	0.0	s
+Simulation	ClientesGerados	0.0	-
+Simulation	ClientesAtendidos	0.0	-
+Simulation	TotalDesistencias	0.0	-
+Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	EsperaBalcao_s	NaN	-
+Simulation	FilaBalcao_media	NaN	-
+Simulation	FilaBalcao_max	0.0	-
+Simulation	EsperaCaixa_s	NaN	-
+Simulation	FilaCaixa_media	NaN	-
+Simulation	EsperaTostagem_s	NaN	-
+Simulation	FilaTostagem_media	NaN	-
+Simulation	UtilizacaoBalcoes	NaN	-
+Simulation	UtilizacaoTostadeira	NaN	-
+Simulation	UtilizacaoCaixas	NaN	-
+Simulation	LeadTime_medio_s	NaN	-
+Simulation	Vazao_h	NaN	-
+Simulation	UltimaChegada_s	0.0	-
+Simulation	TempoFinal_s	0.0	-
+Simulation	AmostrasLeadTime	0.0	-
+Simulation	ClientesMontados	0.0	-
+Simulation	ClientesTostados	0.0	-
+Simulation	ClientesPagos	0.0	-
+Simulation	TempoGeradorAberto_s	NaN	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	NaN	-
+Simulation	UtilizacaoBalcao2	NaN	-
+Simulation	UtilizacaoCaixa	NaN	-
+Simulation	RunDuration	600.0	s
+Simulation	InitializationDuration	0.0	s
+
+this.SimTime/1[s]	[FilaBalcao].QueueLength	[FilaCaixa].QueueLength	[HorarioPico].Open	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress	[FilaBalcao].QueueLength	[FilaCaixa].QueueLength	[ChegadaClientes].NumberGenerated	[Saida].NumberAdded	[SaidaDesistencia].NumberAdded	[Simulation].ClientesAindaNoSistema	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress
+0.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0
+7.6466639999999995	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	2.0	0.0	0.0	2.0	1.0	1.0	0.0	0.0
+63.097676	0.0	0.0	1.0	0.0	1.0	0.0	1.0	0.0	0.0	2.0	0.0	0.0	2.0	0.0	1.0	0.0	1.0
+76.724333	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	3.0	0.0	0.0	3.0	1.0	1.0	0.0	1.0
+123.340853	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	3.0	1.0	0.0	2.0	1.0	1.0	0.0	0.0
+133.873707	0.0	0.0	1.0	1.0	0.0	0.0	1.0	0.0	0.0	3.0	1.0	0.0	2.0	1.0	0.0	0.0	1.0
+196.76006999999998	0.0	0.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	3.0	2.0	0.0	1.0	1.0	0.0	0.0	0.0
+234.315083	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	3.0	2.0	0.0	1.0	0.0	0.0	0.0	1.0
+254.00273399999998	0.0	0.0	1.0	1.0	0.0	0.0	1.0	0.0	0.0	4.0	2.0	0.0	2.0	1.0	0.0	0.0	1.0
+255.82125399999998	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	5.0	2.0	0.0	3.0	1.0	1.0	0.0	1.0
+282.505234	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	5.0	3.0	0.0	2.0	1.0	1.0	0.0	0.0
+356.09362699999997	0.0	0.0	1.0	0.0	1.0	1.0	0.0	0.0	0.0	5.0	3.0	0.0	2.0	0.0	1.0	1.0	0.0
+379.764227	0.0	0.0	1.0	1.0	1.0	1.0	0.0	0.0	0.0	6.0	3.0	0.0	3.0	1.0	1.0	1.0	0.0
+386.122723	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	6.0	3.0	0.0	3.0	1.0	1.0	0.0	1.0
+432.818451	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	6.0	4.0	0.0	2.0	1.0	1.0	0.0	0.0
+451.884827	1.0	0.0	1.0	1.0	1.0	0.0	0.0	1.0	0.0	7.0	4.0	0.0	3.0	1.0	1.0	0.0	0.0
+460.022097	0.0	0.0	1.0	1.0	1.0	1.0	0.0	0.0	0.0	7.0	4.0	0.0	3.0	1.0	1.0	1.0	0.0
+485.51955	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	7.0	4.0	0.0	3.0	1.0	1.0	0.0	1.0
+523.992348	0.0	1.0	1.0	1.0	0.0	0.0	1.0	0.0	1.0	7.0	4.0	0.0	3.0	1.0	0.0	0.0	1.0
+527.1018339999999	0.0	0.0	1.0	1.0	0.0	0.0	1.0	0.0	0.0	7.0	5.0	0.0	2.0	1.0	0.0	0.0	1.0
+565.551196	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	7.0	5.0	0.0	2.0	0.0	0.0	1.0	1.0
+583.993981	0.0	0.0	1.0	1.0	0.0	1.0	1.0	0.0	0.0	8.0	5.0	0.0	3.0	1.0	0.0	1.0	1.0
+587.5690099999999	0.0	0.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	8.0	6.0	0.0	2.0	1.0	0.0	1.0	0.0

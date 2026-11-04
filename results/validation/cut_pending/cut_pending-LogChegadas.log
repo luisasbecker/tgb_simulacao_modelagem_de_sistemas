@@ -1,0 +1,42 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/cut_pending/cut_pending.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 10:47	-
+Simulation	PresentSimulationTime	0.0	s
+Simulation	ClientesGerados	0.0	-
+Simulation	ClientesAtendidos	0.0	-
+Simulation	TotalDesistencias	0.0	-
+Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	EsperaBalcao_s	NaN	-
+Simulation	FilaBalcao_media	NaN	-
+Simulation	FilaBalcao_max	0.0	-
+Simulation	EsperaCaixa_s	NaN	-
+Simulation	FilaCaixa_media	NaN	-
+Simulation	EsperaTostagem_s	NaN	-
+Simulation	FilaTostagem_media	NaN	-
+Simulation	UtilizacaoBalcoes	NaN	-
+Simulation	UtilizacaoTostadeira	NaN	-
+Simulation	UtilizacaoCaixas	NaN	-
+Simulation	LeadTime_medio_s	NaN	-
+Simulation	Vazao_h	NaN	-
+Simulation	UltimaChegada_s	0.0	-
+Simulation	TempoFinal_s	0.0	-
+Simulation	AmostrasLeadTime	0.0	-
+Simulation	ClientesMontados	0.0	-
+Simulation	ClientesTostados	0.0	-
+Simulation	ClientesPagos	0.0	-
+Simulation	TempoGeradorAberto_s	NaN	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	NaN	-
+Simulation	UtilizacaoBalcao2	NaN	-
+Simulation	UtilizacaoCaixa	NaN	-
+Simulation	RunDuration	9000.0	s
+Simulation	InitializationDuration	0.0	s
+
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+0.0	Cliente1	Cliente1	1.0	63.09767572198546	0.0	0.0

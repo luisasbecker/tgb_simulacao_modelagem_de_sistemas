@@ -1,0 +1,37 @@
+{
+  "jaamsim_version": "2026-08",
+  "jar_sha256": "83e87bcde04b5dc8c06bac8dfb665e120fa6306aebe6ed6d49fb2ed1835223bf",
+  "replications_per_scenario": 1,
+  "models": [
+    {
+      "scenario": 1,
+      "source_sha256": "db3ba8f48347ffe2e2cdb42ce3463c9e0c844d8cf5ccafb7f16e3900a360fc97",
+      "executed_sha256": "2a8e98a4f7087d930827abdb5f79cf5c389c945b125571293484c264339f059e",
+      "replications": 1
+    },
+    {
+      "scenario": 2,
+      "source_sha256": "20b7065d539dc661a46a403a0fb17d42729df5ecf79a42d7aba0b5978f2a760c",
+      "executed_sha256": "3031c67837d2a9e7ab738b7aaf699ce473356cbcb96d593f3109ea6cd375fcb6",
+      "replications": 1
+    },
+    {
+      "scenario": 3,
+      "source_sha256": "b457e97ce3b41be3444fe5264c6fc1ca6d76f6e36b5f73305b16ccba1234ceea",
+      "executed_sha256": "3cab90920d39386831fab05b9ac463fb4afd7555b3a448b28d1dc69ba5d090b3",
+      "replications": 1
+    },
+    {
+      "scenario": 4,
+      "source_sha256": "334516362ccd6136add4576b665764d9c3c347b3c81de5c16e2c4b2dc3c31952",
+      "executed_sha256": "228df4bf259ffaf0d4b327a6650b91fcce4a1d6151827fab4a78b0ddbfecf25d",
+      "replications": 1
+    },
+    {
+      "scenario": 5,
+      "source_sha256": "59cdc3c93be5d5e007d6931e081b73eaaa18b89663e3c8cde709c3264c195c04",
+      "executed_sha256": "1a60fee1f6a4771145adf643461ae09e659737b06da7138a9d3b68a3425c58a4",
+      "replications": 1
+    }
+  ]
+}

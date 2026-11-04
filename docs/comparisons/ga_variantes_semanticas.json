@@ -1,0 +1,68 @@
+[
+  {
+    "object": "Define",
+    "keyword": "ColladaModel",
+    "onedrive": "Axis Grid100x100",
+    "copia_gb": "Axis"
+  },
+  {
+    "object": "Define",
+    "keyword": "Queue",
+    "onedrive": "FilaBalcao FilaTostagem FilaCaixa",
+    "copia_gb": "FilaBalcao FilaCaixa FilaTostagem"
+  },
+  {
+    "object": "Define",
+    "keyword": "Server",
+    "onedrive": "Balcao1 Balcao2 Tostadeira Caixa",
+    "copia_gb": "Balcao1 Balcao2 Caixa Tostadeira"
+  },
+  {
+    "object": "Define",
+    "keyword": "TriangularDistribution",
+    "onedrive": "MontagemDist TostaDist PagamentoDist",
+    "copia_gb": "MontagemDist PagamentoDist TostaDist"
+  },
+  {
+    "object": "EstatSistema",
+    "keyword": "SampleValue",
+    "onedrive": "'this.obj.TotalTime'",
+    "copia_gb": "this.obj.TotalTime"
+  },
+  {
+    "object": "Grid100x100",
+    "keyword": "ColladaFile",
+    "onedrive": "<res>/shapes/grid100x100.dae",
+    "copia_gb": null
+  },
+  {
+    "object": "Simulation",
+    "keyword": "RunOutputList",
+    "onedrive": "{ '[FilaBalcao].AverageQueueTime/1[s]' } { '[FilaBalcao].QueueLengthAverage' } { '[FilaBalcao].QueueLengthMaximum' } { '[FilaCaixa].AverageQueueTime/1[s]' } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { '[Caixa].Utilisation' } { '[Tostadeira].Utilisation' } { '[EstatSistema].SampleAverage/1[s]' } { '[Saida].NumberAdded' }",
+    "copia_gb": "{ [FilaBalcao].AverageQueueTime/1[s] } { [FilaBalcao].QueueLengthAverage } { [FilaBalcao].QueueLengthMaximum } { [FilaCaixa].AverageQueueTime/1[s] } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { [Caixa].Utilisation } { [Tostadeira].Utilisation } { [EstatSistema].SampleAverage/1[s] } { [Saida].NumberAdded }"
+  },
+  {
+    "object": "Titulo",
+    "keyword": "Format",
+    "onedrive": "'Fila do Subway da Unisinos - Cenario 3 (75% tostados)'",
+    "copia_gb": "'Fila do Subway da Unisinos - Cenario 3'"
+  },
+  {
+    "object": "View1",
+    "keyword": "ViewCenter",
+    "onedrive": "2 0 0 m",
+    "copia_gb": null
+  },
+  {
+    "object": "View1",
+    "keyword": "ViewDirection",
+    "onedrive": null,
+    "copia_gb": "0.0 0.14834 -0.988936 m"
+  },
+  {
+    "object": "View1",
+    "keyword": "ViewPosition",
+    "onedrive": "2 -3 20 m",
+    "copia_gb": "2.312632 -1.288278 22.0 m"
+  }
+]

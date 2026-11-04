@@ -1,0 +1,6 @@
+{
+  "name": "TGB Subway - JaamSim headless",
+  "build": { "dockerfile": "../Dockerfile", "context": ".." },
+  "postCreateCommand": "bash scripts/download_jaamsim.sh && python3 scripts/validate_cfg.py",
+  "customizations": { "vscode": { "extensions": ["ms-python.python"] } }
+}

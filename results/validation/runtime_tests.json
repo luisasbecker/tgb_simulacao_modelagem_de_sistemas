@@ -1,0 +1,30 @@
+[
+  {
+    "test": "smoke",
+    "passed": true,
+    "remaining_expected": 2.0
+  },
+  {
+    "test": "boundary_queue",
+    "passed": true,
+    "generated": 10,
+    "served": 8,
+    "rejected": 2,
+    "max_queue": 6
+  },
+  {
+    "test": "cut_before",
+    "passed": true,
+    "generated": 1
+  },
+  {
+    "test": "cut_exact",
+    "passed": true,
+    "generated": 0
+  },
+  {
+    "test": "cut_pending",
+    "passed": true,
+    "generated": 1
+  }
+]

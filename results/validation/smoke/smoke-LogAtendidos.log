@@ -1,0 +1,47 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/smoke/smoke.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 10:47	-
+Simulation	PresentSimulationTime	0.0	s
+Simulation	ClientesGerados	0.0	-
+Simulation	ClientesAtendidos	0.0	-
+Simulation	TotalDesistencias	0.0	-
+Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	EsperaBalcao_s	NaN	-
+Simulation	FilaBalcao_media	NaN	-
+Simulation	FilaBalcao_max	0.0	-
+Simulation	EsperaCaixa_s	NaN	-
+Simulation	FilaCaixa_media	NaN	-
+Simulation	EsperaTostagem_s	NaN	-
+Simulation	FilaTostagem_media	NaN	-
+Simulation	UtilizacaoBalcoes	NaN	-
+Simulation	UtilizacaoTostadeira	NaN	-
+Simulation	UtilizacaoCaixas	NaN	-
+Simulation	LeadTime_medio_s	NaN	-
+Simulation	Vazao_h	NaN	-
+Simulation	UltimaChegada_s	0.0	-
+Simulation	TempoFinal_s	0.0	-
+Simulation	AmostrasLeadTime	0.0	-
+Simulation	ClientesMontados	0.0	-
+Simulation	ClientesTostados	0.0	-
+Simulation	ClientesPagos	0.0	-
+Simulation	TempoGeradorAberto_s	NaN	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	NaN	-
+Simulation	UtilizacaoBalcao2	NaN	-
+Simulation	UtilizacaoCaixa	NaN	-
+Simulation	RunDuration	600.0	s
+Simulation	InitializationDuration	0.0	s
+
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]	this.obj.StateTimes("EsperaBalcao")/1[s]	this.obj.StateTimes("EsperaTostagem")/1[s]	this.obj.StateTimes("Tostagem")/1[s]	this.obj.StateTimes("EsperaCaixa")/1[s]	this.obj.StateTimes("Pagamento")/1[s]
+123.340853	Cliente1	Cliente1	1.0	63.09767572198546	0.0	0.0	123.340853	63.097676	0.0	0.0	0.0	0.0	60.243176999999996
+196.76006999999998	Cliente2	Cliente2	2.0	126.22704322659614	7.6466639999999995	0.0	189.113406	126.227043	0.0	0.0	0.0	0.0	62.886362999999996
+282.505234	Cliente3	Cliente3	3.0	157.59074950228688	76.724333	0.0	205.78090099999997	157.59074999999999	0.0	0.0	0.0	0.0	48.190151
+432.818451	Cliente4	Cliente4	2.0	102.09089296343485	254.00273399999998	0.0	178.815717	102.090893	0.0	0.0	30.029096	0.0	46.695727999999995
+527.1018339999999	Cliente5	Cliente5	3.0	204.20084335724437	255.82125399999998	0.0	271.28058	204.200843	0.0	0.0	25.497453	0.0	41.582284
+587.5690099999999	Cliente7	Cliente7	1.0	63.970250773753904	451.884827	0.0	135.68418299999996	63.970251	8.13727	0.0	0.0	3.109486	60.467175999999995

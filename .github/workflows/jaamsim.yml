@@ -1,0 +1,37 @@
+name: Validar modelos JaamSim
+on:
+  workflow_dispatch:
+  push:
+    paths: ['models/**', 'scripts/**', 'tests/**', 'requirements.txt', '.github/workflows/jaamsim.yml']
+  pull_request:
+    paths: ['models/**', 'scripts/**', 'tests/**', 'requirements.txt', '.github/workflows/jaamsim.yml']
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: bash scripts/download_jaamsim.sh
+      - run: python scripts/validate_cfg.py
+      - run: python -m unittest discover -s tests -p 'test_io.py'
+      - run: python tests/test_runtime.py
+      - run: python scripts/run_all.py --output results/reexecutions/ci/runs
+      - run: python scripts/plot_results.py results/reexecutions/ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jaamsim-resultados
+          path: |
+            results/reexecutions/ci
+            results/validation
+          retention-days: 30
