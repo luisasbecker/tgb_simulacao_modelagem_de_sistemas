@@ -20,7 +20,8 @@ Esta entrega está na branch local `codex/pessoa2-validacao`. A conexão GitHub 
 | Análise estatística | dados novos, 30 observações por cenário, IC t95%, P90, comparações |
 | Conservação e esvaziamento | zero remanescentes nas 150 replicações; balanço também conferido nos registros de estado |
 | Interface gráfica nativa e vídeo | objetos aceitos em headless; revisão visual e gravação MP4 pendentes |
-| Pessoa 3 | contrato de compatibilidade documentado; duplicações/lotes ainda não implementados |
+| Pessoa 3 | etapa futura de pedidos múltiplos, reunião dos itens, diagrama e animação final |
+| Pessoa 4 | etapa futura de experimentação final, incluindo gráficos da fila em degraus e do lead time com IC95%. Os resultados atuais validam a integração das Pessoas 1 e 2 |
 | Relatório GB | PDF original preservado; roteiro de atualização pronto, sem editar o PDF nesta etapa |
 
 ## Sistema, objetivo e evolução GA → GB
@@ -76,7 +77,7 @@ Os arquivos executáveis finais são **models/cenario1.cfg** a **models/cenario5
 | docs/ | comparação, modelo conceitual, validação, alterações do relatório e fontes |
 | .github/workflows/jaamsim.yml | workflow preparado para executar e guardar evidências |
 | .devcontainer/ e Dockerfile | ambiente Linux/Java/Python para Codespaces |
-| tools/ | JAR oficial; ignorado pelo Git, incluído no pacote ZIP de entrega |
+| tools/ | JAR oficial do JaamSim 2026-08 versionado com sua licença e verificado por SHA-256 |
 
 ## Executar e reproduzir
 

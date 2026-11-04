@@ -1,19 +1,10 @@
-# Publicar a branch sem alterar diretamente a main
+# Publicar a branch pelo GitHub Desktop
 
-O repositório remoto foi apenas lido nesta sessão. A conexão retornou `pull=true` e `push=false`. Nenhuma tentativa de contornar permissões foi feita. O histórico local deriva do commit oficial `0b75aabbb866bcfeb8a565665c643164e2ed6a51` e está na branch `codex/pessoa2-validacao`.
+A pasta `TGB-Pessoas-1-e-2` extraída do pacote para Desktop é um repositório Git completo. A branch `codex/pessoa2-validacao` já contém os cinco modelos, o JAR oficial, os scripts, as evidências e as estatísticas das 150 replicações. O histórico parte da main oficial no commit `0b75aabbb866bcfeb8a565665c643164e2ed6a51`.
 
-O pacote de entrega inclui `tgb_pessoa2_validado.bundle`, com os commits locais e a referência da main inspecionada. Para importar em um clone do repositório oficial:
+1. Extraia o ZIP em uma pasta nova no computador. Escolha a pasta `TGB-Pessoas-1-e-2` em **File → Add local repository** no GitHub Desktop.
+2. Confira em **Current Branch** o nome `codex/pessoa2-validacao`. O destino `origin` é `https://github.com/luisasbecker/tgb_simulacao_modelagem_de_sistemas.git`.
+3. Com uma conta autorizada a enviar essa branch ao repositório, clique em **Publish branch** ou **Push origin**, conforme o botão exibido.
+4. No site do GitHub, selecione `codex/pessoa2-validacao` e abra `models/cenario1.cfg` e `results/runs/execution_manifest.json`. Compare o identificador do último commit com o do pacote.
 
-```bash
-git fetch /caminho/tgb_pessoa2_validado.bundle codex/pessoa2-validacao:codex/pessoa2-validacao
-git switch codex/pessoa2-validacao
-git log --oneline -3
-git diff main...codex/pessoa2-validacao --stat
-git push origin codex/pessoa2-validacao
-```
-
-Revisar as mudanças antes de abrir o pull request. Não há force push nem alteração direta de main nesses comandos. Se já existir uma branch com esse nome, inspecionar sua origem antes de atualizar. Não sobrescrever o trabalho de outra pessoa.
-
-Alternativamente, copiar o conteúdo da pasta do projeto no ZIP para uma nova branch local do clone oficial. Preservar README anterior e docs/baselines. O JAR em tools é ignorado pelo Git, mas está incluído no ZIP para execução imediata e pode ser recuperado pelo script de download com conferência de hash.
-
-Após o push, executar o workflow na aba Actions e guardar o link do run/artifact; a execução do GitHub Actions não foi feita nesta sessão. Conferir também o devcontainer no Codespaces. O funcionamento do motor e dos scripts headless foi validado no ambiente online da sessão, conforme docs/VALIDACAO.md.
+A publicação cria a branch para revisão pelo grupo. O merge em `main` é uma etapa separada. Os resultados presentes correspondem à integração das Pessoas 1 e 2. Após a Pessoa 3, a Pessoa 4 poderá repetir os experimentos para o relatório final.

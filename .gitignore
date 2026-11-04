@@ -1,4 +1,5 @@
 tools/*.jar
+!tools/JaamSim2026-08.jar
 tools/*.part
 **/__pycache__/
 **/.tmp/

@@ -1,3 +1,3 @@
 # JaamSim oficial
 
-O JAR 2026-08 está incluído no ZIP de entrega, sem modificações, com a licença Apache 2.0 incorporada e copiada em JaamSim-LICENSE.txt. O Git ignora o binário; scripts/download_jaamsim.sh recupera e confere SHA-256. As bibliotecas incorporadas mantêm seus avisos no JAR.
+A branch inclui o JAR oficial 2026-08 e sua licença em JaamSim-LICENSE.txt. O script scripts/download_jaamsim.sh verifica o SHA-256 do JAR antes da execução. As bibliotecas incorporadas mantêm seus avisos no JAR.
