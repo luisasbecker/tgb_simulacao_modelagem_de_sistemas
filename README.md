@@ -20,7 +20,7 @@ Esta entrega está na branch local `codex/pessoa2-validacao`. A conexão GitHub 
 | Análise estatística | dados novos, 30 observações por cenário, IC t95%, P90, comparações |
 | Conservação e esvaziamento | zero remanescentes nas 150 replicações; balanço também conferido nos registros de estado |
 | Interface gráfica nativa e vídeo | objetos aceitos em headless; revisão visual e gravação MP4 pendentes |
-| Pessoa 3 | etapa futura de pedidos múltiplos, reunião dos itens, diagrama e animação final |
+| Pessoa 3 | concluída no modelo: atributo QuantidadeLanches, duplicação dos lanches (Duplicate) e reunião por pedido antes do pagamento (Combine com MatchRequired), diagrama conceitual e animação atualizados. Conservação verificada em execução headless. Falta a revisão visual/vídeo |
 | Pessoa 4 | etapa futura de experimentação final, incluindo gráficos da fila em degraus e do lead time com IC95%. Os resultados atuais validam a integração das Pessoas 1 e 2 |
 | Relatório GB | PDF original preservado; roteiro de atualização pronto, sem editar o PDF nesta etapa |
 

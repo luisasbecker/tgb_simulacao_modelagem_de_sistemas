@@ -1,17 +1,23 @@
 Simulation	SoftwareName	JaamSim	-
 Simulation	SoftwareVersion	2026-08	-
-Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/boundary_queue/boundary_queue.cfg	-
+Simulation	ConfigurationFile	/Users/i585108/Documents/college/simulacao-modelagem-software/tgb/codigo/tgb_simulacao_modelagem_de_sistemas/results/validation/boundary_queue/boundary_queue.cfg	-
 Simulation	ScenarioNumber	1.0	-
 Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 10:51	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
 Simulation	PresentSimulationTime	0.0	s
 Simulation	ClientesGerados	0.0	-
 Simulation	ClientesAtendidos	0.0	-
 Simulation	TotalDesistencias	0.0	-
 Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	SanduichesMontados	0.0	-
+Simulation	PedidosReunidos	0.0	-
+Simulation	SanduichesNoSistema	0.0	-
+Simulation	PedidosNoPagamento	0.0	-
+Simulation	EsperaReuniao_s	NaN	-
+Simulation	FilaReuniao_media	NaN	-
 Simulation	EsperaBalcao_s	NaN	-
 Simulation	FilaBalcao_media	NaN	-
 Simulation	FilaBalcao_max	0.0	-
@@ -38,33 +44,33 @@ Simulation	UtilizacaoCaixa	NaN	-
 Simulation	RunDuration	9000.0	s
 Simulation	InitializationDuration	0.0	s
 
-this.SimTime/1[s]	[FilaBalcao].QueueLength	[FilaCaixa].QueueLength	[HorarioPico].Open	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress	[FilaBalcao].QueueLength	[FilaCaixa].QueueLength	[ChegadaClientes].NumberGenerated	[Saida].NumberAdded	[SaidaDesistencia].NumberAdded	[Simulation].ClientesAindaNoSistema	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress
-0.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0
-1.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	2.0	0.0	0.0	2.0	1.0	1.0	0.0	0.0
-2.0	1.0	0.0	1.0	1.0	1.0	0.0	0.0	1.0	0.0	3.0	0.0	0.0	3.0	1.0	1.0	0.0	0.0
-3.0	2.0	0.0	1.0	1.0	1.0	0.0	0.0	2.0	0.0	4.0	0.0	0.0	4.0	1.0	1.0	0.0	0.0
-4.0	3.0	0.0	1.0	1.0	1.0	0.0	0.0	3.0	0.0	5.0	0.0	0.0	5.0	1.0	1.0	0.0	0.0
-5.0	4.0	0.0	1.0	1.0	1.0	0.0	0.0	4.0	0.0	6.0	0.0	0.0	6.0	1.0	1.0	0.0	0.0
-6.0	5.0	0.0	1.0	1.0	1.0	0.0	0.0	5.0	0.0	7.0	0.0	0.0	7.0	1.0	1.0	0.0	0.0
-7.0	6.0	0.0	1.0	1.0	1.0	0.0	0.0	6.0	0.0	8.0	0.0	0.0	8.0	1.0	1.0	0.0	0.0
-100.0	5.0	0.0	1.0	1.0	1.0	0.0	1.0	5.0	0.0	10.0	0.0	2.0	8.0	1.0	1.0	0.0	1.0
-101.0	4.0	1.0	1.0	1.0	1.0	0.0	1.0	4.0	1.0	10.0	0.0	2.0	8.0	1.0	1.0	0.0	1.0
-160.243177	4.0	0.0	1.0	1.0	1.0	0.0	1.0	4.0	0.0	10.0	1.0	2.0	7.0	1.0	1.0	0.0	1.0
-200.0	3.0	1.0	1.0	1.0	1.0	0.0	1.0	3.0	1.0	10.0	1.0	2.0	7.0	1.0	1.0	0.0	1.0
-201.0	2.0	1.0	1.0	1.0	1.0	1.0	1.0	2.0	1.0	10.0	1.0	2.0	7.0	1.0	1.0	1.0	1.0
-223.12954	2.0	0.0	1.0	1.0	1.0	1.0	1.0	2.0	0.0	10.0	2.0	2.0	6.0	1.0	1.0	1.0	1.0
-231.02909599999998	2.0	1.0	1.0	1.0	1.0	0.0	1.0	2.0	1.0	10.0	2.0	2.0	6.0	1.0	1.0	0.0	1.0
-271.319691	2.0	0.0	1.0	1.0	1.0	0.0	1.0	2.0	0.0	10.0	3.0	2.0	5.0	1.0	1.0	0.0	1.0
-300.0	1.0	0.0	1.0	1.0	1.0	1.0	1.0	1.0	0.0	10.0	3.0	2.0	5.0	1.0	1.0	1.0	1.0
-301.0	0.0	1.0	1.0	1.0	1.0	1.0	1.0	0.0	1.0	10.0	3.0	2.0	5.0	1.0	1.0	1.0	1.0
-318.015419	0.0	0.0	1.0	1.0	1.0	1.0	1.0	0.0	0.0	10.0	4.0	2.0	4.0	1.0	1.0	1.0	1.0
-325.497453	0.0	1.0	1.0	1.0	1.0	0.0	1.0	0.0	1.0	10.0	4.0	2.0	4.0	1.0	1.0	0.0	1.0
-359.59770299999997	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	10.0	5.0	2.0	3.0	1.0	1.0	0.0	1.0
-400.0	0.0	0.0	1.0	0.0	1.0	1.0	1.0	0.0	0.0	10.0	5.0	2.0	3.0	0.0	1.0	1.0	1.0
-401.0	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	10.0	5.0	2.0	3.0	0.0	0.0	1.0	1.0
-420.06487899999996	0.0	0.0	1.0	0.0	0.0	1.0	0.0	0.0	0.0	10.0	6.0	2.0	2.0	0.0	0.0	1.0	0.0
-436.444598	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	10.0	6.0	2.0	2.0	0.0	0.0	1.0	1.0
-465.773715	0.0	1.0	1.0	0.0	0.0	0.0	1.0	0.0	1.0	10.0	6.0	2.0	2.0	0.0	0.0	0.0	1.0
-501.89080099999995	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	10.0	7.0	2.0	1.0	0.0	0.0	0.0	1.0
-553.56462	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	10.0	8.0	2.0	0.0	0.0	0.0	0.0	0.0
-5400.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	10.0	8.0	2.0	0.0	0.0	0.0	0.0	0.0
+this.SimTime/1[s]	[FilaBalcao].QueueLength	[FilaReuniao].QueueLength	[FilaCaixa].QueueLength	[HorarioPico].Open	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress	[FilaBalcao].QueueLength	[FilaReuniao].QueueLength	[FilaCaixa].QueueLength	[ChegadaClientes].NumberGenerated	[Saida].NumberAdded	[SaidaDesistencia].NumberAdded	[Simulation].ClientesAindaNoSistema	[Simulation].SanduichesMontados	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress
+0.0	0.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	0.0	1.0	0.0	0.0	0.0
+1.0	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	2.0	0.0	0.0	2.0	0.0	1.0	1.0	0.0	0.0
+2.0	1.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	1.0	0.0	0.0	3.0	0.0	0.0	3.0	0.0	1.0	1.0	0.0	0.0
+3.0	2.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	2.0	0.0	0.0	4.0	0.0	0.0	4.0	0.0	1.0	1.0	0.0	0.0
+4.0	3.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	3.0	0.0	0.0	5.0	0.0	0.0	5.0	0.0	1.0	1.0	0.0	0.0
+5.0	4.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	4.0	0.0	0.0	6.0	0.0	0.0	6.0	0.0	1.0	1.0	0.0	0.0
+6.0	5.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	5.0	0.0	0.0	7.0	0.0	0.0	7.0	0.0	1.0	1.0	0.0	0.0
+7.0	6.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	6.0	0.0	0.0	8.0	0.0	0.0	8.0	0.0	1.0	1.0	0.0	0.0
+100.0	5.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	5.0	0.0	0.0	10.0	0.0	2.0	8.0	1.0	1.0	1.0	0.0	1.0
+101.0	4.0	0.0	1.0	1.0	1.0	1.0	0.0	1.0	4.0	0.0	1.0	10.0	0.0	2.0	8.0	2.0	1.0	1.0	0.0	1.0
+160.243177	4.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	4.0	0.0	0.0	10.0	1.0	2.0	7.0	2.0	1.0	1.0	0.0	1.0
+200.0	3.0	0.0	1.0	1.0	1.0	1.0	0.0	1.0	3.0	0.0	1.0	10.0	1.0	2.0	7.0	3.0	1.0	1.0	0.0	1.0
+201.0	2.0	0.0	1.0	1.0	1.0	1.0	1.0	1.0	2.0	0.0	1.0	10.0	1.0	2.0	7.0	4.0	1.0	1.0	1.0	1.0
+223.12954	2.0	0.0	0.0	1.0	1.0	1.0	1.0	1.0	2.0	0.0	0.0	10.0	2.0	2.0	6.0	4.0	1.0	1.0	1.0	1.0
+231.02909599999998	2.0	0.0	1.0	1.0	1.0	1.0	0.0	1.0	2.0	0.0	1.0	10.0	2.0	2.0	6.0	4.0	1.0	1.0	0.0	1.0
+271.319691	2.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	2.0	0.0	0.0	10.0	3.0	2.0	5.0	4.0	1.0	1.0	0.0	1.0
+300.0	1.0	0.0	0.0	1.0	1.0	1.0	1.0	1.0	1.0	0.0	0.0	10.0	3.0	2.0	5.0	5.0	1.0	1.0	1.0	1.0
+301.0	0.0	0.0	1.0	1.0	1.0	1.0	1.0	1.0	0.0	0.0	1.0	10.0	3.0	2.0	5.0	6.0	1.0	1.0	1.0	1.0
+318.015419	0.0	0.0	0.0	1.0	1.0	1.0	1.0	1.0	0.0	0.0	0.0	10.0	4.0	2.0	4.0	6.0	1.0	1.0	1.0	1.0
+325.497453	0.0	0.0	1.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	1.0	10.0	4.0	2.0	4.0	6.0	1.0	1.0	0.0	1.0
+359.59770299999997	0.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	10.0	5.0	2.0	3.0	6.0	1.0	1.0	0.0	1.0
+400.0	0.0	0.0	0.0	1.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	10.0	5.0	2.0	3.0	7.0	0.0	1.0	1.0	1.0
+401.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0	10.0	5.0	2.0	3.0	8.0	0.0	0.0	1.0	1.0
+420.06487899999996	0.0	0.0	0.0	1.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	10.0	6.0	2.0	2.0	8.0	0.0	0.0	1.0	0.0
+436.444598	0.0	0.0	0.0	1.0	0.0	0.0	1.0	1.0	0.0	0.0	0.0	10.0	6.0	2.0	2.0	8.0	0.0	0.0	1.0	1.0
+465.773715	0.0	0.0	1.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	10.0	6.0	2.0	2.0	8.0	0.0	0.0	0.0	1.0
+501.89080099999995	0.0	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	10.0	7.0	2.0	1.0	8.0	0.0	0.0	0.0	1.0
+553.56462	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	10.0	8.0	2.0	0.0	8.0	0.0	0.0	0.0	0.0
+5400.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	10.0	8.0	2.0	0.0	8.0	0.0	0.0	0.0	0.0

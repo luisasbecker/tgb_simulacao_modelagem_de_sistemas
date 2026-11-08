@@ -2,7 +2,7 @@
   {
     "test": "smoke",
     "passed": true,
-    "remaining_expected": 2.0
+    "remaining_expected": 4.0
   },
   {
     "test": "boundary_queue",
@@ -42,5 +42,11 @@
       "observacoes_caixas_simultaneos": 0,
       "eventos_estado_auditados": 23
     }
+  },
+  {
+    "test": "pessoa3_reuniao",
+    "passed": true,
+    "orders": 5,
+    "sandwiches": 10
   }
 ]

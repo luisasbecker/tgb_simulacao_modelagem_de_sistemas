@@ -29,7 +29,8 @@ def build(n):
     text = set_input(text,'ChegadaClientes','NextComponent','ClassificaPedido')
     for b in balcoes:
         text = set_input(text,b,'ServiceTime',"'this.obj.TempoMontagem'")
-        text = set_input(text,b,'NextComponent','LogMontagem')
+        # Pessoa 3: cada lanche montado segue para a fila de reuniao do pedido.
+        text = set_input(text,b,'NextComponent','FilaReuniao')
     text = set_input(text,'EstatSistema','NextComponent','LogAtendidos')
     text = set_input(text,'EstatSistema','SampleValue',"'this.SimTime - this.obj.HoraChegada'")
     text = set_input(text,'Simulation','RunOutputList','')
@@ -54,6 +55,13 @@ TipoPedidoDist UnitType { DimensionlessUnit }
 TipoPedidoDist RandomSeed { 9 }
 TipoPedidoDist ValueList { 1 2 3 }
 TipoPedidoDist ProbabilityList { 0.40 0.45 0.15 }
+# Pessoa 3: distribuicao de QuantidadeLanches, definida ANTES de ClassificaPedido
+# para que a unidade (DimensionlessUnit) ja esteja resolvida no uso do atributo.
+Define DiscreteDistribution { QtdLanchesDist }
+QtdLanchesDist UnitType { DimensionlessUnit }
+QtdLanchesDist RandomSeed { 13 }
+QtdLanchesDist ValueList { 1 2 3 }
+QtdLanchesDist ProbabilityList { 0.70 0.22 0.08 }
 '''
     for name,seed,low,mode,high in [('Simples',10,45,70,110),('Tradicional',11,75,110,160),('Complexo',12,120,170,240)]:
         text += f'''Montagem{name}Dist UnitType {{ TimeUnit }}
@@ -106,12 +114,66 @@ Tostadeira StateAssignment { Tostagem }
         if log == 'LogAtendidos':
             fields += [f'this.obj.StateTimes("{state}")/1[s]' for state in ['EsperaBalcao','EsperaTostagem','Tostagem','EsperaCaixa','Pagamento']]
         text += f"{log} DataSource {{ " + ' '.join("{ '"+f+"' }" for f in fields) + ' }\n'
-    occupancy = ' + '.join(f'[{q}].QueueLength' for q in ['FilaBalcao','FilaTostagem','FilaCaixa']) + ' + ' + ' + '.join(f'[{s}].NumberInProgress' for s in balcoes+['Tostadeira']+caixas)
+
+    # ---- Pessoa 3: pedidos com multiplos lanches, duplicacao e reuniao ----
+    # QuantidadeLanches (atributo com significado) decide quantas entidades de
+    # producao o pedido gera; o Duplicate cria os lanches extras, os balcoes os
+    # montam em paralelo (respeitando a capacidade instalada) e o Combine reune
+    # todos os lanches do mesmo cliente antes do pagamento, devolvendo UMA
+    # entidade por pedido. ClienteID identifica o pedido para o casamento (Match).
+    text += '''
+Define Duplicate { DuplicaLanches }
+Define Queue { FilaReuniao }
+Define Combine { ReuneLanches }
+Define OverlayText { TextoLanches TextoReuniao }
+
+# Duplicacao das entidades de producao: 1 original + (QuantidadeLanches - 1) copias.
+DuplicaLanches NextComponent { FilaBalcao }
+DuplicaLanches TargetComponentList { FilaBalcao }
+DuplicaLanches NumberOfDuplicates { 'this.obj.QuantidadeLanches - 1' }
+
+# Reuniao antes do pagamento: o Combine agrupa pelo ClienteID (Match na fila) e
+# exige exatamente QuantidadeLanches lanches do pedido lider; mantem a entidade
+# cliente (com HoraChegada/TipoPedido) e consome as copias. A espera na
+# FilaReuniao e a "espera do lote", que nao ocupa nenhum recurso.
+FilaReuniao Match { 'this.obj.ClienteID' }
+FilaReuniao StateAssignment { EsperaReuniao }
+ReuneLanches WaitQueueList { FilaReuniao }
+ReuneLanches MatchRequired { TRUE }
+ReuneLanches NumberRequired { '[FilaReuniao].QueueLength > 0 ? [FilaReuniao].QueueList(1).QuantidadeLanches : 1' }
+ReuneLanches NextComponent { LogMontagem }
+'''
+    # Atributos do cliente: acrescenta ClienteID e QuantidadeLanches, preservando
+    # os da Pessoa 2. O cliente continua dono do pedido durante todo o fluxo.
+    text = set_input(text,'Cliente','AttributeDefinitionList',
+        '{ TipoPedido 0 } { TempoMontagem 0[s] } { HoraChegada 0[s] } { FilaNaChegada 0 } { ClienteID 0 } { QuantidadeLanches 1 }')
+    # ClienteID e QuantidadeLanches sorteados uma vez por cliente, inclusive
+    # desistentes, antes de qualquer duplicacao (contrato da Pessoa 3).
+    text = set_input(text,'ClassificaPedido','AttributeAssignmentList',
+        "{ 'this.obj.HoraChegada = this.SimTime' } "
+        "{ 'this.obj.ClienteID = [ChegadaClientes].NumberGenerated' } "
+        "{ 'this.obj.TipoPedido = [TipoPedidoDist].Value' } "
+        "{ 'this.obj.QuantidadeLanches = [QtdLanchesDist].Value' } "
+        "{ 'this.obj.FilaNaChegada = [FilaBalcao].QueueLength' }")
+    # Quem entra segue para a duplicacao; o desistente nao gera lanches.
+    text = set_input(text,'DecisaoDesistencia','NextComponentList','DuplicaLanches LogDesistencias')
+
+    # Balancos: pedidos (ordem) usam o gerador e as saidas; itens (lanches) usam
+    # os balcoes e a fila de reuniao. Nao se conta lanche como cliente.
+    sandus = ' + '.join(f'[{s}].NumberInProgress' for s in balcoes) + ' + [FilaBalcao].QueueLength + [FilaReuniao].QueueLength'
+    pagamento = '[FilaTostagem].QueueLength + [Tostadeira].NumberInProgress + [FilaCaixa].QueueLength + ' + ' + '.join(f'[{c}].NumberInProgress' for c in caixas)
+    montados = ' + '.join(f'[{b}].NumberProcessed' for b in balcoes)
     metrics = {
         'ClientesGerados': '[ChegadaClientes].NumberGenerated',
         'ClientesAtendidos': '[Saida].NumberAdded',
         'TotalDesistencias': '[SaidaDesistencia].NumberAdded',
-        'ClientesAindaNoSistema': occupancy,
+        'ClientesAindaNoSistema': '[ChegadaClientes].NumberGenerated - [Saida].NumberAdded - [SaidaDesistencia].NumberAdded',
+        'SanduichesMontados': montados,
+        'PedidosReunidos': '[ReuneLanches].NumberProcessed',
+        'SanduichesNoSistema': sandus,
+        'PedidosNoPagamento': pagamento,
+        'EsperaReuniao_s': '[FilaReuniao].AverageQueueTime/1[s]',
+        'FilaReuniao_media': '[FilaReuniao].QueueLengthAverage',
         'EsperaBalcao_s': '[FilaBalcao].AverageQueueTime/1[s]',
         'FilaBalcao_media': '[FilaBalcao].QueueLengthAverage',
         'FilaBalcao_max': '[FilaBalcao].QueueLengthMaximum',
@@ -152,6 +214,10 @@ LogDesistencias Position { -3.5 3.2 0 m }
 SaidaDesistencia Position { -1.8 3.2 0 m }
 LogMontagem Position { 0 2.5 0 m }
 LogAtendidos Position { 9 1.8 0 m }
+DuplicaLanches Position { -2.6 1.3 0 m }
+FilaReuniao Position { 0.2 0.5 0 m }
+ReuneLanches Position { 0.7 0.5 0 m }
+QtdLanchesDist Position { 2 -5 0 m }
 JanelaChegadas Position { -7 -3 0 m }
 HorarioPico Position { -5 -3 0 m }
 TipoPedidoDist Position { -7 -4 0 m }
@@ -161,7 +227,7 @@ MontagemComplexoDist Position { 0 -4 0 m }
 LogEstado Position { 2 -4 0 m }
 
 TextoAtendidos ScreenPosition { 15 45 }
-TextoAtendidos Format { 'Atendidos: %.0f clientes' }
+TextoAtendidos Format { 'Atendidos: %.0f pedidos' }
 TextoAtendidos DataSource { [Saida].NumberAdded }
 TextoDesistencias ScreenPosition { 15 65 }
 TextoDesistencias Format { 'Desistencias: %.0f clientes' }
@@ -170,26 +236,33 @@ TextoLeadTime ScreenPosition { 15 85 }
 TextoLeadTime Format { 'Lead time medio: %.1f s' }
 TextoLeadTime DataSource { '[EstatSistema].SampleAverage/1[s]' }
 TextoFila ScreenPosition { 15 105 }
-TextoFila Format { 'Fila balcao: %.0f clientes aguardando' }
+TextoFila Format { 'Fila balcao: %.0f lanches aguardando' }
 TextoFila DataSource { [FilaBalcao].QueueLength }
+TextoLanches ScreenPosition { 15 125 }
+TextoLanches Format { 'Lanches montados: %.0f lanches' }
+TextoLanches DataSource { '[Simulation].SanduichesMontados' }
+TextoReuniao ScreenPosition { 15 145 }
+TextoReuniao Format { 'Espera de reuniao: %.1f s' }
+TextoReuniao DataSource { '[FilaReuniao].AverageQueueTime/1[s]' }
 GraficoFila Position { 5 -3 0 m }
 GraficoFila Size { 7 3 m }
-GraficoFila Title { 'Clientes aguardando no balcao' }
+GraficoFila Title { 'Estado em tempo real: lanches no balcao e pedidos em reuniao' }
 GraficoFila UnitType { DimensionlessUnit }
-GraficoFila DataSource { { [FilaBalcao].QueueLength } }
+GraficoFila DataSource { { [FilaBalcao].QueueLength } { [FilaReuniao].QueueLength } }
+GraficoFila LineColours { { blue } { orange } }
 GraficoFila XAxisTitle { 'Tempo relativo ao instante atual (min)' }
 GraficoFila XAxisUnit { min }
 GraficoFila XAxisStart { -90 min }
 GraficoFila XAxisEnd { 0 min }
 GraficoFila XAxisInterval { 15 min }
-GraficoFila YAxisTitle { 'Fila (clientes)' }
+GraficoFila YAxisTitle { 'Itens (lanches)' }
 GraficoFila YAxisStart { 0 }
-GraficoFila YAxisEnd { 6 }
-GraficoFila YAxisInterval { 1 }
+GraficoFila YAxisEnd { 10 }
+GraficoFila YAxisInterval { 2 }
 GraficoFila NumberOfPoints { 901 }
 '''
-    traces = ['[FilaBalcao].QueueLength','[FilaCaixa].QueueLength','[HorarioPico].Open'] + [f'[{s}].NumberInProgress' for s in balcoes+['Tostadeira']+caixas]
-    state_data = ['[FilaBalcao].QueueLength','[FilaCaixa].QueueLength','[ChegadaClientes].NumberGenerated','[Saida].NumberAdded','[SaidaDesistencia].NumberAdded','[Simulation].ClientesAindaNoSistema']+[f'[{s}].NumberInProgress' for s in balcoes+['Tostadeira']+caixas]
+    traces = ['[FilaBalcao].QueueLength','[FilaReuniao].QueueLength','[FilaCaixa].QueueLength','[HorarioPico].Open'] + [f'[{s}].NumberInProgress' for s in balcoes+['Tostadeira']+caixas]
+    state_data = ['[FilaBalcao].QueueLength','[FilaReuniao].QueueLength','[FilaCaixa].QueueLength','[ChegadaClientes].NumberGenerated','[Saida].NumberAdded','[SaidaDesistencia].NumberAdded','[Simulation].ClientesAindaNoSistema','[Simulation].SanduichesMontados']+[f'[{s}].NumberInProgress' for s in balcoes+['Tostadeira']+caixas]
     text=set_input(text,'LogEstado','ValueTraceList',' '.join('{ '+f+' }' for f in traces))
     text=set_input(text,'LogEstado','DataSource',' '.join('{ '+f+' }' for f in state_data))
     # JaamSim resolves entity references at input time: declare all objects first.

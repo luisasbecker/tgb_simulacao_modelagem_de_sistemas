@@ -1,0 +1,65 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/Users/i585108/Documents/college/simulacao-modelagem-software/tgb/codigo/tgb_simulacao_modelagem_de_sistemas/results/validation/pessoa3_reuniao/pessoa3_reuniao.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
+Simulation	PresentSimulationTime	0.0	s
+Simulation	ClientesGerados	0.0	-
+Simulation	ClientesAtendidos	0.0	-
+Simulation	TotalDesistencias	0.0	-
+Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	SanduichesMontados	0.0	-
+Simulation	PedidosReunidos	0.0	-
+Simulation	SanduichesNoSistema	0.0	-
+Simulation	PedidosNoPagamento	0.0	-
+Simulation	EsperaReuniao_s	NaN	-
+Simulation	FilaReuniao_media	NaN	-
+Simulation	EsperaBalcao_s	NaN	-
+Simulation	FilaBalcao_media	NaN	-
+Simulation	FilaBalcao_max	0.0	-
+Simulation	EsperaCaixa_s	NaN	-
+Simulation	FilaCaixa_media	NaN	-
+Simulation	EsperaTostagem_s	NaN	-
+Simulation	FilaTostagem_media	NaN	-
+Simulation	UtilizacaoBalcoes	NaN	-
+Simulation	UtilizacaoTostadeira	NaN	-
+Simulation	UtilizacaoCaixas	NaN	-
+Simulation	LeadTime_medio_s	NaN	-
+Simulation	Vazao_h	NaN	-
+Simulation	UltimaChegada_s	0.0	-
+Simulation	TempoFinal_s	0.0	-
+Simulation	AmostrasLeadTime	0.0	-
+Simulation	ClientesMontados	0.0	-
+Simulation	ClientesTostados	0.0	-
+Simulation	ClientesPagos	0.0	-
+Simulation	TempoGeradorAberto_s	NaN	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	NaN	-
+Simulation	UtilizacaoBalcao2	NaN	-
+Simulation	UtilizacaoCaixa	NaN	-
+Simulation	RunDuration	9000.0	s
+Simulation	InitializationDuration	0.0	s
+
+this.SimTime/1[s]	[FilaBalcao].QueueLength	[FilaReuniao].QueueLength	[FilaCaixa].QueueLength	[HorarioPico].Open	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress	[FilaBalcao].QueueLength	[FilaReuniao].QueueLength	[FilaCaixa].QueueLength	[ChegadaClientes].NumberGenerated	[Saida].NumberAdded	[SaidaDesistencia].NumberAdded	[Simulation].ClientesAindaNoSistema	[Simulation].SanduichesMontados	[Balcao1].NumberInProgress	[Balcao2].NumberInProgress	[Tostadeira].NumberInProgress	[Caixa].NumberInProgress
+0.0	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	0.0	1.0	1.0	0.0	0.0
+63.097676	0.0	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	1.0	2.0	0.0	0.0	0.0	1.0
+120.0	0.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	2.0	0.0	0.0	2.0	2.0	1.0	1.0	0.0	1.0
+123.340853	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	2.0	1.0	0.0	1.0	2.0	1.0	1.0	0.0	0.0
+240.0	2.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	2.0	0.0	0.0	3.0	1.0	0.0	2.0	2.0	1.0	1.0	0.0	0.0
+246.22704299999998	0.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	3.0	1.0	0.0	2.0	4.0	1.0	1.0	0.0	1.0
+309.113406	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	3.0	2.0	0.0	1.0	4.0	1.0	1.0	0.0	0.0
+360.0	2.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	2.0	0.0	0.0	4.0	2.0	0.0	2.0	4.0	1.0	1.0	0.0	0.0
+403.817793	0.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	4.0	2.0	0.0	2.0	6.0	1.0	1.0	0.0	1.0
+452.00794399999995	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	4.0	3.0	0.0	1.0	6.0	1.0	1.0	0.0	0.0
+480.0	2.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	2.0	0.0	0.0	5.0	3.0	0.0	2.0	6.0	1.0	1.0	0.0	0.0
+505.908686	0.0	0.0	0.0	1.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	5.0	3.0	0.0	2.0	8.0	1.0	1.0	1.0	0.0
+535.937782	0.0	0.0	0.0	1.0	1.0	1.0	0.0	1.0	0.0	0.0	0.0	5.0	3.0	0.0	2.0	8.0	1.0	1.0	0.0	1.0
+582.63351	0.0	0.0	0.0	1.0	1.0	1.0	0.0	0.0	0.0	0.0	0.0	5.0	4.0	0.0	1.0	8.0	1.0	1.0	0.0	0.0
+710.109529	0.0	0.0	0.0	1.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	5.0	4.0	0.0	1.0	10.0	0.0	0.0	1.0	0.0
+735.606982	0.0	0.0	0.0	1.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	5.0	4.0	0.0	1.0	10.0	0.0	0.0	0.0	1.0
+777.189266	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	5.0	5.0	0.0	0.0	10.0	0.0	0.0	0.0	0.0
+5400.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	5.0	5.0	0.0	0.0	10.0	0.0	0.0	0.0	0.0

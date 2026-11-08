@@ -48,13 +48,29 @@ def validate():
         assert cfg['JanelaChegadas','Value']=='{ 0 s 1 } { 5400 s 0 }'
         assert ('ChegadaClientes','OperatingThresholdList') not in cfg
         assert cfg['DecisaoDesistencia','Choice']=="'[FilaBalcao].QueueLength > 5 ? 2 : 1'"
-        assert cfg['DecisaoDesistencia','NextComponentList']=='FilaBalcao LogDesistencias'
+        assert cfg['DecisaoDesistencia','NextComponentList']=='DuplicaLanches LogDesistencias'
         assert cfg['TipoPedidoDist','ProbabilityList']=='0.40 0.45 0.15'
         assert all(cfg[b,'ServiceTime']=="'this.obj.TempoMontagem'" for b in balcoes)
         for tipo,values in [('Simples',(45,70,110)),('Tradicional',(75,110,160)),('Complexo',(120,170,240))]:
             for k,v in zip(['MinValue','Mode','MaxValue'],values):assert cfg[f'Montagem{tipo}Dist',k]==f'{v} s'
         assert 'this.obj.TipoPedido ==' in cfg['SorteiaMontagem','AttributeAssignmentList']
         assert cfg['EstatSistema','SampleValue']=="'this.SimTime - this.obj.HoraChegada'"
+        # Pessoa 3: pedidos multiplos, duplicacao das entidades de producao e reuniao.
+        assert cfg['QtdLanchesDist','ProbabilityList']=='0.70 0.22 0.08'
+        assert cfg['QtdLanchesDist','ValueList']=='1 2 3'
+        assert 'QuantidadeLanches' in cfg['Cliente','AttributeDefinitionList']
+        assert 'ClienteID' in cfg['Cliente','AttributeDefinitionList']
+        assert 'this.obj.QuantidadeLanches = [QtdLanchesDist].Value' in cfg['ClassificaPedido','AttributeAssignmentList']
+        assert 'this.obj.ClienteID = [ChegadaClientes].NumberGenerated' in cfg['ClassificaPedido','AttributeAssignmentList']
+        assert cfg['DuplicaLanches','NumberOfDuplicates']=="'this.obj.QuantidadeLanches - 1'"
+        assert cfg['DuplicaLanches','NextComponent']=='FilaBalcao'
+        assert cfg['DuplicaLanches','TargetComponentList']=='FilaBalcao'
+        assert all(cfg[b,'NextComponent']=='FilaReuniao' for b in balcoes)
+        assert cfg['FilaReuniao','Match']=="'this.obj.ClienteID'"
+        assert cfg['ReuneLanches','WaitQueueList']=='FilaReuniao'
+        assert cfg['ReuneLanches','MatchRequired']=='TRUE'
+        assert 'QuantidadeLanches' in cfg['ReuneLanches','NumberRequired']
+        assert cfg['ReuneLanches','NextComponent']=='LogMontagem'
         report.append({'scenario':n,'passed':True,'base_inputs_changed':changes})
     out=ROOT/'results/validation/static_validation.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2))
     print('Static preservation contract: 5 scenarios passed (not an engine execution).')
