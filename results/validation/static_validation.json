@@ -19,7 +19,7 @@
         "object": "Balcao1",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao2",
@@ -31,7 +31,7 @@
         "object": "Balcao2",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "EstatSistema",
@@ -49,7 +49,7 @@
         "object": "Simulation",
         "keyword": "RunOutputList",
         "before": "{ '[FilaBalcao].AverageQueueTime/1[s]' } { '[FilaBalcao].QueueLengthAverage' } { '[FilaBalcao].QueueLengthMaximum' } { '[FilaCaixa].AverageQueueTime/1[s]' } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { '[Caixa].Utilisation' } { '[Tostadeira].Utilisation' } { '[EstatSistema].SampleAverage/1[s]' } { '[Saida].NumberAdded' }",
-        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa' }"
+        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].SanduichesMontados' } { '[Simulation].PedidosReunidos' } { '[Simulation].SanduichesNoSistema' } { '[Simulation].PedidosNoPagamento' } { '[Simulation].EsperaReuniao_s' } { '[Simulation].FilaReuniao_media' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa' }"
       }
     ]
   },
@@ -73,7 +73,7 @@
         "object": "Balcao1",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao2",
@@ -85,7 +85,7 @@
         "object": "Balcao2",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao3",
@@ -97,7 +97,7 @@
         "object": "Balcao3",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "EstatSistema",
@@ -115,7 +115,7 @@
         "object": "Simulation",
         "keyword": "RunOutputList",
         "before": "{ '[FilaBalcao].AverageQueueTime/1[s]' } { '[FilaBalcao].QueueLengthAverage' } { '[FilaBalcao].QueueLengthMaximum' } { '[FilaCaixa].AverageQueueTime/1[s]' } { '([Balcao1].Utilisation + [Balcao2].Utilisation + [Balcao3].Utilisation)/3' } { '[Caixa].Utilisation' } { '[Tostadeira].Utilisation' } { '[EstatSistema].SampleAverage/1[s]' } { '[Saida].NumberAdded' }",
-        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoBalcao3' } { '[Simulation].UtilizacaoCaixa' }"
+        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].SanduichesMontados' } { '[Simulation].PedidosReunidos' } { '[Simulation].SanduichesNoSistema' } { '[Simulation].PedidosNoPagamento' } { '[Simulation].EsperaReuniao_s' } { '[Simulation].FilaReuniao_media' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoBalcao3' } { '[Simulation].UtilizacaoCaixa' }"
       }
     ]
   },
@@ -127,7 +127,7 @@
         "object": "Simulation",
         "keyword": "RunOutputList",
         "before": "{ [FilaBalcao].AverageQueueTime/1[s] } { [FilaBalcao].QueueLengthAverage } { [FilaBalcao].QueueLengthMaximum } { [FilaCaixa].AverageQueueTime/1[s] } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { [Caixa].Utilisation } { [Tostadeira].Utilisation } { [EstatSistema].SampleAverage/1[s] } { [Saida].NumberAdded }",
-        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa' }"
+        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].SanduichesMontados' } { '[Simulation].PedidosReunidos' } { '[Simulation].SanduichesNoSistema' } { '[Simulation].PedidosNoPagamento' } { '[Simulation].EsperaReuniao_s' } { '[Simulation].FilaReuniao_media' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa' }"
       },
       {
         "object": "ChegadaClientes",
@@ -139,7 +139,7 @@
         "object": "Balcao1",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao1",
@@ -151,7 +151,7 @@
         "object": "Balcao2",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao2",
@@ -193,7 +193,7 @@
         "object": "Balcao1",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao2",
@@ -205,7 +205,7 @@
         "object": "Balcao2",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "EstatSistema",
@@ -223,7 +223,7 @@
         "object": "Simulation",
         "keyword": "RunOutputList",
         "before": "{ '[FilaBalcao].AverageQueueTime/1[s]' } { '[FilaBalcao].QueueLengthAverage' } { '[FilaBalcao].QueueLengthMaximum' } { '[FilaCaixa].AverageQueueTime/1[s]' } { '([Balcao1].Utilisation + [Balcao2].Utilisation)/2' } { '([Caixa1].Utilisation + [Caixa2].Utilisation)/2' } { '[Tostadeira].Utilisation' } { '[EstatSistema].SampleAverage/1[s]' } { '[Saida].NumberAdded' }",
-        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa1' } { '[Simulation].UtilizacaoCaixa2' }"
+        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].SanduichesMontados' } { '[Simulation].PedidosReunidos' } { '[Simulation].SanduichesNoSistema' } { '[Simulation].PedidosNoPagamento' } { '[Simulation].EsperaReuniao_s' } { '[Simulation].FilaReuniao_media' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoCaixa1' } { '[Simulation].UtilizacaoCaixa2' }"
       }
     ]
   },
@@ -247,7 +247,7 @@
         "object": "Balcao1",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao2",
@@ -259,7 +259,7 @@
         "object": "Balcao2",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "Balcao3",
@@ -271,7 +271,7 @@
         "object": "Balcao3",
         "keyword": "NextComponent",
         "before": "RotaTostagem",
-        "after": "LogMontagem"
+        "after": "FilaReuniao"
       },
       {
         "object": "EstatSistema",
@@ -289,7 +289,7 @@
         "object": "Simulation",
         "keyword": "RunOutputList",
         "before": "{ '[FilaBalcao].AverageQueueTime/1[s]' } { '[FilaBalcao].QueueLengthAverage' } { '[FilaBalcao].QueueLengthMaximum' } { '[FilaCaixa].AverageQueueTime/1[s]' } { '([Balcao1].Utilisation + [Balcao2].Utilisation + [Balcao3].Utilisation)/3' } { '([Caixa1].Utilisation + [Caixa2].Utilisation)/2' } { '[Tostadeira].Utilisation' } { '[EstatSistema].SampleAverage/1[s]' } { '[Saida].NumberAdded' }",
-        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoBalcao3' } { '[Simulation].UtilizacaoCaixa1' } { '[Simulation].UtilizacaoCaixa2' }"
+        "after": "{ '[Simulation].ClientesGerados' } { '[Simulation].ClientesAtendidos' } { '[Simulation].TotalDesistencias' } { '[Simulation].ClientesAindaNoSistema' } { '[Simulation].SanduichesMontados' } { '[Simulation].PedidosReunidos' } { '[Simulation].SanduichesNoSistema' } { '[Simulation].PedidosNoPagamento' } { '[Simulation].EsperaReuniao_s' } { '[Simulation].FilaReuniao_media' } { '[Simulation].EsperaBalcao_s' } { '[Simulation].FilaBalcao_media' } { '[Simulation].FilaBalcao_max' } { '[Simulation].EsperaCaixa_s' } { '[Simulation].FilaCaixa_media' } { '[Simulation].EsperaTostagem_s' } { '[Simulation].FilaTostagem_media' } { '[Simulation].UtilizacaoBalcoes' } { '[Simulation].UtilizacaoTostadeira' } { '[Simulation].UtilizacaoCaixas' } { '[Simulation].LeadTime_medio_s' } { '[Simulation].Vazao_h' } { '[Simulation].UltimaChegada_s' } { '[Simulation].TempoFinal_s' } { '[Simulation].AmostrasLeadTime' } { '[Simulation].ClientesMontados' } { '[Simulation].ClientesTostados' } { '[Simulation].ClientesPagos' } { '[Simulation].TempoGeradorAberto_s' } { '[Simulation].Substream' } { '[Simulation].UtilizacaoBalcao1' } { '[Simulation].UtilizacaoBalcao2' } { '[Simulation].UtilizacaoBalcao3' } { '[Simulation].UtilizacaoCaixa1' } { '[Simulation].UtilizacaoCaixa2' }"
       }
     ]
   }

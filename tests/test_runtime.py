@@ -27,6 +27,7 @@ def main():
     row,cfg=test('boundary_queue', '''ChegadaClientes InterArrivalTime { 1 s }
 ChegadaClientes MaxNumber { 10 }
 SorteiaMontagem AttributeAssignmentList { 'this.obj.TempoMontagem = 100[s]' }
+QtdLanchesDist ProbabilityList { 1 0 0 }
 ''')
     arrivals=numeric_logger(cfg.with_name('boundary_queue-LogChegadas.log'))
     rejected=numeric_logger(cfg.with_name('boundary_queue-LogDesistencias.log'))
@@ -48,6 +49,7 @@ SorteiaMontagem AttributeAssignmentList { 'this.obj.TempoMontagem = 100[s]' }
     row,cfg=test('remaining_clients', '''ChegadaClientes InterArrivalTime { 1 s }
 ChegadaClientes MaxNumber { 10 }
 Caixa ServiceTime { 3600 s }
+QtdLanchesDist ProbabilityList { 1 0 0 }
 ''')
     # Stress fixture only: long payment intentionally leaves real entities unfinished.
     from analyze_results import audit_rep
@@ -56,6 +58,16 @@ Caixa ServiceTime { 3600 s }
     assert audit['remanescentes']>0 and audit['conservacao']
     assert not audit['reconstrucao_totais_por_concluidos_aplicavel']
     records.append({'test':'remaining_clients','passed':True,'audit':audit})
+    # Pessoa 3: duplicacao e reuniao. Dois lanches por pedido; todos sao reunidos
+    # em um pedido antes do pagamento e nenhum lanche fica no sistema no final.
+    row,cfg=test('pessoa3_reuniao', '''ChegadaClientes InterArrivalTime { 120 s }
+ChegadaClientes MaxNumber { 5 }
+QtdLanchesDist ProbabilityList { 0 1 0 }
+''')
+    assert row['ClientesGerados']==5 and row['ClientesAtendidos']==5 and row['TotalDesistencias']==0
+    assert row['ClientesAindaNoSistema']==0 and row['SanduichesNoSistema']==0
+    assert row['PedidosReunidos']==5 and row['SanduichesMontados']==10
+    records.append({'test':'pessoa3_reuniao','passed':True,'orders':5,'sandwiches':10})
     out=ROOT/'results/validation/runtime_tests.json';out.write_text(json.dumps(records,indent=2))
     print(json.dumps(records,indent=2))
 

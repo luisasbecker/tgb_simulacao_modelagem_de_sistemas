@@ -1,17 +1,23 @@
 Simulation	SoftwareName	JaamSim	-
 Simulation	SoftwareVersion	2026-08	-
-Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/validation/cut_pending/cut_pending.cfg	-
+Simulation	ConfigurationFile	/Users/i585108/Documents/college/simulacao-modelagem-software/tgb/codigo/tgb_simulacao_modelagem_de_sistemas/results/validation/cut_pending/cut_pending.cfg	-
 Simulation	ScenarioNumber	1.0	-
 Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 10:51	-
+Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
 Simulation	PresentSimulationTime	9000.0	s
 Simulation	ClientesGerados	1.0	-
 Simulation	ClientesAtendidos	1.0	-
 Simulation	TotalDesistencias	0.0	-
 Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	SanduichesMontados	1.0	-
+Simulation	PedidosReunidos	1.0	-
+Simulation	SanduichesNoSistema	0.0	-
+Simulation	PedidosNoPagamento	0.0	-
+Simulation	EsperaReuniao_s	0.0	-
+Simulation	FilaReuniao_media	0.0	-
 Simulation	EsperaBalcao_s	0.0	-
 Simulation	FilaBalcao_media	0.0	-
 Simulation	FilaBalcao_max	0.0	-
@@ -68,6 +74,28 @@ RotaTostagem	StateTimes[None]	9000.0	s
 RotaTostagem	TotalTime	9000.0	s
 RotaTostagem	NumberAdded	1.0	-
 RotaTostagem	NumberProcessed	1.0	-
+
+*** Combine ***
+
+ReuneLanches	StateTimes[Breakdown]	0.0	s
+ReuneLanches	StateTimes[Idle]	9000.0	s
+ReuneLanches	StateTimes[Maintenance]	0.0	s
+ReuneLanches	StateTimes[Stopped]	0.0	s
+ReuneLanches	StateTimes[Working]	0.0	s
+ReuneLanches	TotalTime	9000.0	s
+ReuneLanches	Utilisation	0.0	-
+ReuneLanches	Commitment	0.0	-
+ReuneLanches	Availability	1.0	-
+ReuneLanches	Reliability	NaN	-
+ReuneLanches	NumberAdded	1.0	-
+ReuneLanches	NumberProcessed	1.0	-
+
+*** Duplicate ***
+
+DuplicaLanches	StateTimes[None]	9000.0	s
+DuplicaLanches	TotalTime	9000.0	s
+DuplicaLanches	NumberAdded	1.0	-
+DuplicaLanches	NumberProcessed	1.0	-
 
 *** EntityGenerator ***
 
@@ -131,6 +159,23 @@ FilaCaixa	QueueLengthCumulativeFractions[0]	1.0	-
 FilaCaixa	QueueLengthCumulativeFractions[1]	1.0	-
 FilaCaixa	AverageQueueTime	0.0	s
 FilaCaixa	NumberReneged	0.0	-
+
+FilaReuniao	StateTimes[None]	9000.0	s
+FilaReuniao	TotalTime	9000.0	s
+FilaReuniao	NumberAdded	1.0	-
+FilaReuniao	NumberProcessed	1.0	-
+FilaReuniao	QueueLengthAverage	0.0	-
+FilaReuniao	QueueLengthStandardDeviation	0.0	-
+FilaReuniao	QueueLengthMinimum	0.0	-
+FilaReuniao	QueueLengthMaximum	0.0	-
+FilaReuniao	QueueLengthTimes[0]	9000.0	s
+FilaReuniao	QueueLengthTimes[1]	0.0	s
+FilaReuniao	QueueLengthFractions[0]	1.0	-
+FilaReuniao	QueueLengthFractions[1]	0.0	-
+FilaReuniao	QueueLengthCumulativeFractions[0]	1.0	-
+FilaReuniao	QueueLengthCumulativeFractions[1]	1.0	-
+FilaReuniao	AverageQueueTime	0.0	s
+FilaReuniao	NumberReneged	0.0	-
 
 FilaTostagem	StateTimes[None]	9000.0	s
 FilaTostagem	TotalTime	9000.0	s
@@ -208,6 +253,8 @@ Cliente	TipoPedido	0.0	-
 Cliente	TempoMontagem	0.0	s
 Cliente	HoraChegada	0.0	s
 Cliente	FilaNaChegada	0.0	-
+Cliente	ClienteID	0.0	-
+Cliente	QuantidadeLanches	1.0	-
 
 *** Statistics ***
 
