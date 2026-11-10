@@ -1,31 +1,71 @@
-indicador,cenario_A,cenario_B,criterio_disciplina,diferenca_B_menos_A,ic95_diferenca_inferior,ic95_diferenca_superior,metodo_complementar
-EsperaBalcao_s,1,2,diferenca_conclusiva,-29.07617031489496,-34.71705596469644,-23.435284665093473,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,1,3,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,1,4,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,1,5,diferenca_conclusiva,-29.07617031489496,-34.71705596469644,-23.435284665093473,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,2,3,diferenca_conclusiva,29.07617031489496,23.435284665093473,34.71705596469644,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,2,4,diferenca_conclusiva,29.07617031489496,23.435284665093473,34.71705596469644,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,2,5,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,3,4,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,3,5,diferenca_conclusiva,-29.07617031489496,-34.71705596469644,-23.435284665093473,t pareado por replicacao; sem correcao de multiplicidade
-EsperaBalcao_s,4,5,diferenca_conclusiva,-29.07617031489496,-34.71705596469644,-23.435284665093473,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,1,2,diferenca_conclusiva,-17.79845835755103,-22.159285941967248,-13.437630773134812,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,1,3,inconclusivo_por_sobreposicao,6.050678353737884,4.741246569114862,7.3601101383609056,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,1,4,diferenca_conclusiva,-17.402328118594536,-21.51980353659286,-13.284852700596211,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,1,5,diferenca_conclusiva,-44.891149497009685,-52.216536924872855,-37.565762069146516,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,2,3,diferenca_conclusiva,23.84913671128891,19.522364225713467,28.175909196864353,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,2,4,inconclusivo_por_sobreposicao,0.3961302389564897,-5.659874059863054,6.4521345377760335,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,2,5,diferenca_conclusiva,-27.092691139458662,-32.83354341463333,-21.35183886428399,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,3,4,diferenca_conclusiva,-23.453006472332422,-27.60785612282702,-19.298156821837825,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,3,5,diferenca_conclusiva,-50.94182785074757,-57.97183253622618,-43.91182316526896,t pareado por replicacao; sem correcao de multiplicidade
-LeadTime_medio_s,4,5,diferenca_conclusiva,-27.48882137841515,-32.862117752401346,-22.115525004428953,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,1,2,diferenca_conclusiva,10.67343457492281,7.715137885660178,13.631731264185442,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,1,3,inconclusivo_por_sobreposicao,-1.0382922957229765,-1.9013132749885227,-0.17527131645743044,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,1,4,diferenca_conclusiva,-17.402328118594514,-21.51980353659284,-13.28485270059619,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,1,5,diferenca_conclusiva,-16.41925656453584,-20.44604604871911,-12.392467080352567,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,2,3,diferenca_conclusiva,-11.711726870645785,-15.087335944929235,-8.336117796362336,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,2,4,diferenca_conclusiva,-28.075762693517323,-34.00065338796378,-22.15087199907087,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,2,5,diferenca_conclusiva,-27.092691139458644,-32.83354341463332,-21.35183886428397,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,3,4,diferenca_conclusiva,-16.36403582287154,-20.228036778457305,-12.500034867285773,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,3,5,diferenca_conclusiva,-15.380964268812862,-19.171911919693436,-11.590016617932289,t pareado por replicacao; sem correcao de multiplicidade
-EsperaCaixa_s,4,5,diferenca_conclusiva,0.9830715540586763,0.6359604804137742,1.3301826277035784,t pareado por replicacao; sem correcao de multiplicidade
+indicador,unidade,cenario_A,cenario_B,media_A,media_B,variacao_percentual_B_vs_A,criterio_disciplina,diferenca_B_menos_A,ic95_diferenca_inferior,ic95_diferenca_superior,metodo_complementar
+LeadTime_medio_s,s,1,2,305.9916802500396,239.68379174160734,-21.6698337857582,diferenca_conclusiva,-66.30788850843231,-73.83790737918186,-58.77786963768277,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,1,3,305.9916802500396,312.3743439195677,2.0858945133124283,inconclusivo_por_sobreposicao,6.382663669528054,5.138962197219068,7.626365141837041,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,1,4,305.9916802500396,292.4999482076329,-4.409182639012288,inconclusivo_por_sobreposicao,-13.49173204240674,-16.231596862314223,-10.751867222499257,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,1,5,305.9916802500396,217.21443077569828,-29.012961856282317,diferenca_conclusiva,-88.77724947434139,-97.44675460102869,-80.10774434765409,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,2,3,239.68379174160734,312.3743439195677,30.32768784646268,diferenca_conclusiva,72.69055217796036,64.73214963708425,80.64895471883646,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,2,4,239.68379174160734,292.4999482076329,22.035764739137782,diferenca_conclusiva,52.81615646602556,45.018407788704664,60.61390514334646,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,2,5,239.68379174160734,217.21443077569828,-9.3745850742099,diferenca_conclusiva,-22.469360965909072,-27.09893961878054,-17.839782313037603,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,3,4,312.3743439195677,292.4999482076329,-6.362364931305696,inconclusivo_por_sobreposicao,-19.874395711934792,-22.810613853662037,-16.938177570207547,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,3,5,312.3743439195677,217.21443077569828,-30.463421531305997,diferenca_conclusiva,-95.15991314386943,-104.0497381974322,-86.27008809030666,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+LeadTime_medio_s,s,4,5,292.4999482076329,217.21443077569828,-25.738642995756265,diferenca_conclusiva,-75.28551743193465,-82.95473945023653,-67.61629541363277,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,1,2,481.7424080800001,358.58564104666664,-25.56485893035216,diferenca_conclusiva,-123.15676703333344,-138.19117428336008,-108.12235978330679,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,1,3,481.7424080800001,485.2286854200001,0.7236808056601631,inconclusivo_por_sobreposicao,3.48627734,-0.13958256123641144,7.112137241236411,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,1,4,481.7424080800001,463.62957750000004,-3.7598580229192002,inconclusivo_por_sobreposicao,-18.112830580000036,-23.897517146904907,-12.328144013095166,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,1,5,481.7424080800001,318.96085846000005,-33.79016397347519,diferenca_conclusiva,-162.78154962000002,-177.26116973219555,-148.3019295078045,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,2,3,358.58564104666664,485.2286854200001,35.31737746209755,diferenca_conclusiva,126.64304437333344,111.42794517854341,141.85814356812347,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,2,4,358.58564104666664,463.62957750000004,29.293960613348403,diferenca_conclusiva,105.0439364533334,89.7372381479749,120.3506347586919,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,2,5,358.58564104666664,318.96085846000005,-11.050298185673805,diferenca_conclusiva,-39.624782586666576,-50.79276134642231,-28.456803826910846,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,3,4,485.2286854200001,463.62957750000004,-4.451325440767064,inconclusivo_por_sobreposicao,-21.599107920000037,-27.318448858587224,-15.87976698141285,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,3,5,485.2286854200001,318.96085846000005,-34.26586926040519,diferenca_conclusiva,-166.26782696000004,-179.91572998988627,-152.6199239301138,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+P90_lead_time_s,s,4,5,463.62957750000004,318.96085846000005,-31.203513766332126,diferenca_conclusiva,-144.66871903999996,-157.8865949939163,-131.4508430860836,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,1,2,109.59350900583645,34.66327338240542,-68.37105254056661,diferenca_conclusiva,-74.93023562343105,-82.33984850071977,-67.52062274614232,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,1,3,109.59350900583645,109.59350900583645,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,1,4,109.59350900583645,109.59350900583645,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,1,5,109.59350900583645,34.66327338240542,-68.37105254056661,diferenca_conclusiva,-74.93023562343105,-82.33984850071977,-67.52062274614232,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,2,3,34.66327338240542,109.59350900583645,216.1660694787831,diferenca_conclusiva,74.93023562343105,67.52062274614232,82.33984850071977,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,2,4,34.66327338240542,109.59350900583645,216.1660694787831,diferenca_conclusiva,74.93023562343105,67.52062274614232,82.33984850071977,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,2,5,34.66327338240542,34.66327338240542,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,3,4,109.59350900583645,109.59350900583645,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,3,5,109.59350900583645,34.66327338240542,-68.37105254056661,diferenca_conclusiva,-74.93023562343105,-82.33984850071977,-67.52062274614232,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaBalcao_s,s,4,5,109.59350900583645,34.66327338240542,-68.37105254056661,diferenca_conclusiva,-74.93023562343105,-82.33984850071977,-67.52062274614232,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,1,2,13.867758120040245,23.578641949699083,70.02490053259349,diferenca_conclusiva,9.710883829658837,6.686714684698352,12.735052974619322,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,1,3,13.867758120040245,12.786088282667398,-7.79988970105939,inconclusivo_por_sobreposicao,-1.0816698373728473,-2.0050151429803424,-0.1583245317653521,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,1,4,13.867758120040245,0.3760260776335252,-97.28848690337242,diferenca_conclusiva,-13.491732042406719,-16.23159686231422,-10.75186722249922,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,1,5,13.867758120040245,1.1092809837900055,-92.00100712611228,diferenca_conclusiva,-12.758477136250239,-15.416931926487408,-10.10002234601307,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,2,3,23.578641949699083,12.786088282667398,-45.77258389204821,diferenca_conclusiva,-10.792553667031683,-14.119474040456925,-7.46563329360644,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,2,4,23.578641949699083,0.3760260776335252,-98.4052258885999,diferenca_conclusiva,-23.202615872065557,-27.95959283514953,-18.445638908981586,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,2,5,23.578641949699083,1.1092809837900055,-95.29539917457306,diferenca_conclusiva,-22.469360965909075,-27.098939618780545,-17.839782313037606,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,3,4,12.786088282667398,0.3760260776335252,-97.05909994268333,diferenca_conclusiva,-12.410062205033872,-14.853493244717757,-9.966631165349987,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,3,5,12.786088282667398,1.1092809837900055,-91.32431311854988,diferenca_conclusiva,-11.67680729887739,-14.027652307085653,-9.325962290669128,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+EsperaCaixa_s,s,4,5,0.3760260776335252,1.1092809837900055,195.00107832178335,diferenca_conclusiva,0.7332549061564803,0.4114480304551128,1.0550617818578476,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,1,2,0.9604814652814814,0.32607475795555557,-66.050905744444,diferenca_conclusiva,-0.6344067073259259,-0.7126248668590515,-0.5561885477928002,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,1,3,0.9604814652814814,0.9604814652814814,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,1,4,0.9604814652814814,0.9604814652814814,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,1,5,0.9604814652814814,0.32607475795555557,-66.050905744444,diferenca_conclusiva,-0.6344067073259259,-0.7126248668590515,-0.5561885477928002,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,2,3,0.32607475795555557,0.9604814652814814,194.5586684794523,diferenca_conclusiva,0.6344067073259259,0.5561885477928002,0.7126248668590515,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,2,4,0.32607475795555557,0.9604814652814814,194.5586684794523,diferenca_conclusiva,0.6344067073259259,0.5561885477928002,0.7126248668590515,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,2,5,0.32607475795555557,0.32607475795555557,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,3,4,0.9604814652814814,0.9604814652814814,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,3,5,0.9604814652814814,0.32607475795555557,-66.050905744444,diferenca_conclusiva,-0.6344067073259259,-0.7126248668590515,-0.5561885477928002,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+FilaBalcao_media,lanches,4,5,0.9604814652814814,0.32607475795555557,-66.050905744444,diferenca_conclusiva,-0.6344067073259259,-0.7126248668590515,-0.5561885477928002,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,1,2,3.433333333333333,0.5333333333333333,-84.46601941747574,diferenca_conclusiva,-2.9,-3.842357952458693,-1.9576420475413068,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,1,3,3.433333333333333,3.433333333333333,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,1,4,3.433333333333333,3.433333333333333,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,1,5,3.433333333333333,0.5333333333333333,-84.46601941747574,diferenca_conclusiva,-2.9,-3.842357952458693,-1.9576420475413068,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,2,3,0.5333333333333333,3.433333333333333,543.75,diferenca_conclusiva,2.9,1.9576420475413068,3.842357952458693,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,2,4,0.5333333333333333,3.433333333333333,543.75,diferenca_conclusiva,2.9,1.9576420475413068,3.842357952458693,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,2,5,0.5333333333333333,0.5333333333333333,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,3,4,3.433333333333333,3.433333333333333,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,3,5,3.433333333333333,0.5333333333333333,-84.46601941747574,diferenca_conclusiva,-2.9,-3.842357952458693,-1.9576420475413068,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+TotalDesistencias,clientes,4,5,3.433333333333333,0.5333333333333333,-84.46601941747574,diferenca_conclusiva,-2.9,-3.842357952458693,-1.9576420475413068,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,1,2,22.573333333333334,23.733333333333334,5.138806851742469,inconclusivo_por_sobreposicao,1.1600000000000001,0.783056819016523,1.5369431809834773,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,1,3,22.573333333333334,22.573333333333334,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,1,4,22.573333333333334,22.573333333333334,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,1,5,22.573333333333334,23.733333333333334,5.138806851742469,inconclusivo_por_sobreposicao,1.1600000000000001,0.783056819016523,1.5369431809834773,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,2,3,23.733333333333334,22.573333333333334,-4.887640449438202,inconclusivo_por_sobreposicao,-1.1600000000000001,-1.5369431809834773,-0.783056819016523,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,2,4,23.733333333333334,22.573333333333334,-4.887640449438202,inconclusivo_por_sobreposicao,-1.1600000000000001,-1.5369431809834773,-0.783056819016523,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,2,5,23.733333333333334,23.733333333333334,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,3,4,22.573333333333334,22.573333333333334,0.0,inconclusivo_por_sobreposicao,0.0,0.0,0.0,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,3,5,22.573333333333334,23.733333333333334,5.138806851742469,inconclusivo_por_sobreposicao,1.1600000000000001,0.783056819016523,1.5369431809834773,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade
+Vazao_h,pedidos/h,4,5,22.573333333333334,23.733333333333334,5.138806851742469,inconclusivo_por_sobreposicao,1.1600000000000001,0.783056819016523,1.5369431809834773,t pareado por replicacao (sementes comuns); sem correcao de multiplicidade

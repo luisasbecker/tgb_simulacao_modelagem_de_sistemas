@@ -1,17 +1,23 @@
 Simulation	SoftwareName	JaamSim	-
 Simulation	SoftwareVersion	2026-08	-
-Simulation	ConfigurationFile	/workspace/scratch/9fb4da31b956/project/results/runs/cenario5/cenario5.cfg	-
+Simulation	ConfigurationFile	/Users/i585108/Documents/college/simulacao-modelagem-software/tgb/codigo/tgb_simulacao_modelagem_de_sistemas/results/runs/cenario5/cenario5.cfg	-
 Simulation	ScenarioNumber	1.0	-
 Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 10:36	-
+Simulation	PresentTimeAndDate	Nov 08, 2026 14:37	-
 Simulation	PresentSimulationTime	0.0	s
 Simulation	ClientesGerados	0.0	-
 Simulation	ClientesAtendidos	0.0	-
 Simulation	TotalDesistencias	0.0	-
 Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	SanduichesMontados	0.0	-
+Simulation	PedidosReunidos	0.0	-
+Simulation	SanduichesNoSistema	0.0	-
+Simulation	PedidosNoPagamento	0.0	-
+Simulation	EsperaReuniao_s	NaN	-
+Simulation	FilaReuniao_media	NaN	-
 Simulation	EsperaBalcao_s	NaN	-
 Simulation	FilaBalcao_media	NaN	-
 Simulation	FilaBalcao_max	0.0	-
@@ -23,7 +29,10 @@ Simulation	UtilizacaoBalcoes	NaN	-
 Simulation	UtilizacaoTostadeira	NaN	-
 Simulation	UtilizacaoCaixas	NaN	-
 Simulation	LeadTime_medio_s	NaN	-
+Simulation	LeadTime_dp_s	NaN	-
+Simulation	LeadTime_max_s	NaN	-
 Simulation	Vazao_h	NaN	-
+Simulation	VazaoLanches_h	NaN	-
 Simulation	UltimaChegada_s	0.0	-
 Simulation	TempoFinal_s	0.0	-
 Simulation	AmostrasLeadTime	0.0	-
@@ -42,120 +51,136 @@ Simulation	InitializationDuration	0.0	s
 
 ##### SCENARIO 1 - REPLICATION 1 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 2 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+2484.288552	Cliente38	Cliente38	38.0	2.0	1.0	65.86001215253175	2484.288552	7.0
+4670.776742999999	Cliente71	Cliente71	71.0	3.0	2.0	117.37280783113417	4670.776742999999	7.0
 
 ##### SCENARIO 1 - REPLICATION 3 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 4 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 5 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+3790.2260509999996	Cliente45	Cliente45	45.0	1.0	2.0	125.93896134939345	3790.2260509999996	6.0
 
 ##### SCENARIO 1 - REPLICATION 6 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 7 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 8 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+5318.976987	Cliente67	Cliente67	67.0	1.0	2.0	87.23087305874276	5318.976987	6.0
 
 ##### SCENARIO 1 - REPLICATION 9 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 10 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+2955.825284	Cliente33	Cliente33	33.0	1.0	2.0	91.14371145984711	2955.825284	6.0
 
 ##### SCENARIO 1 - REPLICATION 11 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+5150.873995999999	Cliente61	Cliente61	61.0	1.0	2.0	106.77961559779878	5150.873995999999	7.0
+5301.212122999999	Cliente63	Cliente63	63.0	3.0	1.0	67.3597965273625	5301.212122999999	6.0
+5398.382917	Cliente65	Cliente65	65.0	2.0	1.0	76.65834787866476	5398.382917	6.0
 
 ##### SCENARIO 1 - REPLICATION 12 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 13 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 14 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 15 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 16 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 17 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 18 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+3389.617859	Cliente30	Cliente30	30.0	2.0	1.0	71.06936904984602	3389.617859	6.0
+3421.559406	Cliente31	Cliente31	31.0	1.0	3.0	210.4679912891154	3421.559406	6.0
 
 ##### SCENARIO 1 - REPLICATION 19 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+4769.176426999999	Cliente59	Cliente59	59.0	1.0	1.0	63.73472433175449	4769.176426999999	6.0
 
 ##### SCENARIO 1 - REPLICATION 20 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 21 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+3955.9871409999996	Cliente51	Cliente51	51.0	1.0	3.0	208.57316717336573	3955.9871409999996	6.0
 
 ##### SCENARIO 1 - REPLICATION 22 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 23 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 24 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 25 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 26 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+3880.575542	Cliente44	Cliente44	44.0	1.0	1.0	48.86633054340655	3880.575542	6.0
+3904.879136	Cliente45	Cliente45	45.0	1.0	3.0	192.2114631545607	3904.879136	6.0
 
 ##### SCENARIO 1 - REPLICATION 27 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+4482.813312	Cliente45	Cliente45	45.0	1.0	1.0	75.71054864900071	4482.813312	8.0
+4487.320084	Cliente46	Cliente46	46.0	1.0	2.0	108.42201538122313	4487.320084	8.0
 
 ##### SCENARIO 1 - REPLICATION 28 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 29 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
 
 ##### SCENARIO 1 - REPLICATION 30 #####
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada

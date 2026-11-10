@@ -35,10 +35,13 @@
       "replicacao": 1,
       "conservacao": true,
       "remanescentes": 6.0,
-      "reconstrucao_totais_por_concluidos_aplicavel": false,
+      "lanches_remanescentes": 0.0,
+      "reconstrucao_totais_aplicavel": false,
       "ultima_chegada_s": 9.0,
-      "clientes_auditados": 10,
+      "pedidos_auditados": 10,
+      "lanches_auditados": 8,
       "desistentes": 2,
+      "pedidos_entregues_pela_copia": 0,
       "observacoes_caixas_simultaneos": 0,
       "eventos_estado_auditados": 23
     }
@@ -47,6 +50,21 @@
     "test": "pessoa3_reuniao",
     "passed": true,
     "orders": 5,
-    "sandwiches": 10
+    "sandwiches": 10,
+    "audit": {
+      "cenario": 1,
+      "replicacao": 1,
+      "conservacao": true,
+      "remanescentes": 0.0,
+      "lanches_remanescentes": 0.0,
+      "reconstrucao_totais_aplicavel": true,
+      "ultima_chegada_s": 480.0,
+      "pedidos_auditados": 5,
+      "lanches_auditados": 10,
+      "desistentes": 0,
+      "pedidos_entregues_pela_copia": 5,
+      "observacoes_caixas_simultaneos": 0,
+      "eventos_estado_auditados": 18
+    }
   }
 ]

@@ -30,7 +30,8 @@ def build(n):
     for b in balcoes:
         text = set_input(text,b,'ServiceTime',"'this.obj.TempoMontagem'")
         # Pessoa 3: cada lanche montado segue para a fila de reuniao do pedido.
-        text = set_input(text,b,'NextComponent','FilaReuniao')
+        # Pessoa 4: passa antes por LogLanches (registro por item, tempo zero).
+        text = set_input(text,b,'NextComponent','LogLanches')
     text = set_input(text,'EstatSistema','NextComponent','LogAtendidos')
     text = set_input(text,'EstatSistema','SampleValue',"'this.SimTime - this.obj.HoraChegada'")
     text = set_input(text,'Simulation','RunOutputList','')
@@ -106,14 +107,24 @@ Tostadeira StateAssignment { Tostagem }
 '''
     for b in balcoes: text += f'{b} StateAssignment {{ Montagem }}\n'
     for c in caixas: text += f'{c} StateAssignment {{ Pagamento }}\n'
-    log_fields = ['this.obj.Name','this.obj.TipoPedido','this.obj.TempoMontagem/1[s]','this.obj.HoraChegada/1[s]','this.obj.FilaNaChegada']
+    # Pessoa 4: ClienteID e QuantidadeLanches identificam o pedido em todos os
+    # registros; o Combine pode devolver uma copia (ClienteN_Dup1) como entidade
+    # do pedido, entao a auditoria usa ClienteID e nao o nome da entidade.
+    log_fields = ['this.obj.Name','this.obj.ClienteID','this.obj.QuantidadeLanches','this.obj.TipoPedido','this.obj.TempoMontagem/1[s]','this.obj.HoraChegada/1[s]','this.obj.FilaNaChegada']
     for log in ['LogChegadas','LogDesistencias','LogMontagem','LogAtendidos']:
         fields = log_fields.copy()
         if log in ['LogMontagem','LogAtendidos']:
             fields += ['(this.SimTime-this.obj.HoraChegada)/1[s]', 'this.obj.StateTimes("Montagem")/1[s]']
         if log == 'LogAtendidos':
-            fields += [f'this.obj.StateTimes("{state}")/1[s]' for state in ['EsperaBalcao','EsperaTostagem','Tostagem','EsperaCaixa','Pagamento']]
+            fields += [f'this.obj.StateTimes("{state}")/1[s]' for state in ['EsperaBalcao','EsperaReuniao','EsperaTostagem','Tostagem','EsperaCaixa','Pagamento']]
         text += f"{log} DataSource {{ " + ' '.join("{ '"+f+"' }" for f in fields) + ' }\n'
+
+    # ---- Pessoa 4: registro de cada lanche montado (item), antes da reuniao ----
+    lanche_fields = ['this.obj.Name','this.obj.ClienteID','this.obj.QuantidadeLanches','this.obj.TipoPedido','this.obj.TempoMontagem/1[s]','this.obj.HoraChegada/1[s]','this.obj.StateTimes("EsperaBalcao")/1[s]','this.obj.StateTimes("Montagem")/1[s]']
+    text += '\nDefine EntityLogger { LogLanches }\n'
+    text += 'LogLanches NextComponent { FilaReuniao }\n'
+    text += 'LogLanches DataSource { ' + ' '.join("{ '"+f+"' }" for f in lanche_fields) + ' }\n'
+    text += 'LogLanches Position { -0.6 0.5 0 m }\n'
 
     # ---- Pessoa 3: pedidos com multiplos lanches, duplicacao e reuniao ----
     # QuantidadeLanches (atributo com significado) decide quantas entidades de
@@ -185,7 +196,12 @@ ReuneLanches NextComponent { LogMontagem }
         'UtilizacaoTostadeira': '[Tostadeira].Utilisation',
         'UtilizacaoCaixas': '('+' + '.join(f'[{c}].Utilisation' for c in caixas)+f')/{len(caixas)}',
         'LeadTime_medio_s': '[EstatSistema].SampleAverage/1[s]',
+        # Pessoa 4: dispersao e maximo do lead time dentro da replicacao.
+        'LeadTime_dp_s': '[EstatSistema].SampleStandardDeviation/1[s]',
+        'LeadTime_max_s': '[EstatSistema].SampleMaximum/1[s]',
+        # Vazao em pedidos/h e lanches/h sobre a janela total (2,5 h).
         'Vazao_h': '[Saida].NumberAdded/(this.SimTime/1[h])',
+        'VazaoLanches_h': '(' + montados + ')/(this.SimTime/1[h])',
         'UltimaChegada_s': '[LogChegadas].LogTime/1[s]',
         'TempoFinal_s': 'this.SimTime/1[s]',
         'AmostrasLeadTime': '[EstatSistema].NumberAdded',

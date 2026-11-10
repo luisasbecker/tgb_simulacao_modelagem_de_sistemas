@@ -65,7 +65,11 @@ def validate():
         assert cfg['DuplicaLanches','NumberOfDuplicates']=="'this.obj.QuantidadeLanches - 1'"
         assert cfg['DuplicaLanches','NextComponent']=='FilaBalcao'
         assert cfg['DuplicaLanches','TargetComponentList']=='FilaBalcao'
-        assert all(cfg[b,'NextComponent']=='FilaReuniao' for b in balcoes)
+        # Pessoa 4: cada lanche montado passa pelo registro por item (tempo zero).
+        assert all(cfg[b,'NextComponent']=='LogLanches' for b in balcoes)
+        assert cfg['LogLanches','NextComponent']=='FilaReuniao'
+        assert 'this.obj.ClienteID' in cfg['LogLanches','DataSource']
+        assert 'EsperaReuniao' in cfg['LogAtendidos','DataSource']
         assert cfg['FilaReuniao','Match']=="'this.obj.ClienteID'"
         assert cfg['ReuneLanches','WaitQueueList']=='FilaReuniao'
         assert cfg['ReuneLanches','MatchRequired']=='TRUE'

@@ -6,7 +6,7 @@
 
 Repositório oficial: [luisasbecker/tgb_simulacao_modelagem_de_sistemas](https://github.com/luisasbecker/tgb_simulacao_modelagem_de_sistemas).
 
-## Status da versão Pessoa 1 + Pessoa 2
+## Status da versão final (Pessoas 1 a 4)
 
 Os cinco modelos finais foram **executados no JaamSim 2026-08**, com 30 replicações cada (150 replicações analisadas). Há resultados reais, logs individuais, conservação auditada e IC95% recalculados. O motor não foi substituído por uma simulação Python: Python executa o JAR, verifica os registros e calcula estatísticas.
 
@@ -21,8 +21,8 @@ Esta entrega está na branch local `codex/pessoa2-validacao`. A conexão GitHub 
 | Conservação e esvaziamento | zero remanescentes nas 150 replicações; balanço também conferido nos registros de estado |
 | Interface gráfica nativa e vídeo | objetos aceitos em headless; revisão visual e gravação MP4 pendentes |
 | Pessoa 3 | concluída no modelo: atributo QuantidadeLanches, duplicação dos lanches (Duplicate) e reunião por pedido antes do pagamento (Combine com MatchRequired), diagrama conceitual e animação atualizados. Conservação verificada em execução headless. Falta a revisão visual/vídeo |
-| Pessoa 4 | etapa futura de experimentação final, incluindo gráficos da fila em degraus e do lead time com IC95%. Os resultados atuais validam a integração das Pessoas 1 e 2 |
-| Relatório GB | PDF original preservado; roteiro de atualização pronto, sem editar o PDF nesta etapa |
+| Pessoa 4 | concluída: indicadores de lead time (média, DP, máximo, P90), desistências, vazão (pedidos/h e lanches/h) e fila; registro por lanche (`LogLanches`); 150 replicações reexecutadas sobre o modelo da Pessoa 3; auditoria por `ClienteID`; IC95%, comparações e respostas às perguntas; gráficos da fila em degraus e do lead time com barras de erro. Ver [docs/PESSOA4.md](docs/PESSOA4.md) |
+| Relatório GB | fonte LaTeX em `tgb/relatorio/` atualizado com o modelo final e os resultados da Pessoa 4; `docs/ATUALIZAR_RELATORIO_GB.md` é histórico (fase Pessoa 2) |
 
 ## Sistema, objetivo e evolução GA → GB
 
@@ -118,31 +118,32 @@ Headless direto: `java -jar tools/JaamSim2026-08.jar models/cenario1.cfg -h`. Is
 
 Codespaces: após publicar esta branch, abrir o repositório com o devcontainer e seguir os comandos acima. GitHub Actions: publicar `.github/workflows/jaamsim.yml` e usar **Actions → Validar modelos JaamSim → Run workflow**, ou o gatilho de push/PR. O job executa testes e 150 replicações, e exporta resultados como artifact. Não há execução remota do workflow comprovada nesta entrega.
 
-## Resultados novos
+## Resultados finais (Pessoa 4)
 
 | Indicador | C1 | C2 | C3 | C4 | C5 |
 |---|---:|---:|---:|---:|---:|
-| Espera balcão (s) | 35.69 ± 7.00 | 6.62 ± 1.66 | 35.69 ± 7.00 | 35.69 ± 7.00 | 6.62 ± 1.66 |
-| Lead time (s) | 231.22 ± 8.85 | 213.42 ± 7.04 | 237.27 ± 8.48 | 213.82 ± 7.34 | 186.33 ± 2.70 |
-| Atendidos/replicação | 59.77 ± 2.91 | 59.87 ± 2.94 | 59.77 ± 2.91 | 59.77 ± 2.91 | 59.87 ± 2.94 |
-| Desistentes/replicação | 0.10 ± 0.15 | 0.00 ± 0.00 | 0.10 ± 0.15 | 0.10 ± 0.15 | 0.00 ± 0.00 |
+| Lead time do pedido (s) | 305.99 ± 13.11 | 239.68 ± 8.26 | 312.37 ± 13.22 | 292.50 ± 12.48 | 217.21 ± 6.72 |
+| P90 do lead time (s) | 481.74 ± 20.80 | 358.59 ± 17.73 | 485.23 ± 20.76 | 463.63 ± 20.60 | 318.96 ± 14.13 |
+| Espera no balcão, por lanche (s) | 109.59 ± 11.50 | 34.66 ± 6.21 | 109.59 ± 11.50 | 109.59 ± 11.50 | 34.66 ± 6.21 |
+| Espera no caixa (s) | 13.87 ± 2.86 | 23.58 ± 4.84 | 12.79 ± 2.55 | 0.38 ± 0.18 | 1.11 ± 0.32 |
+| Fila média do balcão (lanches) | 0.96 ± 0.13 | 0.33 ± 0.07 | 0.96 ± 0.13 | 0.96 ± 0.13 | 0.33 ± 0.07 |
+| Desistências (clientes/replicação) | 3.43 ± 1.09 | 0.53 ± 0.32 | 3.43 ± 1.09 | 3.43 ± 1.09 | 0.53 ± 0.32 |
+| Vazão (pedidos/h, janela de 2,5 h) | 22.57 ± 0.94 | 23.73 ± 1.14 | 22.57 ± 0.94 | 22.57 ± 0.94 | 23.73 ± 1.14 |
 
-Valores: média ± semi-amplitude IC95% t(29), 30 replicações. Gerados: 59.87 ± 2.94 clientes/replicação em todos os cenários. Remanescentes: zero em todas as 150 replicações. Desistências totais: C1=3, C2=0, C3=3, C4=3, C5=0. A ausência observada em C2/C5 não prova risco populacional zero.
+Valores: média ± semi-amplitude IC95% t(29), 30 replicações por cenário. Gerados: 59.87 ± 2.94 pedidos/replicação (1,38 lanche/pedido). Remanescentes: zero pedidos e zero lanches nas 150 replicações. Todos os números, DP, n, limites e unidades estão em [resumo completo](results/resumo.md) e [CSV](results/resumo_ic95.csv); comparações em [comparacoes_ic95.csv](results/comparacoes_ic95.csv); respostas às perguntas em [respostas_perguntas.csv](results/respostas_perguntas.csv).
 
-Todos os números, DP, n, limites e unidades estão em [resumo completo](results/resumo.md) e [CSV](results/resumo_ic95.csv). Utilizações/comprimentos médios usam 9000 s; a vazão principal é atendidos/2,5 h. P90 é calculado dentro de cada replicação antes da consolidação.
+![Lead time com IC95%](results/figures/lead_time_ic95.png)
 
-![Comparação da espera no balcão](results/figures/espera_balcao_ic95.png)
+![Fila do balcão em degraus](results/figures/fila_balcao_degraus.png)
 
-C2 reduz a espera média no balcão em 81.46% em relação a C1, com intervalos não sobrepostos. No lead time, C5 tem a menor média (186.33 s) e IC separado dos demais. C2 e C4 têm ICs de lead time sobrepostos; não se escolhe entre eles apenas pela inspeção dos intervalos. C1 atende à meta de espera média abaixo de 300 s, com limite superior 42.69 s. A escolha de investimento depende de custos e metas adicionais, não modelados.
-
-Não reutilizar os resultados anteriores. O relatório mistura janelas e contém afirmações incompatíveis com as chegadas ativas até o final. O [roteiro de atualização do GB](docs/ATUALIZAR_RELATORIO_GB.md) identifica cada seção, as tabelas antigas e os valores substitutos.
+C5 tem o menor lead time (217.21 s), com IC separado de todos os demais; reduz 29.0% frente a C1 e 9.4% frente a C2. C2 reduz a espera no balcão em 68.4% e as desistências em 84.5% frente a C1, ambos conclusivos, mas eleva a espera no caixa de 13.87 s para 23.58 s. C3 (+2.1%) e C4 (−4.4%) têm ICs de lead time sobrepostos com C1: inconclusivo pelo critério da disciplina (o IC pareado complementar indica diferenças pequenas, de 6.4 s e −13.5 s).
 
 ## Próximos passos
 
 1. Publicar/revisar a branch preparada; a main remota permanece intacta.
-2. Integrar a Pessoa 3 respeitando TipoPedido por cliente e refazer a experimentação.
-3. Aplicar o roteiro de atualização ao fonte editável do relatório.
+2. Relatório (`tgb/relatorio/`) atualizado com o modelo final e os resultados da Pessoa 4: introdução, metodologia (novo diagrama conceitual), dados de entrada, hipóteses, cenários, resultados, considerações e declaração de uso de IA. Revisão do grupo pendente.
+3. `scripts/make_documentation.py` está desatualizado (modelo da Pessoa 2); não executar, pois sobrescreve este README.
 4. Conferir a animação nativa, gravar MP4 de até um minuto e atualizar slides.
 5. Manter a declaração do uso de IA exigida pelo enunciado e assegurar que o grupo explique as decisões.
 
-Detalhes: [preservação](docs/PRESERVACAO.md), [alterações e erros corrigidos](docs/ALTERACOES.md), [modelo conceitual](docs/MODELO_CONCEITUAL.md), [validação](docs/VALIDACAO.md).
+Detalhes: [Pessoa 4](docs/PESSOA4.md), [Pessoa 3](docs/PESSOA3.md), [preservação](docs/PRESERVACAO.md), [alterações e erros corrigidos](docs/ALTERACOES.md), [modelo conceitual](docs/MODELO_CONCEITUAL.md), [validação](docs/VALIDACAO.md).

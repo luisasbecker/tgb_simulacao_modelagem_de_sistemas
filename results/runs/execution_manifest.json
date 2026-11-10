@@ -5,91 +5,33 @@
   "models": [
     {
       "scenario": 1,
-      "source_sha256": "db3ba8f48347ffe2e2cdb42ce3463c9e0c844d8cf5ccafb7f16e3900a360fc97",
-      "executed_sha256": "db3ba8f48347ffe2e2cdb42ce3463c9e0c844d8cf5ccafb7f16e3900a360fc97",
-      "replications": 30,
-      "outputs_sha256": {
-        "cenario1-LogAtendidos.log": "270f69b03278b3db5381941e3781dfe62fe5bbe055e07ca18927513c5befb185",
-        "cenario1-LogChegadas.log": "57e807d2590f3017e6ef813e7e3fd15d058a00c6ba1f6c84ca7058508e823762",
-        "cenario1-LogDesistencias.log": "be40be7bdad09a7f7a106b80dfa630987df7dec021edcd10cfa1a87726d7d221",
-        "cenario1-LogEstado.log": "644b5476b80c372750d64b63b5f1fb6cf1da2c3aa738ce8a2553dd7345a9f86f",
-        "cenario1-LogMontagem.log": "145eef279d109e3303da063bcaf85bf529a9e07f05124db5bc424fb59880b9df",
-        "cenario1.dat": "c850ec3621cfa58fcd3f64552dd97611dd3488716c3bed89fbaaf092d46c1f05",
-        "cenario1.rep": "5fd610bee179e78d6cb5b43d78f914252dea0838503172b4b2d98e03c2b11e88",
-        "console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
+      "source_sha256": "1195ea87c9ab77ebdee4eb48ad638fa28c91e1e3d1897c051dce5e7c879b8776",
+      "executed_sha256": "1195ea87c9ab77ebdee4eb48ad638fa28c91e1e3d1897c051dce5e7c879b8776",
+      "replications": 30
     },
     {
       "scenario": 2,
-      "source_sha256": "20b7065d539dc661a46a403a0fb17d42729df5ecf79a42d7aba0b5978f2a760c",
-      "executed_sha256": "20b7065d539dc661a46a403a0fb17d42729df5ecf79a42d7aba0b5978f2a760c",
-      "replications": 30,
-      "outputs_sha256": {
-        "cenario2-LogAtendidos.log": "9ffdcbc2f03089f4ad90e86f062dae7d3fbbfc67e2d0b059a19c56f1140c1dae",
-        "cenario2-LogChegadas.log": "042275ab510616a0d5181d95c1eee05270e30f55a7cb8b01cedf5bb4a205d46f",
-        "cenario2-LogDesistencias.log": "c349663465491e58aad34e62599891c0f038af93fec1fcafa58d78ae66468ca0",
-        "cenario2-LogEstado.log": "9a52cb009f3a24e64633af13122af7837e0ec032fcb647daf3ef071ddf9b5b0a",
-        "cenario2-LogMontagem.log": "ca851896fe04118668539517bcb7e0c16ad85b423a3a21f43676c99039b06559",
-        "cenario2.dat": "1ebfe6dba78b40da204861330676f81099eb9db5099795da9af82f407f1887c1",
-        "cenario2.rep": "c996f36552721d2f7cf433fb919755ecfee646602d6b870720804392ae0da9b8",
-        "console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
+      "source_sha256": "21b57b9bcef2e0089593aff9bbe6b59a40b74420a3db5d3ee594465e9c582adc",
+      "executed_sha256": "21b57b9bcef2e0089593aff9bbe6b59a40b74420a3db5d3ee594465e9c582adc",
+      "replications": 30
     },
     {
       "scenario": 3,
-      "source_sha256": "b457e97ce3b41be3444fe5264c6fc1ca6d76f6e36b5f73305b16ccba1234ceea",
-      "executed_sha256": "b457e97ce3b41be3444fe5264c6fc1ca6d76f6e36b5f73305b16ccba1234ceea",
-      "replications": 30,
-      "outputs_sha256": {
-        "cenario3-LogAtendidos.log": "af352fca099ecbc8cbb3fce12f1e89629384ef746191acbd28525ebadf77d4a6",
-        "cenario3-LogChegadas.log": "2c54e18be28e176c82211402df4ef8650a4ed80acbe86e311819e8b4996a7c5d",
-        "cenario3-LogDesistencias.log": "a53fd3a5b3f82400d8841d84e2fd4cdba3b463189e0249db01ffc0e0ffe91d58",
-        "cenario3-LogEstado.log": "b7d75185eedccdb3709150f83fd662e827ba2f39e5804286658c81d587047cbb",
-        "cenario3-LogMontagem.log": "629e37c3950298f69f1c9d41ebec202bf7042095813380df296b50ccbd99c7b5",
-        "cenario3.dat": "32a17cf3eec9e7244eb206b8dfd1111d78dbfa62734058215279aedc5d251e94",
-        "cenario3.rep": "8951662ec849907da715d2f1ad0d7cca1af04a7eae091a0e8730da4a2392be12",
-        "console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
+      "source_sha256": "1a62ac64da52bfaf4baa36fd793de8580301c005bef42ee7e427d17aaa4f5165",
+      "executed_sha256": "1a62ac64da52bfaf4baa36fd793de8580301c005bef42ee7e427d17aaa4f5165",
+      "replications": 30
     },
     {
       "scenario": 4,
-      "source_sha256": "334516362ccd6136add4576b665764d9c3c347b3c81de5c16e2c4b2dc3c31952",
-      "executed_sha256": "334516362ccd6136add4576b665764d9c3c347b3c81de5c16e2c4b2dc3c31952",
-      "replications": 30,
-      "outputs_sha256": {
-        "cenario4-LogAtendidos.log": "227fe4d6f929060fad456355cee225ca0133eb0294128891f15be5f46566f29b",
-        "cenario4-LogChegadas.log": "45e81aff53f14f8cefb278be4653cfb1e1d3ab0e6c554f37290d02d9f2240fd8",
-        "cenario4-LogDesistencias.log": "ee7c3abd2cd7d9d677d974f18049a36caf4c6acb81c92b034214c089e228c32c",
-        "cenario4-LogEstado.log": "2e7d3997ab8b2c623a2355e241ecc20d4a38f1f807475075f510959b07ff0bbe",
-        "cenario4-LogMontagem.log": "4c0d5dd7868f6dd72c2c7dd3512c9a6a7c60a97e1edf83180cf4a23a35551b1a",
-        "cenario4.dat": "1e6b9c5dd1bd2b77995118ba14dae8224a672edeb2ecf1c52bd996daacf5d435",
-        "cenario4.rep": "88dfe41b07656698a5f0477261bf6c4b1f78fc562ede494fe3b9df3ea5623dd1",
-        "console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
+      "source_sha256": "b2b4f2ad068595a21d2a34b7816df436bbae4427fdddedc76e5dc9b194856dc3",
+      "executed_sha256": "b2b4f2ad068595a21d2a34b7816df436bbae4427fdddedc76e5dc9b194856dc3",
+      "replications": 30
     },
     {
       "scenario": 5,
-      "source_sha256": "59cdc3c93be5d5e007d6931e081b73eaaa18b89663e3c8cde709c3264c195c04",
-      "executed_sha256": "59cdc3c93be5d5e007d6931e081b73eaaa18b89663e3c8cde709c3264c195c04",
-      "replications": 30,
-      "outputs_sha256": {
-        "cenario5-LogAtendidos.log": "0d278a88a0fdce294770dc05416a94444c7528181eaff93721c22ba524975e5a",
-        "cenario5-LogChegadas.log": "b26ab4c969fa353389ea0d5acf89578e7ef9c035002e8fd5abebaf5fea5adcac",
-        "cenario5-LogDesistencias.log": "2cade8b90a25b0290e4a95af6ad87f5dacdf58f95a0507a505373b662ac5a976",
-        "cenario5-LogEstado.log": "babdc300273eb2c6ad477181de12dbade08a184ba6776ef08caf481bcc1a419b",
-        "cenario5-LogMontagem.log": "f917b3a82e0c99bb3421c3cbec22202eba77bb19e89fc59d13709090b78c25f1",
-        "cenario5.dat": "ddc066faa734f52e650b4f9807c55f7afde4c86ea0546fc88c016cfba530d58d",
-        "cenario5.rep": "7a01ad1dcc43c8edf5a35fe749adec96aec1ecf667cea8dd2072290778a67f33",
-        "console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
-    }
-  ],
-  "reruns": [
-    {
-      "scenario": 4,
-      "reason": "Incomplete REP and individual logs in first attempt; unchanged model reexecuted. Initial and final DAT byte-identical.",
-      "prior_evidence": "results/validation/initial_c4_incomplete_logs",
-      "accepted_attempt": 2
+      "source_sha256": "1f09f238e9a96c2fba4546b2d5e8716c22a3ec69ab7d8d673a23bce781eb7f97",
+      "executed_sha256": "1f09f238e9a96c2fba4546b2d5e8716c22a3ec69ab7d8d673a23bce781eb7f97",
+      "replications": 30
     }
   ]
 }

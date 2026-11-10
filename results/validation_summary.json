@@ -1,40 +1,66 @@
 {
   "passed": true,
+  "replicacoes_por_cenario": 30,
   "replicacoes": 150,
-  "total_clientes_auditados": 8980,
+  "total_pedidos_auditados": 8980,
+  "total_lanches_auditados": 11881,
   "chegadas_independentes_para_teste_distribuicao": 1796,
-  "tipos": [
+  "distribuicoes_discretas": [
     {
-      "tipo": 1,
+      "atributo": "TipoPedido",
+      "valor": 1,
       "n": 717,
       "fracao_observada": 0.3992204899777283,
-      "fracao_definida": 0.4
+      "fracao_definida": 0.4,
+      "chi2": 1.6529633754021338,
+      "chi2_p": 0.43758614587914624
     },
     {
-      "tipo": 2,
+      "atributo": "TipoPedido",
+      "valor": 2,
       "n": 791,
       "fracao_observada": 0.44042316258351893,
-      "fracao_definida": 0.45
+      "fracao_definida": 0.45,
+      "chi2": 1.6529633754021338,
+      "chi2_p": 0.43758614587914624
     },
     {
-      "tipo": 3,
+      "atributo": "TipoPedido",
+      "valor": 3,
       "n": 288,
       "fracao_observada": 0.1603563474387528,
-      "fracao_definida": 0.15
+      "fracao_definida": 0.15,
+      "chi2": 1.6529633754021338,
+      "chi2_p": 0.43758614587914624
+    },
+    {
+      "atributo": "QuantidadeLanches",
+      "valor": 1,
+      "n": 1261,
+      "fracao_observada": 0.7021158129175946,
+      "fracao_definida": 0.7,
+      "chi2": 0.04250426633500261,
+      "chi2_p": 0.9789721021126597
+    },
+    {
+      "atributo": "QuantidadeLanches",
+      "valor": 2,
+      "n": 393,
+      "fracao_observada": 0.2188195991091314,
+      "fracao_definida": 0.22,
+      "chi2": 0.04250426633500261,
+      "chi2_p": 0.9789721021126597
+    },
+    {
+      "atributo": "QuantidadeLanches",
+      "valor": 3,
+      "n": 142,
+      "fracao_observada": 0.07906458797327394,
+      "fracao_definida": 0.08,
+      "chi2": 0.04250426633500261,
+      "chi2_p": 0.9789721021126597
     }
   ],
-  "chi2": 1.6529633754021338,
-  "chi2_p": 0.43758614587914624,
-  "max_remanescentes": 0.0,
-  "ultima_chegada_global_s": 5399.491566,
-  "seeds_pareados_confirmados": true,
-  "total_desistencias_por_cenario": {
-    "1": 3,
-    "2": 0,
-    "3": 3,
-    "4": 3,
-    "5": 0
-  },
   "montagem": [
     {
       "tipo": 1,
@@ -65,6 +91,50 @@
       "max_amostra_s": 238.62768748987867,
       "ks_D": 0.07481103322019245,
       "ks_p": 0.07561767769776562
+    }
+  ],
+  "max_pedidos_remanescentes": 0.0,
+  "max_lanches_remanescentes": 0.0,
+  "pedidos_entregues_pela_copia": 2563,
+  "ultima_chegada_global_s": 5399.491566,
+  "seeds_pareados_confirmados": true,
+  "total_desistencias_por_cenario": {
+    "1": 103,
+    "2": 16,
+    "3": 103,
+    "4": 103,
+    "5": 16
+  },
+  "respostas": [
+    {
+      "pergunta": 1,
+      "pergunta_texto": "C1: espera media no balcao < 300 s?",
+      "evidencia": "C1 = 109.59 s, IC95% [98.09; 121.10] s",
+      "resposta": "sim"
+    },
+    {
+      "pergunta": 2,
+      "pergunta_texto": "C2 reduz a espera no balcao em pelo menos 40% vs C1?",
+      "evidencia": "109.59 s -> 34.66 s (-68.4%); diferenca_conclusiva",
+      "resposta": "sim"
+    },
+    {
+      "pergunta": 3,
+      "pergunta_texto": "C3 aumenta o lead time em mais de 20% vs C1?",
+      "evidencia": "305.99 s -> 312.37 s (+2.1%); inconclusivo_por_sobreposicao",
+      "resposta": "nao"
+    },
+    {
+      "pergunta": 4,
+      "pergunta_texto": "C4 reduz o lead time vs C1?",
+      "evidencia": "305.99 s -> 292.50 s (-4.4%); inconclusivo_por_sobreposicao",
+      "resposta": "nao conclusivo"
+    },
+    {
+      "pergunta": 5,
+      "pergunta_texto": "C5 elimina o aumento da espera no caixa de C2 sem perda no balcao?",
+      "evidencia": "caixa 23.58 -> 1.11 s (diferenca_conclusiva); lead time 239.68 -> 217.21 s (diferenca_conclusiva); balcao 34.66 -> 34.66 s (inconclusivo_por_sobreposicao)",
+      "resposta": "sim"
     }
   ]
 }

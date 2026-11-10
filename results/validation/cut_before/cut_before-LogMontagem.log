@@ -6,7 +6,7 @@ Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
+Simulation	PresentTimeAndDate	Nov 10, 2026 14:45	-
 Simulation	PresentSimulationTime	0.0	s
 Simulation	ClientesGerados	0.0	-
 Simulation	ClientesAtendidos	0.0	-
@@ -29,7 +29,10 @@ Simulation	UtilizacaoBalcoes	NaN	-
 Simulation	UtilizacaoTostadeira	NaN	-
 Simulation	UtilizacaoCaixas	NaN	-
 Simulation	LeadTime_medio_s	NaN	-
+Simulation	LeadTime_dp_s	NaN	-
+Simulation	LeadTime_max_s	NaN	-
 Simulation	Vazao_h	NaN	-
+Simulation	VazaoLanches_h	NaN	-
 Simulation	UltimaChegada_s	0.0	-
 Simulation	TempoFinal_s	0.0	-
 Simulation	AmostrasLeadTime	0.0	-
@@ -44,5 +47,5 @@ Simulation	UtilizacaoCaixa	NaN	-
 Simulation	RunDuration	9000.0	s
 Simulation	InitializationDuration	0.0	s
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]
-5462.097675999999	Cliente1	Cliente1	1.0	63.09767572198546	5399.0	0.0	63.09767599999941	63.097676
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]
+5462.097675999999	Cliente1	Cliente1	1.0	1.0	1.0	63.09767572198546	5399.0	0.0	63.09767599999941	63.097676

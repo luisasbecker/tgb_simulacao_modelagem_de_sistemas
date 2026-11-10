@@ -11,6 +11,7 @@ import re
 
 ROOT=Path(__file__).resolve().parents[1]
 JAR=ROOT/'tools/JaamSim2026-08.jar'
+LOGS=['LogChegadas','LogDesistencias','LogLanches','LogMontagem','LogAtendidos','LogEstado']
 SHA='83e87bcde04b5dc8c06bac8dfb665e120fa6306aebe6ed6d49fb2ed1835223bf'
 
 def run_model(cfg, timeout=180):
@@ -43,7 +44,7 @@ def run_model(cfg, timeout=180):
     reported=[int(float(x)) for x in re.findall(r'Simulation\tReplicationNumber\t([^\t]+)\t',report)]
     if reported!=list(range(1,reps+1)):
         raise RuntimeError(f'Incomplete .rep: {cfg}: {reported}')
-    for name in ['LogChegadas','LogDesistencias','LogMontagem','LogAtendidos','LogEstado']:
+    for name in LOGS:
         groups=read_log_replications(cfg.with_name(cfg.stem+'-'+name+'.log'))
         if set(groups)!=set(range(1,reps+1)):
             raise RuntimeError(f'Incomplete {name}: {cfg}')

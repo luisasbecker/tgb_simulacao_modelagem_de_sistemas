@@ -12,8 +12,12 @@ class ReadersTest(unittest.TestCase):
         self.assertEqual(rows[0]['ClientesGerados'],52)
         self.assertEqual(rows[-1]['ClientesGerados'],47)
     def test_empty_rejection_sections_are_preserved(self):
+        # Replicacoes sem desistencia geram secoes vazias no log; o leitor deve
+        # preserva-las (30 grupos) e cada grupo deve bater com TotalDesistencias.
         groups=read_log_replications(ROOT/'results/runs/cenario2/cenario2-LogDesistencias.log')
+        rows=read_dat(ROOT/'results/runs/cenario2/cenario2.dat')
         self.assertEqual(set(groups),set(range(1,31)))
-        self.assertTrue(all(not v for v in groups.values()))
+        self.assertTrue(any(not v for v in groups.values()))
+        self.assertEqual([len(groups[int(r['Replication'])]) for r in rows],[int(r['TotalDesistencias']) for r in rows])
 
 if __name__=='__main__':unittest.main()

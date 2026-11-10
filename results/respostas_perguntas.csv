@@ -1,0 +1,6 @@
+pergunta,pergunta_texto,evidencia,resposta
+1,C1: espera media no balcao < 300 s?,"C1 = 109.59 s, IC95% [98.09; 121.10] s",sim
+2,C2 reduz a espera no balcao em pelo menos 40% vs C1?,109.59 s -> 34.66 s (-68.4%); diferenca_conclusiva,sim
+3,C3 aumenta o lead time em mais de 20% vs C1?,305.99 s -> 312.37 s (+2.1%); inconclusivo_por_sobreposicao,nao
+4,C4 reduz o lead time vs C1?,305.99 s -> 292.50 s (-4.4%); inconclusivo_por_sobreposicao,nao conclusivo
+5,C5 elimina o aumento da espera no caixa de C2 sem perda no balcao?,caixa 23.58 -> 1.11 s (diferenca_conclusiva); lead time 239.68 -> 217.21 s (diferenca_conclusiva); balcao 34.66 -> 34.66 s (inconclusivo_por_sobreposicao),sim

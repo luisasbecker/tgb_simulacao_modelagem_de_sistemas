@@ -6,7 +6,7 @@ Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
+Simulation	PresentTimeAndDate	Nov 10, 2026 14:46	-
 Simulation	PresentSimulationTime	0.0	s
 Simulation	ClientesGerados	0.0	-
 Simulation	ClientesAtendidos	0.0	-
@@ -29,7 +29,10 @@ Simulation	UtilizacaoBalcoes	NaN	-
 Simulation	UtilizacaoTostadeira	NaN	-
 Simulation	UtilizacaoCaixas	NaN	-
 Simulation	LeadTime_medio_s	NaN	-
+Simulation	LeadTime_dp_s	NaN	-
+Simulation	LeadTime_max_s	NaN	-
 Simulation	Vazao_h	NaN	-
+Simulation	VazaoLanches_h	NaN	-
 Simulation	UltimaChegada_s	0.0	-
 Simulation	TempoFinal_s	0.0	-
 Simulation	AmostrasLeadTime	0.0	-
@@ -44,9 +47,9 @@ Simulation	UtilizacaoCaixa	NaN	-
 Simulation	RunDuration	9000.0	s
 Simulation	InitializationDuration	0.0	s
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]
-63.097676	Cliente1_Dup1	Cliente1_Dup1	1.0	63.09767572198546	0.0	0.0	63.097676	63.097676
-246.22704299999998	Cliente2_Dup1	Cliente2_Dup1	2.0	126.22704322659614	120.0	0.0	126.22704299999998	126.227043
-403.817793	Cliente3_Dup1	Cliente3_Dup1	3.0	157.59074950228688	240.0	0.0	163.817793	157.59074999999999
-505.908686	Cliente4_Dup1	Cliente4_Dup1	2.0	102.09089296343485	360.0	0.0	145.908686	102.090893
-710.109529	Cliente5_Dup1	Cliente5_Dup1	3.0	204.20084335724437	480.0	0.0	230.10952899999995	204.200843
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]
+63.097676	Cliente1_Dup1	Cliente1_Dup1	1.0	2.0	1.0	63.09767572198546	0.0	0.0	63.097676	63.097676
+246.22704299999998	Cliente2_Dup1	Cliente2_Dup1	2.0	2.0	2.0	126.22704322659614	120.0	0.0	126.22704299999998	126.227043
+403.817793	Cliente3_Dup1	Cliente3_Dup1	3.0	2.0	3.0	157.59074950228688	240.0	0.0	163.817793	157.59074999999999
+505.908686	Cliente4_Dup1	Cliente4_Dup1	4.0	2.0	2.0	102.09089296343485	360.0	0.0	145.908686	102.090893
+710.109529	Cliente5_Dup1	Cliente5_Dup1	5.0	2.0	3.0	204.20084335724437	480.0	0.0	230.10952899999995	204.200843

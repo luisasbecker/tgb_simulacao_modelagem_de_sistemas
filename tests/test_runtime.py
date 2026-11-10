@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from run_model import run_model, ROOT
+from run_model import run_model, ROOT, LOGS
 from result_io import read_dat, numeric_logger, read_log_replications
 
 def test(name,overrides):
@@ -53,10 +53,10 @@ QtdLanchesDist ProbabilityList { 1 0 0 }
 ''')
     # Stress fixture only: long payment intentionally leaves real entities unfinished.
     from analyze_results import audit_rep
-    logs={name:read_log_replications(cfg.with_name(cfg.stem+'-'+name+'.log')) for name in ['LogChegadas','LogDesistencias','LogMontagem','LogAtendidos','LogEstado']}
+    logs={name:read_log_replications(cfg.with_name(cfg.stem+'-'+name+'.log')) for name in LOGS}
     audit=audit_rep(1,row,logs)
     assert audit['remanescentes']>0 and audit['conservacao']
-    assert not audit['reconstrucao_totais_por_concluidos_aplicavel']
+    assert not audit['reconstrucao_totais_aplicavel']
     records.append({'test':'remaining_clients','passed':True,'audit':audit})
     # Pessoa 3: duplicacao e reuniao. Dois lanches por pedido; todos sao reunidos
     # em um pedido antes do pagamento e nenhum lanche fica no sistema no final.
@@ -67,7 +67,11 @@ QtdLanchesDist ProbabilityList { 0 1 0 }
     assert row['ClientesGerados']==5 and row['ClientesAtendidos']==5 and row['TotalDesistencias']==0
     assert row['ClientesAindaNoSistema']==0 and row['SanduichesNoSistema']==0
     assert row['PedidosReunidos']==5 and row['SanduichesMontados']==10
-    records.append({'test':'pessoa3_reuniao','passed':True,'orders':5,'sandwiches':10})
+    # Pessoa 4: auditoria completa por ClienteID (reuniao exata, decomposicao do lead time).
+    logs={name:read_log_replications(cfg.with_name(cfg.stem+'-'+name+'.log')) for name in LOGS}
+    audit=audit_rep(1,row,logs)
+    assert audit['lanches_auditados']==10 and audit['lanches_remanescentes']==0
+    records.append({'test':'pessoa3_reuniao','passed':True,'orders':5,'sandwiches':10,'audit':audit})
     out=ROOT/'results/validation/runtime_tests.json';out.write_text(json.dumps(records,indent=2))
     print(json.dumps(records,indent=2))
 

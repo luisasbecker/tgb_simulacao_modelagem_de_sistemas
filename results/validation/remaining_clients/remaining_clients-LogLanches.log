@@ -1,0 +1,58 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2026-08	-
+Simulation	ConfigurationFile	/Users/i585108/Documents/college/simulacao-modelagem-software/tgb/codigo/tgb_simulacao_modelagem_de_sistemas/results/validation/remaining_clients/remaining_clients.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{1}	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{1}	-
+Simulation	PresentTimeAndDate	Nov 10, 2026 14:45	-
+Simulation	PresentSimulationTime	0.0	s
+Simulation	ClientesGerados	0.0	-
+Simulation	ClientesAtendidos	0.0	-
+Simulation	TotalDesistencias	0.0	-
+Simulation	ClientesAindaNoSistema	0.0	-
+Simulation	SanduichesMontados	0.0	-
+Simulation	PedidosReunidos	0.0	-
+Simulation	SanduichesNoSistema	0.0	-
+Simulation	PedidosNoPagamento	0.0	-
+Simulation	EsperaReuniao_s	NaN	-
+Simulation	FilaReuniao_media	NaN	-
+Simulation	EsperaBalcao_s	NaN	-
+Simulation	FilaBalcao_media	NaN	-
+Simulation	FilaBalcao_max	0.0	-
+Simulation	EsperaCaixa_s	NaN	-
+Simulation	FilaCaixa_media	NaN	-
+Simulation	EsperaTostagem_s	NaN	-
+Simulation	FilaTostagem_media	NaN	-
+Simulation	UtilizacaoBalcoes	NaN	-
+Simulation	UtilizacaoTostadeira	NaN	-
+Simulation	UtilizacaoCaixas	NaN	-
+Simulation	LeadTime_medio_s	NaN	-
+Simulation	LeadTime_dp_s	NaN	-
+Simulation	LeadTime_max_s	NaN	-
+Simulation	Vazao_h	NaN	-
+Simulation	VazaoLanches_h	NaN	-
+Simulation	UltimaChegada_s	0.0	-
+Simulation	TempoFinal_s	0.0	-
+Simulation	AmostrasLeadTime	0.0	-
+Simulation	ClientesMontados	0.0	-
+Simulation	ClientesTostados	0.0	-
+Simulation	ClientesPagos	0.0	-
+Simulation	TempoGeradorAberto_s	NaN	-
+Simulation	Substream	1.0	-
+Simulation	UtilizacaoBalcao1	NaN	-
+Simulation	UtilizacaoBalcao2	NaN	-
+Simulation	UtilizacaoCaixa	NaN	-
+Simulation	RunDuration	9000.0	s
+Simulation	InitializationDuration	0.0	s
+
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.StateTimes("EsperaBalcao")/1[s]	this.obj.StateTimes("Montagem")/1[s]
+63.097676	Cliente1	Cliente1	1.0	1.0	1.0	63.09767572198546	0.0	0.0	63.097676
+127.227043	Cliente2	Cliente2	2.0	1.0	2.0	126.22704322659614	1.0	0.0	126.227043
+220.688426	Cliente3	Cliente3	3.0	1.0	3.0	157.59074950228688	2.0	61.097676	157.59074999999999
+229.317936	Cliente4	Cliente4	4.0	1.0	2.0	102.09089296343485	3.0	124.227043	102.090893
+415.104905	Cliente6	Cliente6	6.0	1.0	3.0	185.78696933270342	5.0	224.317936	185.786969
+424.88926899999996	Cliente5	Cliente5	5.0	1.0	3.0	204.20084335724437	4.0	216.688426	204.200843
+479.075156	Cliente7	Cliente7	7.0	1.0	1.0	63.970250773753904	6.0	409.104905	63.970251
+600.595652	Cliente8	Cliente8	8.0	1.0	3.0	175.70638325023373	7.0	417.88926899999996	175.706383

@@ -6,7 +6,7 @@ Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
+Simulation	PresentTimeAndDate	Nov 10, 2026 14:45	-
 Simulation	PresentSimulationTime	9000.0	s
 Simulation	ClientesGerados	10.0	-
 Simulation	ClientesAtendidos	8.0	-
@@ -29,7 +29,10 @@ Simulation	UtilizacaoBalcoes	0.044444444444444446	-
 Simulation	UtilizacaoTostadeira	0.013477807111111111	-
 Simulation	UtilizacaoCaixas	0.04857610011111111	-
 Simulation	LeadTime_medio_s	347.47822874999997	-
+Simulation	LeadTime_dp_s	133.28184299455378	-
+Simulation	LeadTime_max_s	546.56462	-
 Simulation	Vazao_h	3.2	-
+Simulation	VazaoLanches_h	3.2	-
 Simulation	UltimaChegada_s	9.0	-
 Simulation	TempoFinal_s	9000.0	-
 Simulation	AmostrasLeadTime	8.0	-

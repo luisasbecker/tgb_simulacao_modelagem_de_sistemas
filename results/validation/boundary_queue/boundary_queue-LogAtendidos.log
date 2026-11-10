@@ -6,7 +6,7 @@ Simulation	ScenarioIndex	{1}	-
 Simulation	ReplicationNumber	1.0	-
 Simulation	RunNumber	1.0	-
 Simulation	RunIndex	{1}	-
-Simulation	PresentTimeAndDate	Nov 05, 2026 21:45	-
+Simulation	PresentTimeAndDate	Nov 10, 2026 14:45	-
 Simulation	PresentSimulationTime	0.0	s
 Simulation	ClientesGerados	0.0	-
 Simulation	ClientesAtendidos	0.0	-
@@ -29,7 +29,10 @@ Simulation	UtilizacaoBalcoes	NaN	-
 Simulation	UtilizacaoTostadeira	NaN	-
 Simulation	UtilizacaoCaixas	NaN	-
 Simulation	LeadTime_medio_s	NaN	-
+Simulation	LeadTime_dp_s	NaN	-
+Simulation	LeadTime_max_s	NaN	-
 Simulation	Vazao_h	NaN	-
+Simulation	VazaoLanches_h	NaN	-
 Simulation	UltimaChegada_s	0.0	-
 Simulation	TempoFinal_s	0.0	-
 Simulation	AmostrasLeadTime	0.0	-
@@ -44,12 +47,12 @@ Simulation	UtilizacaoCaixa	NaN	-
 Simulation	RunDuration	9000.0	s
 Simulation	InitializationDuration	0.0	s
 
-this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]	this.obj.StateTimes("EsperaBalcao")/1[s]	this.obj.StateTimes("EsperaTostagem")/1[s]	this.obj.StateTimes("Tostagem")/1[s]	this.obj.StateTimes("EsperaCaixa")/1[s]	this.obj.StateTimes("Pagamento")/1[s]
-160.243177	Cliente1	Cliente1	1.0	100.0	0.0	0.0	160.243177	100.0	0.0	0.0	0.0	0.0	60.243176999999996
-223.12954	Cliente2	Cliente2	2.0	100.0	1.0	0.0	222.12954	100.0	0.0	0.0	0.0	59.243176999999996	62.886362999999996
-271.319691	Cliente3	Cliente3	3.0	100.0	2.0	0.0	269.319691	100.0	98.0	0.0	0.0	23.12954	48.190151
-318.015419	Cliente4	Cliente4	2.0	100.0	3.0	1.0	315.015419	100.0	98.0	0.0	30.029096	40.290594999999996	46.695727999999995
-359.59770299999997	Cliente6	Cliente6	3.0	100.0	5.0	3.0	354.59770299999997	100.0	196.0	0.0	0.0	17.015418999999998	41.582284
-420.06487899999996	Cliente5	Cliente5	3.0	100.0	4.0	2.0	416.06487899999996	100.0	196.0	0.0	25.497453	34.100249999999996	60.467175999999995
-501.89080099999995	Cliente7	Cliente7	1.0	100.0	6.0	4.0	495.89080099999995	100.0	294.0	0.0	36.444598	0.0	65.446203
-553.56462	Cliente8	Cliente8	3.0	100.0	7.0	5.0	546.56462	100.0	294.0	35.444598	29.329117	36.117086	51.673818999999995
+this.SimTime/1[s]	this.obj	this.obj.Name	this.obj.ClienteID	this.obj.QuantidadeLanches	this.obj.TipoPedido	this.obj.TempoMontagem/1[s]	this.obj.HoraChegada/1[s]	this.obj.FilaNaChegada	(this.SimTime-this.obj.HoraChegada)/1[s]	this.obj.StateTimes("Montagem")/1[s]	this.obj.StateTimes("EsperaBalcao")/1[s]	this.obj.StateTimes("EsperaReuniao")/1[s]	this.obj.StateTimes("EsperaTostagem")/1[s]	this.obj.StateTimes("Tostagem")/1[s]	this.obj.StateTimes("EsperaCaixa")/1[s]	this.obj.StateTimes("Pagamento")/1[s]
+160.243177	Cliente1	Cliente1	1.0	1.0	1.0	100.0	0.0	0.0	160.243177	100.0	0.0	0.0	0.0	0.0	0.0	60.243176999999996
+223.12954	Cliente2	Cliente2	2.0	1.0	2.0	100.0	1.0	0.0	222.12954	100.0	0.0	0.0	0.0	0.0	59.243176999999996	62.886362999999996
+271.319691	Cliente3	Cliente3	3.0	1.0	3.0	100.0	2.0	0.0	269.319691	100.0	98.0	0.0	0.0	0.0	23.12954	48.190151
+318.015419	Cliente4	Cliente4	4.0	1.0	2.0	100.0	3.0	1.0	315.015419	100.0	98.0	0.0	0.0	30.029096	40.290594999999996	46.695727999999995
+359.59770299999997	Cliente6	Cliente6	6.0	1.0	3.0	100.0	5.0	3.0	354.59770299999997	100.0	196.0	0.0	0.0	0.0	17.015418999999998	41.582284
+420.06487899999996	Cliente5	Cliente5	5.0	1.0	3.0	100.0	4.0	2.0	416.06487899999996	100.0	196.0	0.0	0.0	25.497453	34.100249999999996	60.467175999999995
+501.89080099999995	Cliente7	Cliente7	7.0	1.0	1.0	100.0	6.0	4.0	495.89080099999995	100.0	294.0	0.0	0.0	36.444598	0.0	65.446203
+553.56462	Cliente8	Cliente8	8.0	1.0	3.0	100.0	7.0	5.0	546.56462	100.0	294.0	0.0	35.444598	29.329117	36.117086	51.673818999999995
