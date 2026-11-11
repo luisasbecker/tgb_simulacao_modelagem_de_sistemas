@@ -6,7 +6,7 @@
 
 Repositório oficial: [luisasbecker/tgb_simulacao_modelagem_de_sistemas](https://github.com/luisasbecker/tgb_simulacao_modelagem_de_sistemas).
 
-## Status da versão final (Pessoas 1 a 4)
+## Status da versão final
 
 Os cinco modelos finais foram **executados no JaamSim 2026-08**, com 30 replicações cada (150 replicações analisadas). Há resultados reais, logs individuais, conservação auditada e IC95% recalculados. O motor não foi substituído por uma simulação Python: Python executa o JAR, verifica os registros e calcula estatísticas.
 
@@ -14,21 +14,20 @@ Esta entrega está na branch local `codex/pessoa2-validacao`. A conexão GitHub 
 
 | Verificação | Situação |
 |---|---|
-| Comparação GA / Pessoa 1 / tentativa Pessoa 2 | concluída; fontes e diffs preservados |
-| Validação estática | cinco cenários aprovados; contrato preserva parâmetros da Pessoa 1 |
+| Comparação GA | concluída; fontes e diffs preservados |
+| Validação estática | cinco cenários aprovados; contrato preserva parâmetros |
 | Parser e motor JaamSim | execução curta, limites 5/6 e 5400 s, cinco cenários e 30 replicações aprovados |
 | Análise estatística | dados novos, 30 observações por cenário, IC t95%, P90, comparações |
 | Conservação e esvaziamento | zero remanescentes nas 150 replicações; balanço também conferido nos registros de estado |
 | Interface gráfica nativa e vídeo | objetos aceitos em headless; revisão visual e gravação MP4 pendentes |
-| Pessoa 3 | concluída no modelo: atributo QuantidadeLanches, duplicação dos lanches (Duplicate) e reunião por pedido antes do pagamento (Combine com MatchRequired), diagrama conceitual e animação atualizados. Conservação verificada em execução headless. Falta a revisão visual/vídeo |
-| Pessoa 4 | concluída: indicadores de lead time (média, DP, máximo, P90), desistências, vazão (pedidos/h e lanches/h) e fila; registro por lanche (`LogLanches`); 150 replicações reexecutadas sobre o modelo da Pessoa 3; auditoria por `ClienteID`; IC95%, comparações e respostas às perguntas; gráficos da fila em degraus e do lead time com barras de erro. Ver [docs/PESSOA4.md](docs/PESSOA4.md) |
-| Relatório GB | fonte LaTeX em `tgb/relatorio/` atualizado com o modelo final e os resultados da Pessoa 4; `docs/ATUALIZAR_RELATORIO_GB.md` é histórico (fase Pessoa 2) |
+| 3 | concluída no modelo: atributo QuantidadeLanches, duplicação dos lanches (Duplicate) e reunião por pedido antes do pagamento (Combine com MatchRequired), diagrama conceitual e animação atualizados. Conservação verificada em execução headless. Falta a revisão visual/vídeo |
+| 4 | concluída: indicadores de lead time (média, DP, máximo, P90), desistências, vazão (pedidos/h e lanches/h) e fila; registro por lanche (`LogLanches`); 150 replicações reexecutadas sobre o modelo; auditoria por `ClienteID`; IC95%, comparações e respostas às perguntas; gráficos da fila em degraus e do lead time com barras de erro. Ver [docs/PESSOA4.md](docs/PESSOA4.md) |
 
 ## Sistema, objetivo e evolução GA → GB
 
 Clientes chegam ao Subway, esperam por montagem, podem passar pela tostadeira e pagam no caixa. O estudo mede espera, ocupação, desistências e tempo total para comparar configurações de atendimento. Os dados são premissas sintéticas de projeto; os resultados são execuções reais desse modelo, não medições do estabelecimento.
 
-O GA tinha três cenários, 90 minutos de execução e 10 replicações. A Pessoa 1 acrescentou C4/C5, definiu 2,5 horas e 30 replicações. A Pessoa 2 integrou tipos de pedido, montagem condicionada, desistência e contagem, corrigiu o corte das chegadas e reexecutou a experimentação. As bases estão preservadas em `docs/baselines/`.
+O GA tinha três cenários, 90 minutos de execução e 10 replicações. Acrescentou C4/C5, definiu 2,5 horas e 30 replicações. Integrou tipos de pedido, montagem condicionada, desistência e contagem, corrigiu o corte das chegadas e reexecutou a experimentação. As bases estão preservadas em `docs/baselines/`.
 
 ## Cinco cenários preservados
 
@@ -40,13 +39,11 @@ O GA tinha três cenários, 90 minutos de execução e 10 replicações. A Pesso
 | 4 | 2 | 1 | 2 | 55% | 45% |
 | 5 | 3 | 1 | 2 | 55% | 45% |
 
-Fila única do balcão; fila única compartilhada entre os caixas de C4/C5. Chegadas somente em **0 ≤ t < 5400 s**, execução até **9000 s**, início vazio e sem aquecimento. A primeira chegada em t=0 é preservada do GA/Pessoa 1; as seguintes têm intervalos EXPO(90 s).
+Fila única do balcão; fila única compartilhada entre os caixas de C4/C5. Chegadas somente em **0 ≤ t < 5400 s**, execução até **9000 s**, início vazio e sem aquecimento. A primeira chegada em t=0 é preservada do GA; as seguintes têm intervalos EXPO(90 s).
 
 ### Contribuição da Pessoa 1
 
 Mantidos números de servidores, filas, FIFO, probabilidades de tostagem, tostagem TRIA(20,30,45 s), pagamento TRIA(18,38,95 s), streams originais, janela total, replicações, liberação do balcão antes de tostar e layout original. O corte de 90 minutos foi corrigido: MaxNumber=999 não representava um horário.
-
-### Contribuição da Pessoa 2
 
 | TipoPedido | Probabilidade | Montagem triangular: mínimo / moda / máximo |
 |---|---:|---|
@@ -118,7 +115,7 @@ Headless direto: `java -jar tools/JaamSim2026-08.jar models/cenario1.cfg -h`. Is
 
 Codespaces: após publicar esta branch, abrir o repositório com o devcontainer e seguir os comandos acima. GitHub Actions: publicar `.github/workflows/jaamsim.yml` e usar **Actions → Validar modelos JaamSim → Run workflow**, ou o gatilho de push/PR. O job executa testes e 150 replicações, e exporta resultados como artifact. Não há execução remota do workflow comprovada nesta entrega.
 
-## Resultados finais (Pessoa 4)
+## Resultados finais
 
 | Indicador | C1 | C2 | C3 | C4 | C5 |
 |---|---:|---:|---:|---:|---:|
